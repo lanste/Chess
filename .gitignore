@@ -1,0 +1,11 @@
+#Executable files
+*.out
+*.exe
+*.app
+
+#Experimental files
+exp.cpp
+*.tmp
+
+#CLion files
+.idea
