@@ -1,10 +1,10 @@
-//
-// Created by teodor on 07.05.22.
-//
+/*
+ * Teodor Lansky <lanskteo@fit.cvut.cz>
+ */
 
 #pragma once
 
-#include "piece.h"
+#include "Piece.h"
 
 class Bishop : public Piece
 {

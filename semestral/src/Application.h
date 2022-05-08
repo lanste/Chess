@@ -1,6 +1,6 @@
-//
-// Created by teodor on 08.05.22.
-//
+/*
+ * Teodor Lansky <lanskteo@fit.cvut.cz>
+ */
 
 #pragma once
 

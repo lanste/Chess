@@ -1,4 +1,4 @@
-#include "piece.h"
+#include "Piece.h"
 
 #include <iostream>
 
