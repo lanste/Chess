@@ -1,6 +1,10 @@
-#ifndef SEMESTRAL_PIECE_H
-#define SEMESTRAL_PIECE_H
 
+#pragma once
+
+/**
+ * Abstract class
+ * Represents any figure on the gameboard
+ */
 class Piece
 {
     public:
@@ -8,5 +12,3 @@ class Piece
     protected:
 
 };
-
-#endif //SEMESTRAL_PIECE_H

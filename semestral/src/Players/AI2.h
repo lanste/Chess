@@ -2,16 +2,17 @@
 // Created by teodor on 08.05.22.
 //
 
-#ifndef SEMESTRAL_AI2_H
-#define SEMESTRAL_AI2_H
+#pragma once
 
+#include "Player.h"
 
-#include "Opponent.h"
-
-class AI2 : public Opponent
+/**
+ * Class reperesenting medium AI player
+ */
+class AI2 : public Player
 {
 
 };
 
 
-#endif //SEMESTRAL_AI2_H
+

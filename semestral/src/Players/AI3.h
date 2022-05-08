@@ -2,15 +2,14 @@
 // Created by teodor on 08.05.22.
 //
 
-#ifndef SEMESTRAL_AI3_H
-#define SEMESTRAL_AI3_H
+#pragma once
 
-#include "Opponent.h"
+#include "Player.h"
+/**
+ * Class reperesenting hard AI player
+ */
 
-class AI3 : public Opponent
+class AI3 : public Player
 {
 
 };
-
-
-#endif //SEMESTRAL_AI3_H

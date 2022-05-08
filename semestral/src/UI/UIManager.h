@@ -5,9 +5,9 @@
 #pragma once
 
 /**
- * Player abstract class
+ * abstract class representing user interfaces
  */
-class Player
+class UIManager
 {
 
 };

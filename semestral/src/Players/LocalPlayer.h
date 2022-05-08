@@ -2,16 +2,15 @@
 // Created by teodor on 08.05.22.
 //
 
-#ifndef SEMESTRAL_LOCALPLAYER_H
-#define SEMESTRAL_LOCALPLAYER_H
+#pragma once
 
+#include "Player.h"
 
-#include "Opponent.h"
-
-class LocalPlayer : public Opponent
+/**
+ * class representing a player using the machine
+ * where the game is currently running
+ */
+class LocalPlayer : public Player
 {
 
 };
-
-
-#endif //SEMESTRAL_LOCALPLAYER_H

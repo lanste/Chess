@@ -5,9 +5,9 @@
 #pragma once
 
 /**
- * Player abstract class
+ * class representing basic terminal ui layer
  */
-class Player
+class ITerminal
 {
 
 };
