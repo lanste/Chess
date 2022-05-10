@@ -4,6 +4,14 @@
 
 #pragma once
 
+#include <string>
+#include <vector>
+#include <set>
+#include <memory>
+
+#include "UI/UIManager.h"
+#include "UI/ITerminal.h"
+
 /**
  * Helper class
  * processes options given by user
@@ -13,7 +21,12 @@
 class ProgramOptions
 {
     public:
-        ProgramOptions(int argCnt, char ** arguments);
+        explicit ProgramOptions();
+        void ReadOptions(int argCnt, char ** args);
+        std::shared_ptr<UIManager> GetInterface() const;
     protected:
-
+        int argumentCount;
+        std::vector<std::string> arguments;
+        std::set<std::string> validOptions;
+        std::shared_ptr<UIManager> interface;
 };

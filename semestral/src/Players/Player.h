@@ -9,5 +9,9 @@
  */
 class Player
 {
+    public:
+    Player();
+    protected:
+        bool colour;
 
 };

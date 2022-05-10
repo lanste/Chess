@@ -3,3 +3,21 @@
 //
 
 #include "ClassicalChessBoard.h"
+
+ClassicalChessBoard::ClassicalChessBoard(const bool & playerColour)
+{
+    for(int i = 0; i < 8; ++i)
+    {
+        std::array<std::unique_ptr<Piece>, 8> row;
+        switch(i)
+        {
+            case 0:
+                row[0] = AddPiece()
+
+
+
+        }
+    }
+
+
+}

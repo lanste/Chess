@@ -9,5 +9,8 @@
  */
 class UIManager
 {
+    public:
+        UIManager() = default;
+    protected:
 
 };

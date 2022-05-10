@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Player.h"
+#include "Player.h" // base class
 
 /**
  * class representing a player using the machine
@@ -12,5 +12,8 @@
  */
 class LocalPlayer : public Player
 {
-
+    public:
+        LocalPlayer();
+    protected:
+        bool colour;
 };

@@ -16,8 +16,9 @@
 class Menu
 {
     public:
-
+        int Show();
     protected:
+
 };
 
 
