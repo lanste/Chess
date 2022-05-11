@@ -7,15 +7,19 @@
 #include "../UI/UIManager.h"
 #include "../UI/ITerminal.h"
 
+#include <memory>
 /**
- * Abstract class
+ * Abstract class \n
  * Represents any figure on the gameboard
  */
 class Piece
 {
     public:
         Piece() = default;
-        virtual void createInstance() = 0;
+        /**
+         * @return pointer to object of derived class (Chess pieces)
+         */
+        virtual std::shared_ptr<Piece> createInstance() = 0;
         virtual void Print(UIManager & interface) = 0;
     protected:
         struct coordinates

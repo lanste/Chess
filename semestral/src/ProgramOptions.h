@@ -23,10 +23,10 @@ class ProgramOptions
     public:
         explicit ProgramOptions();
         void ReadOptions(int argCnt, char ** args);
-        std::shared_ptr<UIManager> GetInterface() const;
+        static std::unique_ptr<UIManager> GetInterface();
     protected:
         int argumentCount;
         std::vector<std::string> arguments;
         std::set<std::string> validOptions;
-        std::shared_ptr<UIManager> interface;
+        std::unique_ptr<UIManager> interface;
 };

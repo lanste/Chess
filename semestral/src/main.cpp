@@ -9,13 +9,35 @@
  */
 
 
+#include <string>
 #include "Application.h"
 #include "ProgramOptions.h"
 
+int readOptions(int argc, char* *argv)
+{
+
+    for(int i = 1; i < argc; ++i)
+    {
+        std::string arg(argv[i]);
+        if(arg == "-t" || arg == "--terminal")
+            return 0;
+    }
+    return 1;
+}
+
 int main (int argc, char* *argv)
 {
-    ProgramOptions options();
+    /*/
+    if(readOptions(argc, argv))
+    {
+        std::cerr << "graphical UI is not yet implemented" << std::endl;
+    }
+
+    /*/
+    // todo future
+    ProgramOptions options;
     options.ReadOptions(argc, argv);
     Application(options).Run();
+    /*/
     return 0;
 }

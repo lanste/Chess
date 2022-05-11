@@ -10,13 +10,14 @@
 
 
 /**
- * Represent game menu
+ * Represent game mainMenu
  * allows player to start new, load, (continue?) a game, or exit the application
  */
-class Menu
+class MainMenu
 {
     public:
-        int Show();
+        MainMenu();
+        int Show(const std::unique_ptr<UIManager> & interface);
     protected:
 
 };

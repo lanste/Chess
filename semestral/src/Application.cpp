@@ -5,14 +5,14 @@
 
 Application::Application(const ProgramOptions & options)
 {
-    interface = options.GetInterface();
+    interface = ProgramOptions::GetInterface();
 }
 
 int Application::Run()
 {
     while(true)
     {
-        menu->Show(); // game is started from the menu class
+        mainMenu->Show(interface); // game is started from the mainMenu class
         break;
     }
     return 0;

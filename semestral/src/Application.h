@@ -5,7 +5,7 @@
 #pragma once
 
 #include "UI/UIManager.h"
-#include "Menu.h"
+#include "MainMenu.h"
 #include "Game.h"
 #include "ProgramOptions.h"
 
@@ -13,7 +13,7 @@
 
 /**
  * Main class
- * Holds Interface, Menu and Game
+ * Holds Interface, MainMenu and Game
  */
 class Application
 {
@@ -22,7 +22,7 @@ class Application
         //Application(); // placeholder
         int Run();
     protected:
-        std::shared_ptr<UIManager> interface;
-        std::shared_ptr<Menu> menu;
-        std::shared_ptr<Game> game;
+        std::unique_ptr<UIManager> interface;
+        std::unique_ptr<MainMenu> mainMenu;
+        std::unique_ptr<Game> game;
 };
