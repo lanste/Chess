@@ -38,6 +38,6 @@ int main (int argc, char* *argv)
     ProgramOptions options;
     options.ReadOptions(argc, argv);
     Application(options).Run();
-    /*/
+    //*/
     return 0;
 }

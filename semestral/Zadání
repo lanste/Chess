@@ -1,0 +1,100 @@
+Klasická hra Šachy
+
+Implementujte následující varianty:
+
+pro 2 hráče na jednom počítači
+pro hru proti počítači
+Hra musí splňovat následující funkcionality:
+
+Dodržování všech pravidel dané varianty (u klasické varianty tedy i rošáda, braní mimochodem, proměna pěšce).
+Ukládání (resp. načítání) rozehrané hry do (resp. ze) souboru (vytvořte vhodný formát a uživatelské rozhraní)
+Oznamovat stav a konec hry (šach, mat, pat) a její výsledek.
+Umělá inteligence (škálovatelná nebo alespoň 3 různé druhy, jeden druh můžou být náhodné tahy, ale nestačí implementovat pouze náhodné tahy)
+Kde lze využít polymorfismus? (doporučené)
+
+Ovládání hráčů: lokální hráč, umělá inteligence (různé druhy), síťový hráč
+Pohyby figurek: král, dáma, věž, jezdec,...
+Uživatelské rozhraní: konzolové, ncurses, SDL, OpenGL (různé druhy),...
+Pravidla různých variant: klasické šachy, žravé šachy, asijské šachy
+Jednotlivá pravidla: tahy, rošáda, braní mimochodem, proměna (jejich výběr pak může být konfigurovatelný)
+Další informace
+
+https://cs.wikipedia.org/wiki/Šachy
+https://cs.wikipedia.org/wiki/Šachové_varianty
+
+--------------------------------------------------------------------------------------------------------------
+Šachy (WIP)
+
+Veškerá pravidla klasických Šachů
+Hra proti lokálnímu hráči, 3 obtížnosti AI, potenciální rozšíření o online protihráče
+Program bude rozšiřitelný o další "šachové hry", včetně možnosti různých formátů hrací plochy 
+			(Teoreticky ohnutelné i pro jiné deskové hry)
+	
+Terminálové uživatelské rozhraní:
+(návrh: zvolitelná lokalizace pomocí argumentů při spuštění)
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Menu			
+--------------------------		
+1) Nová hra/ New game
+2) Načíst hru/ Load game
+3) Konec/ End game
+
+Zvolte číslo možnosti [1-3]:
+	>
+	
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Načíst hru
+--------------------------
+Není nic uloženo
+------------
+1) [název]
+2)	...
+3)	...
+...	
+Zvolte číslo možnosti [1-...]:
+	>	
+	
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Nová hra
+--------------------------
+1) Šachy
+2) ... soon™
+
+Zvolte číslo možnosti [1-...]:
+	>
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+#uživatel vybere svou barvu a typ protihráče
+Šachy - nastavení
+--------------------------
+
+	> [W|B] [L|AI1|AI2|AI3|...]
+ 
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+rozhraní hry nemám plně vyřešené
+
+příkazy:
+
+pohyb kamene - u pěšců by měl brát v potaz braní mimochodem
+	> move [pozice figurky][cílová pozice]
+	 
+rošáda - název příkazu není finální
+	> cast [pozice vybrané věže] 
+
+uložit aktuální stav hry (pokud je to možné - např. online hra)
+	> save [filename]
+
+ukončit hru - proběhne návrat do mainMenu
+	> exit/quit
+
+<><><><<>><<><><><><><><><><><><><><><><><><><><><><><><><><>
+
+
+
+
+
+
+
+
+
+

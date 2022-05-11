@@ -8,6 +8,8 @@
 #include "UI/ITerminal.h"
 #include "Game.h"
 
+#include <vector>
+#include <string>
 
 /**
  * Represent game mainMenu
@@ -19,7 +21,16 @@ class MainMenu
         MainMenu();
         int Show(const std::unique_ptr<UIManager> & interface);
     protected:
+        std::string createHeader() const;
 
+        struct Dims
+        {
+            int width;
+            int height;
+        };
+        std::string header;
+        std::vector<std::string> menuOptions;
+        Dims dimensions;
 };
 
 
