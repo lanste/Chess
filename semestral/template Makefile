@@ -1,13 +1,14 @@
-# PA2 Makefile template
-CC	=	gcc
-CXX	=	g++
-CXXFLAGS	=       -std=c++14 -pedantic -Wall
-CFLAGS	= 	-Wall -pedantic -g3 
-#-fsanitize=address
-LIBS	=	
-#-lpthread
-LFLAGS = 
-#-pthread -lrt
+CXX = g++
+CXXFLAGS = -Wall -pedantic -g
+LD = g++
+LDFLAGS = -pedantic
+
+all:
+
+compile: main.o
+
+
+
 
 # all .o modules to make
 #         ls *.cpp | sed 's/.cpp/.o/g' | tr '\n' ' '

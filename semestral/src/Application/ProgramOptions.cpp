@@ -1,30 +1,30 @@
-//
-// Created by teodor on 08.05.22.
-//
+/*
+ * Teodor Lansky <lanskteo@fit.cvut.cz>
+ */
 
 
 #include "ProgramOptions.h"
-#include "UI/ITerminal.h"
-#include "UI/UIManager.h"
+#include "../UI/ITerminal.h"
+#include "../UI/UIManager.h"
 
 ProgramOptions::ProgramOptions() : argumentCount(0)
 {
     validOptions.emplace("-t");
     validOptions.emplace("--terminal");
 }
-std::unique_ptr<UIManager> ProgramOptions::GetInterface()
+std::shared_ptr<UIManager> ProgramOptions::GetInterface() const
 {
-    std::unique_ptr<UIManager> null(nullptr);
-    return null;
+    return interface->Create();
 }
-void ProgramOptions::ReadOptions(int argCnt, char ** args)
+int ProgramOptions::ReadOptions(int argCnt, char ** args)
 {
     argumentCount = argCnt;
-    if(argumentCount == 0)
+    if(argumentCount == 1)
     {
         std::cout << "Graphical interface not yet implemented.\n Use option -t for terminal interface" << std::endl;
+        return 2;
     }
-    else for(size_t i = 1; i < argumentCount; ++i)
+    else for(int i = 1; i < argumentCount; ++i)
     {
         std::string option = args[i];
         auto result = validOptions.find(option);
@@ -53,4 +53,5 @@ void ProgramOptions::ReadOptions(int argCnt, char ** args)
         }
         ++counter;
     }
+    return 0;
 }

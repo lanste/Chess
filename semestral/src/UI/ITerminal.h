@@ -17,7 +17,7 @@ class ITerminal : public UIManager
     public:
         ITerminal();
         ~ITerminal() = default;
-        std::unique_ptr<UIManager> Create();
+        std::shared_ptr<UIManager> Create();
         void Display(const std::string & message);
         bool Receive(std::string & command);
     protected:

@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "UI/UIManager.h"
-#include "UI/ITerminal.h"
-#include "Boards/Board.h"
-#include "Players/Player.h"
-#include "Players/LocalPlayer.h"
-#include "Players/AI1.h"
-#include "Players/AI2.h"
-#include "Players/AI3.h"
+#include "../UI/UIManager.h"
+#include "../UI/ITerminal.h"
+#include "../Boards/Board.h"
+#include "../Players/Player.h"
+#include "../Players/LocalPlayer.h"
+#include "../Players/AI1.h"
+#include "../Players/AI2.h"
+#include "../Players/AI3.h"
 
 #include <memory>
 

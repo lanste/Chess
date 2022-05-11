@@ -9,8 +9,8 @@
 #include <set>
 #include <memory>
 
-#include "UI/UIManager.h"
-#include "UI/ITerminal.h"
+#include "../UI/UIManager.h"
+#include "../UI/ITerminal.h"
 
 /**
  * Helper class
@@ -22,11 +22,11 @@ class ProgramOptions
 {
     public:
         explicit ProgramOptions();
-        void ReadOptions(int argCnt, char ** args);
-        static std::unique_ptr<UIManager> GetInterface();
+        [[nodiscard]] int ReadOptions(int argCnt, char ** args);
+        std::shared_ptr<UIManager> GetInterface() const;
     protected:
         int argumentCount;
         std::vector<std::string> arguments;
         std::set<std::string> validOptions;
-        std::unique_ptr<UIManager> interface;
+        std::shared_ptr<UIManager> interface;
 };

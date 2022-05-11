@@ -5,7 +5,9 @@
 
 Application::Application(const ProgramOptions & options)
 {
-    interface = ProgramOptions::GetInterface();
+    mainMenu = std::make_unique<MainMenu>();
+    game = std::make_unique<Game>();
+    interface = options.GetInterface();
 }
 
 int Application::Run()

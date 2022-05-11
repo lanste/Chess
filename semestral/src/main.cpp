@@ -10,8 +10,8 @@
 
 
 #include <string>
-#include "Application.h"
-#include "ProgramOptions.h"
+#include "Application/Application.h"
+#include "Application/ProgramOptions.h"
 
 int readOptions(int argc, char* *argv)
 {
@@ -36,7 +36,9 @@ int main (int argc, char* *argv)
     /*/
     // todo future
     ProgramOptions options;
-    options.ReadOptions(argc, argv);
+
+    if(options.ReadOptions(argc, argv))
+        return 0;
     Application(options).Run();
     //*/
     return 0;

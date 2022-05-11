@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "UI/UIManager.h"
-#include "UI/ITerminal.h"
+#include "../UI/UIManager.h"
+#include "../UI/ITerminal.h"
 #include "Game.h"
 
 #include <vector>
@@ -19,10 +19,11 @@ class MainMenu
 {
     public:
         MainMenu();
-        int Show(const std::unique_ptr<UIManager> & interface);
+        int Show(const std::shared_ptr<UIManager> & interface);
     protected:
         std::string createHeader() const;
-
+        std::string createOptions() const;
+        std::string emptyLine() const;
         struct Dims
         {
             int width;

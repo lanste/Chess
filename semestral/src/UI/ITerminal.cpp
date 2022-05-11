@@ -8,7 +8,7 @@ ITerminal::ITerminal() : input(std::cin), output(std::cout)
 {
 }
 
-std::unique_ptr<UIManager> ITerminal::Create()
+std::shared_ptr<UIManager> ITerminal::Create()
 {
     return std::make_unique<ITerminal>(*this);
 }
