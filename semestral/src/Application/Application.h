@@ -12,6 +12,7 @@
 
 #include <memory>
 
+#define EXITCODE 9
 /**
  * Main class
  * Holds Interface, MainMenu and Game

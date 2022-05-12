@@ -22,7 +22,7 @@ class CommandManager
 {
     public:
         CommandManager();
-        bool Execute(std::string command);
+        int Execute(std::string command);
     protected:
         std::map<std::string, std::shared_ptr<Command>> commands;
 

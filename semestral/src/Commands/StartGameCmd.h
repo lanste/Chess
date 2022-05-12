@@ -10,7 +10,7 @@ class StartGameCmd : public Command
 {
     public:
         StartGameCmd();
-        bool Execute();
+        int Execute();
     protected:
 
 };

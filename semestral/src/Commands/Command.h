@@ -12,7 +12,7 @@ class Command
 {
     public:
         Command() = default;
-        virtual bool Execute() = 0;
+        virtual int Execute() = 0;
     protected:
         std::shared_ptr<UIManager> interface;
 };

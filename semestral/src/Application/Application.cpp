@@ -14,13 +14,18 @@ Application::Application(const ProgramOptions & options)
 int Application::Run()
 {
     mainMenu->Show(interface); // basically welcome screen
+    int status = 0;
     while(true)
     {
         std::string command;
         interface->Receive(command);
-        if(not cmdManager.Execute(command))
+        status = cmdManager.Execute(command);
+        if(status == EXITCODE)
+            return 0;
+        if(status == 1)
+        {
             interface->Display("Unknown command!\n    Try again or use 'help' command"); // suboptimal
-        break;
+        }
     }
     return 0;
 }

@@ -5,9 +5,13 @@
 #pragma once
 
 #include "Command.h"
+
+#define EXITCODE 9 //todo this is suboptimal
 class ExitCmd : public Command
 {
-
+    public:
+        ExitCmd() = default;
+        int Execute() override {return EXITCODE;}
 };
 
 

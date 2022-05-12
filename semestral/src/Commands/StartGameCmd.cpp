@@ -8,7 +8,10 @@ StartGameCmd::StartGameCmd()
 {
 
 }
-bool StartGameCmd::Execute()
+
+
+
+int StartGameCmd::Execute()
 {
     return false;
 }
