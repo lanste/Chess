@@ -8,5 +8,8 @@
 
 class LoadGameCmd : public Command
 {
-
+    public:
+        LoadGameCmd();
+        int Execute();
+    protected:
 };

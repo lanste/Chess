@@ -3,12 +3,10 @@
  */
 #include "Application.h"
 
-Application::Application(const ProgramOptions & options)
+Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), game(Game(interface))
 {
-    mainMenu = std::make_unique<MainMenu>();
-    game = Game();
-    interface = options.GetInterface();
     cmdManager = CommandManager();
+    mainMenu = std::make_unique<MainMenu>(interface, game);
 }
 
 int Application::Run()
@@ -16,19 +14,16 @@ int Application::Run()
     int status = 0;
     while(true)
     {
-        mainMenu->Show(interface); // basically welcome screen
+        mainMenu->Show(); // basically welcome screen
         std::string command;
         interface->Receive(command);
         status = mainMenu->ExecCommand(command);
 
-
-        //status = cmdManager.Execute(command, "main");
         if(status == EXITCODE)
             return 0;
         if(status == 1)
         {
-            interface->Display("Unknown command!\n    Try again or use 'help' command"); // suboptimal
+            interface->Display("Unknown command!\n    Try again or use 'help' command\n\n"); // suboptimal
         }
     }
-    return 0;
 }

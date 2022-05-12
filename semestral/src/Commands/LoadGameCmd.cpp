@@ -3,3 +3,12 @@
 //
 
 #include "LoadGameCmd.h"
+
+LoadGameCmd::LoadGameCmd()
+{
+
+}
+int LoadGameCmd::Execute()
+{
+    return 0;
+}

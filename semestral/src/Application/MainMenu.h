@@ -25,9 +25,9 @@
 class MainMenu
 {
     public:
-        MainMenu();
-        int Show(const std::shared_ptr<UIManager> & interface);
-        int ExecCommand(const std::string & interface);
+        MainMenu(const std::shared_ptr<UIManager> & ui, const Game & nGame);
+        int Show();
+        int ExecCommand(const std::string & command);
     protected:
         [[nodiscard]] std::string createHeader() const;
         [[nodiscard]] std::string createOptions() const;
@@ -37,6 +37,9 @@ class MainMenu
             size_t width;
             size_t height;
         };
+        std::shared_ptr<UIManager> interface;
+        Game game;
+
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::string header;
         std::vector<std::string> menuOptions;

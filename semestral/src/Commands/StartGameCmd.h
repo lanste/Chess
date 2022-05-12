@@ -5,14 +5,17 @@
 #pragma once
 
 #include "Command.h"
+#include "../Application/Game.h"
+#include "../Application/StartGameMenu.h"
 
 class StartGameCmd : public Command
 {
     public:
-        StartGameCmd();
+        StartGameCmd(const Game & nGame, const std::shared_ptr<UIManager> & ui);
         int Execute();
     protected:
-
+        Game game;
+        std::shared_ptr<UIManager> interface;
 };
 
 

@@ -22,7 +22,8 @@
 class Game
 {
     public:
-        Game() = default;
+        Game(const std::shared_ptr<UIManager> & ui);
+        int Start();
     protected:
         std::shared_ptr<UIManager> interface;
         std::shared_ptr<Board> gameState;

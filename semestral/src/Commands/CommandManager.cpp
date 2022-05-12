@@ -10,4 +10,5 @@ CommandManager::CommandManager()
 }
 int CommandManager::Execute(const std::string & command, const std::string & calledFrom)
 {
+    return 0;
 }

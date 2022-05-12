@@ -9,7 +9,7 @@
 /**
  * Sets contents of the menu
  */
-MainMenu::MainMenu()
+MainMenu::MainMenu(const std::shared_ptr<UIManager> & ui, const Game & nGame) : interface(ui), game(nGame)
 {
     dimensions.width = 20; // arbitrary values ?todo resizable?
                             // may not be actually used
@@ -19,7 +19,7 @@ MainMenu::MainMenu()
     menuOptions.emplace_back("Load Game");
     menuOptions.emplace_back("Exit");
 
-    commands.emplace("0", std::make_shared<StartGameCmd>());
+    commands.emplace("0", std::make_shared<StartGameCmd>(game, interface));
     commands.emplace("1", std::make_shared<LoadGameCmd>());
     commands.emplace("2", std::make_shared<ExitCmd>());
 }
@@ -29,9 +29,9 @@ MainMenu::MainMenu()
 /**
  * Passes object data to interface
  * @param interface to pass to
- * @return 0 on succes
+ * @return 0 on success
  */
-int MainMenu::Show(const std::shared_ptr<UIManager> & interface)
+int MainMenu::Show()
 {
     std::string output;
     for (size_t h = 0; h < dimensions.height; ++h) // number of rows
@@ -66,7 +66,7 @@ int MainMenu::Show(const std::shared_ptr<UIManager> & interface)
 std::string MainMenu::createHeader() const
 {
     std::string output;
-    size_t currW = dimensions.width;
+    //size_t currW = dimensions.width;
     size_t wDiff = dimensions.width - header.size();
     size_t rightW = 0;
     if(wDiff <= 0)
@@ -80,12 +80,12 @@ std::string MainMenu::createHeader() const
     }
     rightW += wDiff / 2;
     size_t leftW  = wDiff / 2;
-    for(int i = 0; i < leftW; ++i)
+    for(size_t i = 0; i < leftW; ++i)
     {
         output.append(" ");
     }
     output.append(header);
-    for(int i = 0; i < rightW; ++i)
+    for(size_t i = 0; i < rightW; ++i)
     {
         output.append(" ");
     }
@@ -124,8 +124,10 @@ std::string MainMenu::createPrompt()
     oss << "\nChoose menu option [0-" << menuOptions.size() - 1 << "]:\n";
     return oss.str();
 }
-int MainMenu::ExecCommand(const std::string & interface)
+int MainMenu::ExecCommand(const std::string & command)
 {
-
-    return 0;
+    const auto cmd = commands.find(command);
+    if(cmd == commands.end())
+        return 1;
+    return cmd->second->Execute();
 }
