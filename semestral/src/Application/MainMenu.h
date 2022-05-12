@@ -26,11 +26,12 @@ class MainMenu
         std::string emptyLine() const;
         struct Dims
         {
-            int width;
-            int height;
+            size_t width;
+            size_t height;
         };
         std::string header;
         std::vector<std::string> menuOptions;
+        std::string createPrompt();
         Dims dimensions;
 };
 

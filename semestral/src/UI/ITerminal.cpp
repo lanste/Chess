@@ -10,7 +10,7 @@ ITerminal::ITerminal() : input(std::cin), output(std::cout)
 
 std::shared_ptr<UIManager> ITerminal::Create()
 {
-    return std::make_unique<ITerminal>(*this);
+    return std::make_shared<ITerminal>(*this);
 }
 
 void ITerminal::Display(const std::string & message)

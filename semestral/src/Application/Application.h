@@ -8,6 +8,7 @@
 #include "MainMenu.h"
 #include "Game.h"
 #include "ProgramOptions.h"
+#include "../Commands/CommandManager.h"
 
 #include <memory>
 
@@ -24,5 +25,6 @@ class Application
     protected:
         std::shared_ptr<UIManager> interface;
         std::unique_ptr<MainMenu> mainMenu;
-        std::unique_ptr<Game> game;
+        CommandManager cmdManager;
+        Game game;
 };

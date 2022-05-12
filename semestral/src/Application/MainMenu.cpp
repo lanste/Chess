@@ -19,6 +19,9 @@ MainMenu::MainMenu()
     menuOptions.emplace_back("Load Game");
     menuOptions.emplace_back("Exit");
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
  * Passes object data to interface
  * @param interface to pass to
@@ -27,7 +30,7 @@ MainMenu::MainMenu()
 int MainMenu::Show(const std::shared_ptr<UIManager> & interface)
 {
     std::string output;
-    for (int h = 0; h < dimensions.height; ++h) // number of rows
+    for (size_t h = 0; h < dimensions.height; ++h) // number of rows
     {
         switch (h)
         {
@@ -45,24 +48,34 @@ int MainMenu::Show(const std::shared_ptr<UIManager> & interface)
                 break;
         }
     }
+    output.append(emptyLine());
+    output.append(createPrompt());
     interface->Display(output);
     return 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Creates title of the menu based on dimensions saved in the class
+ * @return string containing header
+ */
 std::string MainMenu::createHeader() const
 {
     std::string output;
-    int currW = dimensions.width;
-    int wDiff = dimensions.width - header.size();
+    size_t currW = dimensions.width;
+    size_t wDiff = dimensions.width - header.size();
+    size_t rightW = 0;
     if(wDiff <= 0)
+    {
         return header;
-    int rightW = 0;
+    }
     if(wDiff % 2)
     {
         rightW = 1;
        --wDiff;
     }
     rightW += wDiff / 2;
-    int leftW  = wDiff / 2;
+    size_t leftW  = wDiff / 2;
     for(int i = 0; i < leftW; ++i)
     {
         output.append(" ");
@@ -75,19 +88,35 @@ std::string MainMenu::createHeader() const
     return output;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Creates table with available options todo variable dimensions (maybe)
+ * @return string containing all menu options
+ */
 std::string MainMenu::createOptions() const
 {
     //std::string output;
-    std::stringstream is;
+    std::stringstream oss;
     size_t size = menuOptions.size();
     for(size_t op = 0; op < size; ++op)
     {
-        is << "\n" << op << ") " << menuOptions[op];
+        oss << "\n" << op << ") " << menuOptions[op];
     }
-    return is.str();
+    return oss.str();
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 std::string MainMenu::emptyLine() const
 {
     return "\n" + std::string( dimensions.width, ' ' );
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+std::string MainMenu::createPrompt()
+{
+    std::stringstream oss;
+    oss << "\nChoose menu option [0-" << menuOptions.size() - 1 << "]:\n";
+    return oss.str();
 }

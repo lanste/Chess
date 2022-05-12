@@ -6,15 +6,20 @@
 Application::Application(const ProgramOptions & options)
 {
     mainMenu = std::make_unique<MainMenu>();
-    game = std::make_unique<Game>();
+    game = Game();
     interface = options.GetInterface();
+    cmdManager = CommandManager();
 }
 
 int Application::Run()
 {
+    mainMenu->Show(interface); // basically welcome screen
     while(true)
     {
-        mainMenu->Show(interface); // game is started from the mainMenu class
+        std::string command;
+        interface->Receive(command);
+        if(not cmdManager.Execute(command))
+            interface->Display("Unknown command!\n    Try again or use 'help' command"); // suboptimal
         break;
     }
     return 0;
