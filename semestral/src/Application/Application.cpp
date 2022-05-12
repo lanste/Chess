@@ -13,13 +13,16 @@ Application::Application(const ProgramOptions & options)
 
 int Application::Run()
 {
-    mainMenu->Show(interface); // basically welcome screen
     int status = 0;
     while(true)
     {
+        mainMenu->Show(interface); // basically welcome screen
         std::string command;
         interface->Receive(command);
-        status = cmdManager.Execute(command);
+        status = mainMenu->ExecCommand(command);
+
+
+        //status = cmdManager.Execute(command, "main");
         if(status == EXITCODE)
             return 0;
         if(status == 1)

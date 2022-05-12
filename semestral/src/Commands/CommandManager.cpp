@@ -6,12 +6,8 @@
 
 CommandManager::CommandManager()
 {
-    commands.emplace("test", std::make_shared<StartGameCmd>());
+
 }
-int CommandManager::Execute(std::string command)
+int CommandManager::Execute(const std::string & command, const std::string & calledFrom)
 {
-    const auto cmd = commands.find(command);
-    if(cmd == commands.end())
-        return false;
-    return cmd->second->Execute();
 }

@@ -18,6 +18,10 @@ MainMenu::MainMenu()
     menuOptions.emplace_back("Start Game");
     menuOptions.emplace_back("Load Game");
     menuOptions.emplace_back("Exit");
+
+    commands.emplace("0", std::make_shared<StartGameCmd>());
+    commands.emplace("1", std::make_shared<LoadGameCmd>());
+    commands.emplace("2", std::make_shared<ExitCmd>());
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,4 +123,9 @@ std::string MainMenu::createPrompt()
     std::stringstream oss;
     oss << "\nChoose menu option [0-" << menuOptions.size() - 1 << "]:\n";
     return oss.str();
+}
+int MainMenu::ExecCommand(const std::string & interface)
+{
+
+    return 0;
 }

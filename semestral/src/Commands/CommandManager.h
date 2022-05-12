@@ -17,14 +17,15 @@
 /**
  * Processes input received from user via active interface
  * Manages execution of individual commands
+ * Deprecated
  */
 class CommandManager
 {
     public:
         CommandManager();
-        int Execute(std::string command);
+        int Execute(const std::string & command, const std::string & calledFrom);
     protected:
-        std::map<std::string, std::shared_ptr<Command>> commands;
+        std::map<std::string, std::shared_ptr<Command>> menuCommands;
 
 };
 
