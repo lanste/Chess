@@ -4,10 +4,12 @@
 
 #include "PlayChessCmd.h"
 
-PlayChessCmd::PlayChessCmd()
-{
+//PlayChessCmd::PlayChessCmd()
+//{
+//
+//}
 
-}
+
 int PlayChessCmd::Execute()
 {
     return 0;

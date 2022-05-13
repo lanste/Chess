@@ -8,9 +8,9 @@ King::King() : symbol('K')
 {
 
 }
-void King::createInstance()
+std::shared_ptr<Piece> King::createInstance()
 {
-
+    return nullptr;
 }
 void King::Print(UIManager & interface)
 {

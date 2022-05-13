@@ -4,10 +4,11 @@
 
 #include "ComingSoonCmd.h"
 
-ComingSoonCmd::ComingSoonCmd()
-{
+//ComingSoonCmd::ComingSoonCmd()
+//{
+//
+//}
 
-}
 int ComingSoonCmd::Execute()
 {
     return 0;

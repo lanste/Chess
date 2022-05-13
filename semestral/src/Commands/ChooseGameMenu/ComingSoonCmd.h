@@ -9,7 +9,7 @@
 class ComingSoonCmd : public Command
 {
     public:
-        ComingSoonCmd();
+        ComingSoonCmd() = default;
         int Execute() override;
     protected:
 };

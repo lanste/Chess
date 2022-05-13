@@ -26,6 +26,6 @@ class Application
     protected:
         std::shared_ptr<UIManager> interface;
         std::unique_ptr<MainMenu> mainMenu;
-        CommandManager cmdManager;
+        //CommandManager cmdManager;
         Game game;
 };

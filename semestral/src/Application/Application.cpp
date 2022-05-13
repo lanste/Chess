@@ -5,7 +5,7 @@
 
 Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), game(Game(interface))
 {
-    cmdManager = CommandManager();
+    //cmdManager = CommandManager();
     mainMenu = std::make_unique<MainMenu>(interface, game);
 }
 

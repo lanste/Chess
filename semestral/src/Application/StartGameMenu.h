@@ -8,11 +8,8 @@
 #include "../UI/ITerminal.h"
 #include "../Commands/Command.h"
 #include "../Commands/ChooseGameMenu/PlayChessCmd.h"
-#include "../Commands/ChooseGameMenu/PlayChessCmd.cpp"
 #include "../Commands/ChooseGameMenu/StartGameBackCmd.h"
-#include "../Commands/ChooseGameMenu/StartGameBackCmd.cpp"
 #include "../Commands/ChooseGameMenu/ComingSoonCmd.h"
-#include "../Commands/ChooseGameMenu/ComingSoonCmd.cpp"
 #include "Game.h"
 
 
@@ -36,10 +33,10 @@ class StartGameMenu
             interface->Display("\n" + std::string( 20, ' ' ));
         }
 
-        Game game;
-        std::map<std::string, std::shared_ptr<Command>> commands;
         std::shared_ptr<UIManager> interface;
+        Game game;
         std::string header;
+        std::map<std::string, std::shared_ptr<Command>> commands;
         std::vector<std::pair<std::string, std::shared_ptr<Board>>> options; // vector<string, board>
 };
 

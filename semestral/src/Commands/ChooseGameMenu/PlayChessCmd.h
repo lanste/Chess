@@ -9,7 +9,7 @@
 class PlayChessCmd : public Command
 {
     public:
-        PlayChessCmd();
+        PlayChessCmd() = default;
         int Execute() override;
 
     protected:

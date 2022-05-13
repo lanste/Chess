@@ -10,7 +10,7 @@ class King : public Piece
 {
     public:
     King();
-        void createInstance() override;
+        std::shared_ptr<Piece> createInstance() override;
         void Print(UIManager & interface) override;
     protected:
         char symbol;

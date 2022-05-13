@@ -9,7 +9,7 @@
 class StartGameBackCmd : public Command
 {
     public:
-        StartGameBackCmd();
+        StartGameBackCmd() = default;
         int Execute() override;
     protected:
 };
