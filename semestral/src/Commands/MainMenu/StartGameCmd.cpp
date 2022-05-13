@@ -18,6 +18,6 @@ int StartGameCmd::Execute()
         menu.Show();
         interface->Receive(command);
         if(menu.ExecCommand(command))
-            return 1;
+            return 0;
     }
 }

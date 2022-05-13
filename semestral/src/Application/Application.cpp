@@ -14,6 +14,7 @@ int Application::Run()
     int status = 0;
     while(true)
     {
+        system("clear"); //todo decide if OK
         mainMenu->Show();
         std::string command;
         interface->Receive(command);

@@ -11,5 +11,5 @@
 
 int StartGameBackCmd::Execute()
 {
-    return 0;
+    return 1;
 }

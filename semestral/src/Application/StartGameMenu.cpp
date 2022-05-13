@@ -13,7 +13,7 @@ StartGameMenu::StartGameMenu(const std::shared_ptr<UIManager> & ui, const Game &
     options.emplace_back("Back", nullptr);
 
     commands.emplace("0", std::make_shared<PlayChessCmd>());
-    commands.emplace("1", std::make_shared<ComingSoonCmd>());
+    commands.emplace("1", std::make_shared<ComingSoonCmd>(interface));
     commands.emplace("2", std::make_shared<StartGameBackCmd>());
 }
 
