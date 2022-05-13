@@ -14,7 +14,7 @@ int Application::Run()
     int status = 0;
     while(true)
     {
-        mainMenu->Show(); // basically welcome screen
+        mainMenu->Show();
         std::string command;
         interface->Receive(command);
         status = mainMenu->ExecCommand(command);

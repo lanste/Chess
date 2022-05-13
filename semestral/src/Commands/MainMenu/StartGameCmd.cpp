@@ -9,16 +9,15 @@ StartGameCmd::StartGameCmd(const Game & nGame, const std::shared_ptr<UIManager> 
 
 }
 
-
-
 int StartGameCmd::Execute()
 {
     std::string command;
     StartGameMenu menu(interface, game);
-    menu.Show();
-    interface->Receive(command);
-    game.Start();
-
-    menu.ExecCommand(command);
-    return false;
+    while(true)
+    {
+        menu.Show();
+        interface->Receive(command);
+        if(menu.ExecCommand(command))
+            return 1;
+    }
 }

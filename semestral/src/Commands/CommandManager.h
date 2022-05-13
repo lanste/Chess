@@ -5,9 +5,9 @@
 #pragma once
 
 #include "Command.h"
-#include "StartGameCmd.h"
-#include "LoadGameCmd.h"
-#include "ExitCmd.h"
+#include "MainMenu/StartGameCmd.h"
+#include "MainMenu/LoadGameCmd.h"
+#include "MainMenu/ExitCmd.h"
 
 #include <map>
 #include <string>

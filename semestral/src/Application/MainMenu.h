@@ -6,9 +6,9 @@
 
 
 #include "../Commands/Command.h"
-#include "../Commands/StartGameCmd.h"
-#include "../Commands/LoadGameCmd.h"
-#include "../Commands/ExitCmd.h"
+#include "../Commands/MainMenu/StartGameCmd.h"
+#include "../Commands/MainMenu/LoadGameCmd.h"
+#include "../Commands/MainMenu/ExitCmd.h"
 #include "../UI/UIManager.h"
 #include "../UI/ITerminal.h"
 #include "Game.h"

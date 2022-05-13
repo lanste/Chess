@@ -21,6 +21,9 @@ bool ITerminal::Receive(std::string & command)
 {
     input >> command;
     if(input.fail())
+    {
+        command = "";
         return false;
+    }
     return true;
 }

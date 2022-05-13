@@ -29,7 +29,7 @@ class ClassicalChessBoard : public Board
          * the lower part of the board i.e. closer to player
          * @param playerColour decides which colour of Pieces to put to the lower part of the board
          */
-        ClassicalChessBoard(const bool & playerColour);
+        ClassicalChessBoard();
     protected:
         std::array<std::array<std::shared_ptr<Piece>, 8>, 8> board;
 };

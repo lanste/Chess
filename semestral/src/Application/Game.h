@@ -7,6 +7,7 @@
 #include "../UI/UIManager.h"
 #include "../UI/ITerminal.h"
 #include "../Boards/Board.h"
+#include "../Boards/ClassicalChessBoard.h"
 #include "../Players/Player.h"
 #include "../Players/LocalPlayer.h"
 #include "../Players/AI1.h"
@@ -23,6 +24,7 @@ class Game
 {
     public:
         Game(const std::shared_ptr<UIManager> & ui);
+        Game(const std::shared_ptr<UIManager> & ui, const std::shared_ptr<Board> & game);
         int Start();
     protected:
         std::shared_ptr<UIManager> interface;

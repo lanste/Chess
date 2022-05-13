@@ -12,3 +12,7 @@ int Game::Start()
 {
     return 0;
 }
+Game::Game(const std::shared_ptr<UIManager> & ui, const std::shared_ptr<Board> & game)
+{
+
+}

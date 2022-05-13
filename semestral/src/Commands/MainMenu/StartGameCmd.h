@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "Command.h"
-#include "../Application/Game.h"
-#include "../Application/StartGameMenu.h"
+#include "../Command.h"
+#include "../../Application/Game.h"
+#include "../../Application/StartGameMenu.h"
 
 class StartGameCmd : public Command
 {
