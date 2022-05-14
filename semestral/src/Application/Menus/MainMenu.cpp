@@ -9,7 +9,7 @@
 /**
  * Sets contents of the menu
  */
-MainMenu::MainMenu(const std::shared_ptr<UIManager> & ui, const Game & nGame) : interface(ui), game(nGame)
+MainMenu::MainMenu(const std::shared_ptr<UIManager> & ui) : interface(ui)
 {
     dimensions.width = 20; // arbitrary values ?todo resizable?
                             // may not be actually used
@@ -19,7 +19,7 @@ MainMenu::MainMenu(const std::shared_ptr<UIManager> & ui, const Game & nGame) : 
     menuOptions.emplace_back("Load Game");
     menuOptions.emplace_back("Exit");
 
-    commands.emplace("0", std::make_shared<StartGameCmd>(game, interface));
+    commands.emplace("0", std::make_shared<StartGameCmd>(interface));
     commands.emplace("1", std::make_shared<LoadGameCmd>());
     commands.emplace("2", std::make_shared<ExitCmd>());
 }

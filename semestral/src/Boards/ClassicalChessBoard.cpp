@@ -8,6 +8,10 @@ ClassicalChessBoard::ClassicalChessBoard()
 {
 
 }
+void ClassicalChessBoard::Initialize()
+{
+
+}
 //ClassicalChessBoard::ClassicalChessBoard(const bool & playerColour)
 //{
 //    for(int i = 0; i < 8; ++i)

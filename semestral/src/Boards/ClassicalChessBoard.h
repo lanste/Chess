@@ -30,6 +30,7 @@ class ClassicalChessBoard : public Board
          * @param playerColour decides which colour of Pieces to put to the lower part of the board
          */
         ClassicalChessBoard();
+        void Initialize() override;
     protected:
         std::array<std::array<std::shared_ptr<Piece>, 8>, 8> board;
 };

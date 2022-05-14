@@ -4,7 +4,7 @@
 
 #include "StartGameCmd.h"
 
-StartGameCmd::StartGameCmd(const Game & nGame, const std::shared_ptr<UIManager> & ui) : game(nGame), interface(ui)
+StartGameCmd::StartGameCmd(const std::shared_ptr<UIManager> & ui) : interface(ui)
 {
 
 }
@@ -12,7 +12,7 @@ StartGameCmd::StartGameCmd(const Game & nGame, const std::shared_ptr<UIManager> 
 int StartGameCmd::Execute()
 {
     std::string command;
-    StartGameMenu menu(interface, game);
+    StartGameMenu menu(interface);
     while(true)
     {
         menu.Show();

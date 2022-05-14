@@ -5,14 +5,19 @@
 
 #include "StartGameMenu.h"
 
-StartGameMenu::StartGameMenu(const std::shared_ptr<UIManager> & ui, const Game & nGame) : interface(ui), game(nGame),
-                                                                                          header("Choose game")
+StartGameMenu::StartGameMenu(const std::shared_ptr<UIManager> & ui) : interface(ui), header("Choose game")
 {
     options.emplace_back("Chess", std::make_shared<ClassicalChessBoard>());
     options.emplace_back(">Coming soon<", nullptr);
     options.emplace_back("Back", nullptr);
 
-    commands.emplace("0", std::make_shared<PlayChessCmd>());
+//    size_t cnt = 0; // todo polymorphic
+//    for(const auto & elem : options)
+//    {
+//        commands.emplace(std::to_string(cnt++), std::make_shared<Command>(options[0].second));
+//    }
+
+    commands.emplace("0", std::make_shared<PlayChessCmd>(interface, options[0].second));
     commands.emplace("1", std::make_shared<ComingSoonCmd>(interface));
     commands.emplace("2", std::make_shared<StartGameBackCmd>());
 }

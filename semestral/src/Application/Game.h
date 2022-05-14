@@ -29,8 +29,7 @@ class Game
     protected:
         std::shared_ptr<UIManager> interface;
         std::shared_ptr<Board> gameState;
-        std::shared_ptr<Player> white;
-        std::shared_ptr<Player> black;
+        std::vector<std::shared_ptr<Player>> players;
 };
 
 

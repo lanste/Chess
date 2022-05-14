@@ -17,6 +17,7 @@ class Board
 {
     public:
         Board() = default;
+        virtual void Initialize() = 0;
     private:
         //virtual ostream & print(ostream & os) const = 0;
 };

@@ -4,13 +4,14 @@
 
 #pragma once
 
-#include "../UI/UIManager.h"
-#include "../UI/ITerminal.h"
-#include "../Commands/Command.h"
-#include "../Commands/ChooseGameMenu/PlayChessCmd.h"
-#include "../Commands/ChooseGameMenu/StartGameBackCmd.h"
-#include "../Commands/ChooseGameMenu/ComingSoonCmd.h"
-#include "Game.h"
+#include "Menu.h"
+#include "../../UI/UIManager.h"
+#include "../../UI/ITerminal.h"
+#include "../../Commands/Command.h"
+#include "../../Commands/ChooseGameMenu/PlayChessCmd.h"
+#include "../../Commands/ChooseGameMenu/StartGameBackCmd.h"
+#include "../../Commands/ChooseGameMenu/ComingSoonCmd.h"
+#include "../Game.h"
 
 
 #include <memory>
@@ -19,10 +20,10 @@
 #include <string>
 #include <sstream>
 
-class StartGameMenu
+class StartGameMenu : public Menu
 {
     public:
-        StartGameMenu(const std::shared_ptr<UIManager> & ui, const Game & nGame);
+        StartGameMenu(const std::shared_ptr<UIManager> & ui);
         int Show();
         int ExecCommand(const std::string & command);
     protected:
@@ -34,7 +35,6 @@ class StartGameMenu
         }
 
         std::shared_ptr<UIManager> interface;
-        Game game;
         std::string header;
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::vector<std::pair<std::string, std::shared_ptr<Board>>> options; // vector<string, board>

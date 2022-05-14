@@ -6,13 +6,14 @@
 Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), game(Game(interface))
 {
     //cmdManager = CommandManager();
-    mainMenu = std::make_unique<MainMenu>(interface, game);
+    mainMenu = std::make_unique<MainMenu>(interface);
 }
 
 int Application::Run()
 {
     int status = 0;
-    interface->Display("\033c"); // initial screen clearing todo funtion? this would be the only use
+    interface->Display("\033c"); // initial screen clearing
+    //  ^^^^ todo function? this would be the only use outside of ITerm class
     while(true)
     {
         mainMenu->Show();

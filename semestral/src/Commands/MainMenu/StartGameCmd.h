@@ -6,15 +6,14 @@
 
 #include "../Command.h"
 #include "../../Application/Game.h"
-#include "../../Application/StartGameMenu.h"
+#include "../../Application/Menus/StartGameMenu.h"
 
 class StartGameCmd : public Command
 {
     public:
-        StartGameCmd(const Game & nGame, const std::shared_ptr<UIManager> & ui);
+        StartGameCmd(const std::shared_ptr<UIManager> & ui);
         int Execute();
     protected:
-        Game game;
         std::shared_ptr<UIManager> interface;
 };
 
