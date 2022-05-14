@@ -5,15 +5,13 @@
 #include "MainMenu.h"
 
 #include <sstream>
+#include <string>
 
 /**
  * Sets contents of the menu
  */
 MainMenu::MainMenu(const std::shared_ptr<UIManager> & ui) : interface(ui)
 {
-    dimensions.width = 20; // arbitrary values ?todo resizable?
-                            // may not be actually used
-    dimensions.height = 5; // increasing height does nothing
     header = "Main menu";
     menuOptions.emplace_back("Start Game");
     menuOptions.emplace_back("Load Game");
@@ -34,27 +32,11 @@ MainMenu::MainMenu(const std::shared_ptr<UIManager> & ui) : interface(ui)
 int MainMenu::Show()
 {
     std::string output;
-    for (size_t h = 0; h < dimensions.height; ++h) // number of rows
-    {
-        switch (h)
-        {
-            case 0:
-                output.append(createHeader());
-                break;
-            case 1:
-                output.append(emptyLine());
-                break;
-            case 2:
-                output.append(createOptions());
-                h += menuOptions.size();
-                break;
-            default:
-                break;
-        }
-    }
-    output.append(emptyLine());
-    output.append(createPrompt());
-    interface->Display(output);
+    createHeader();
+    emptyLine();
+    createOptions();
+    emptyLine();
+    createPrompt();
     return 0;
 }
 
@@ -63,15 +45,16 @@ int MainMenu::Show()
  * Creates title of the menu based on dimensions saved in the class
  * @return string containing header
  */
-std::string MainMenu::createHeader() const
+void MainMenu::createHeader() const
 {
+#define WIDTH 20 //todo redesign
     std::string output;
     //size_t currW = dimensions.width;
-    size_t wDiff = dimensions.width - header.size();
+    size_t wDiff = WIDTH - header.size();
     size_t rightW = 0;
     if(wDiff <= 0)
     {
-        return header;
+        interface->Display(header);
     }
     if(wDiff % 2)
     {
@@ -89,7 +72,7 @@ std::string MainMenu::createHeader() const
     {
         output.append(" ");
     }
-    return output;
+    interface->Display(output);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +80,7 @@ std::string MainMenu::createHeader() const
  * Creates table with available options todo variable dimensions (maybe)
  * @return string containing all menu options
  */
-std::string MainMenu::createOptions() const
+void MainMenu::createOptions() const
 {
     //std::string output;
     std::stringstream oss;
@@ -106,23 +89,16 @@ std::string MainMenu::createOptions() const
     {
         oss << "\n" << op << ") " << menuOptions[op];
     }
-    return oss.str();
+    interface->Display(oss.str());
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-std::string MainMenu::emptyLine() const
-{
-    return "\n" + std::string( dimensions.width, ' ' );
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-std::string MainMenu::createPrompt()
+void MainMenu::createPrompt()
 {
     std::stringstream oss;
     oss << "\nChoose menu option [0-" << menuOptions.size() - 1 << "]:\n";
-    return oss.str();
+    interface->Display(oss.str());
 }
 int MainMenu::ExecCommand(const std::string & command)
 {

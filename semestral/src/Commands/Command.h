@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../UI/UIManager.h"
+#include "../UI/ITerminal.h"
 
 #include <memory>
 

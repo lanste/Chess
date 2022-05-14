@@ -6,13 +6,9 @@
 
 
 #include "Menu.h"
-#include "../../Commands/Command.h"
 #include "../../Commands/MainMenu/StartGameCmd.h"
 #include "../../Commands/MainMenu/LoadGameCmd.h"
 #include "../../Commands/MainMenu/ExitCmd.h"
-#include "../../UI/UIManager.h"
-#include "../../UI/ITerminal.h"
-#include "../Game.h"
 
 #include <vector>
 #include <map>
@@ -30,21 +26,17 @@ class MainMenu : public Menu
         int Show();
         int ExecCommand(const std::string & command);
     protected:
-        [[nodiscard]] std::string createHeader() const;
-        [[nodiscard]] std::string createOptions() const;
-        [[nodiscard]] std::string emptyLine() const;
-        struct Dims
-        {
-            size_t width;
-            size_t height;
-        };
-        std::shared_ptr<UIManager> interface;
+        void emptyLine() const{
+            interface->Display("\n" + std::string( 20, ' ' ));
+        }
+        void createHeader() const;
+        void createOptions() const;
+        void createPrompt();
 
+        std::shared_ptr<UIManager> interface;
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::string header;
         std::vector<std::string> menuOptions;
-        std::string createPrompt();
-        Dims dimensions;
 };
 
 

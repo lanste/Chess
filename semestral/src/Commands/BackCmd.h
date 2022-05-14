@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "../Command.h"
+#include "Command.h"
 
-class StartGameBackCmd : public Command
+class BackCmd : public Command
 {
     public:
-        StartGameBackCmd() = default;
+        BackCmd() = default;
         int Execute() override;
     protected:
 };

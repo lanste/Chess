@@ -28,3 +28,7 @@ bool ITerminal::Receive(std::string & command)
     output << "\033c"; // clear the screen
     return true;
 }
+void ITerminal::EmptyLine()
+{
+    output << "\n";
+}

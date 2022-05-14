@@ -8,6 +8,7 @@
 StartGameMenu::StartGameMenu(const std::shared_ptr<UIManager> & ui) : interface(ui), header("Choose game")
 {
     options.emplace_back("Chess", std::make_shared<ClassicalChessBoard>());
+    //options.emplace_back("Checkers", std::make_shared<CheckersBoard>()); // different game example
     options.emplace_back(">Coming soon<", nullptr);
     options.emplace_back("Back", nullptr);
 
@@ -17,9 +18,9 @@ StartGameMenu::StartGameMenu(const std::shared_ptr<UIManager> & ui) : interface(
 //        commands.emplace(std::to_string(cnt++), std::make_shared<Command>(options[0].second));
 //    }
 
-    commands.emplace("0", std::make_shared<PlayChessCmd>(interface, options[0].second));
+    commands.emplace("0", std::make_shared<SetupGameCmd>(interface, options[0].second));
     commands.emplace("1", std::make_shared<ComingSoonCmd>(interface));
-    commands.emplace("2", std::make_shared<StartGameBackCmd>());
+    commands.emplace("2", std::make_shared<BackCmd>());
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

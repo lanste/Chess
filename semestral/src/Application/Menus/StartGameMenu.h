@@ -5,13 +5,9 @@
 #pragma once
 
 #include "Menu.h"
-#include "../../UI/UIManager.h"
-#include "../../UI/ITerminal.h"
-#include "../../Commands/Command.h"
-#include "../../Commands/ChooseGameMenu/PlayChessCmd.h"
-#include "../../Commands/ChooseGameMenu/StartGameBackCmd.h"
+#include "../../Commands/ChooseGameMenu/SetupGameCmd.h"
+#include "../../Commands/BackCmd.h"
 #include "../../Commands/ChooseGameMenu/ComingSoonCmd.h"
-#include "../Game.h"
 
 
 #include <memory>
@@ -27,12 +23,12 @@ class StartGameMenu : public Menu
         int Show();
         int ExecCommand(const std::string & command);
     protected:
-        void createHeader();
-        void createContent();
-        void createPrompt();
         void emptyLine() const{
             interface->Display("\n" + std::string( 20, ' ' ));
         }
+        void createHeader();
+        void createContent();
+        void createPrompt();
 
         std::shared_ptr<UIManager> interface;
         std::string header;

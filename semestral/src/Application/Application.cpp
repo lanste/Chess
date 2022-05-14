@@ -3,10 +3,8 @@
  */
 #include "Application.h"
 
-Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), game(Game(interface))
+Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), game(Game(interface)), mainMenu(MainMenu(options.GetInterface()))
 {
-    //cmdManager = CommandManager();
-    mainMenu = std::make_unique<MainMenu>(interface);
 }
 
 int Application::Run()
@@ -16,10 +14,10 @@ int Application::Run()
     //  ^^^^ todo function? this would be the only use outside of ITerm class
     while(true)
     {
-        mainMenu->Show();
+        mainMenu.Show();
         std::string command;
         interface->Receive(command);
-        status = mainMenu->ExecCommand(command);
+        status = mainMenu.ExecCommand(command);
 
         if(status == EXITCODE)
             return 0;

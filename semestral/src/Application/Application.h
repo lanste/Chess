@@ -25,7 +25,7 @@ class Application
         int Run();
     protected:
         std::shared_ptr<UIManager> interface;
-        std::unique_ptr<MainMenu> mainMenu;
+        MainMenu mainMenu;
         //CommandManager cmdManager;
         Game game;
 };

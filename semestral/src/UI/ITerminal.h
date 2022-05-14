@@ -20,6 +20,7 @@ class ITerminal : public UIManager
         std::shared_ptr<UIManager> Create();
         void Display(const std::string & message);
         bool Receive(std::string & command);
+        void EmptyLine();
     protected:
         std::istream & input;
         std::ostream & output;

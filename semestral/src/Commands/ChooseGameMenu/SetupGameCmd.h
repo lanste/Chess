@@ -7,17 +7,19 @@
 #include "../Command.h"
 #include "../../Boards/ClassicalChessBoard.h"
 #include "../../Application/Game.h"
-#include "../../Application/Menus/ChessSetupMenu.h"
+#include "../../Application/Menus/GameSetupMenu.h"
 
 #include <memory>
+#include <map>
 
-class PlayChessCmd : public Command
+class SetupGameCmd : public Command
 {
     public:
-        PlayChessCmd(const std::shared_ptr<UIManager> & ui, const std::shared_ptr<Board> & board);
+        SetupGameCmd(const std::shared_ptr<UIManager> & ui, const std::shared_ptr<Board> & board);
         int Execute() override;
 
     protected:
+        std::shared_ptr<UIManager> interface;
         Game game;
 };
 
