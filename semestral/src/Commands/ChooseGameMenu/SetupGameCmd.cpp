@@ -4,8 +4,7 @@
 
 #include "SetupGameCmd.h"
 
-SetupGameCmd::SetupGameCmd(const std::shared_ptr<UIManager> & ui, const std::shared_ptr<Board> & board) : game(Game(ui, board)),
-                                                                                                          interface(ui)
+SetupGameCmd::SetupGameCmd(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board) : interface(ui), game(Game(ui, board))
 {
 
 }
@@ -22,6 +21,6 @@ int SetupGameCmd::Execute()
         if(status == 1)
             return 0;
     }
-    game.Start();
-    return 0;
+    //game.Start();
+    //return 0;
 }

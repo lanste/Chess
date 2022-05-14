@@ -22,7 +22,7 @@
 class MainMenu : public Menu
 {
     public:
-        MainMenu(const std::shared_ptr<UIManager> & ui);
+        MainMenu(const std::shared_ptr<Interface> & ui);
         int Show();
         int ExecCommand(const std::string & command);
     protected:
@@ -33,7 +33,7 @@ class MainMenu : public Menu
         void createOptions() const;
         void createPrompt();
 
-        std::shared_ptr<UIManager> interface;
+        std::shared_ptr<Interface> interface;
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::string header;
         std::vector<std::string> menuOptions;

@@ -15,11 +15,11 @@
 class SetupGameCmd : public Command
 {
     public:
-        SetupGameCmd(const std::shared_ptr<UIManager> & ui, const std::shared_ptr<Board> & board);
+        SetupGameCmd(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board);
         int Execute() override;
 
     protected:
-        std::shared_ptr<UIManager> interface;
+        std::shared_ptr<Interface> interface;
         Game game;
 };
 

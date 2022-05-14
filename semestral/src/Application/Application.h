@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../UI/UIManager.h"
+#include "../UI/Interface.h"
 #include "Menus/MainMenu.h"
 #include "Game.h"
 #include "ProgramOptions.h"
@@ -24,8 +24,8 @@ class Application
         //Application(); // placeholder
         int Run();
     protected:
-        std::shared_ptr<UIManager> interface;
+        std::shared_ptr<Interface> interface;
         MainMenu mainMenu;
         //CommandManager cmdManager;
-        Game game;
+        //Game game;
 };

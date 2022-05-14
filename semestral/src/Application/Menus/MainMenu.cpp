@@ -10,7 +10,7 @@
 /**
  * Sets contents of the menu
  */
-MainMenu::MainMenu(const std::shared_ptr<UIManager> & ui) : interface(ui)
+MainMenu::MainMenu(const std::shared_ptr<Interface> & ui) : interface(ui)
 {
     header = "Main menu";
     menuOptions.emplace_back("Start Game");

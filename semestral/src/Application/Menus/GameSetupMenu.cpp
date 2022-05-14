@@ -4,7 +4,7 @@
 
 #include "GameSetupMenu.h"
 
-GameSetupMenu::GameSetupMenu(const std::shared_ptr<UIManager> & ui) : interface(ui), header("Chess setup")
+GameSetupMenu::GameSetupMenu(const std::shared_ptr<Interface> & ui) : interface(ui), header("Chess setup")
 {
     status = 0;
 
@@ -13,12 +13,12 @@ GameSetupMenu::GameSetupMenu(const std::shared_ptr<UIManager> & ui) : interface(
     options.emplace_back("Medium bot", std::make_shared<AI2>());
     options.emplace_back("Hard bot", std::make_shared<AI3>());
 
-
     commands.emplace("0", std::make_shared<ChoosePlayerCmd>());
     commands.emplace("1", std::make_shared<ChoosePlayerCmd>());
     commands.emplace("2", std::make_shared<ChoosePlayerCmd>());
     commands.emplace("3", std::make_shared<ChoosePlayerCmd>());
     commands.emplace("4", std::make_shared<BackCmd>());
+    commands.emplace("\0\0debug\0\0", std::make_shared<LaunchGameCmd>(interface));
     //commands.emplace("3", std::make_shared<ChoosePlayerCmd>());
 }
 int GameSetupMenu::Show()
@@ -33,7 +33,18 @@ int GameSetupMenu::Show()
 }
 int GameSetupMenu::ExecCommand(const std::string & command)
 {
-    return 0;
+    const auto cmd = commands.find(command);
+    if(cmd == commands.end())
+        return 1;
+    if(command != std::to_string(options.size()))
+        ++status;
+    if(status == 2)
+    {
+        return LaunchGameCmd(interface).Execute();
+    }
+    int execState =  cmd->second->Execute();
+    if(execState == 1)
+        return 1;
 }
 void GameSetupMenu::createHeader()
 {
@@ -62,10 +73,11 @@ void GameSetupMenu::createContent()
     for(const auto & elem : options)
     {
         oss << "\n" << cnt << ") " << elem.first;
-        if(cnt == 0 && status == 0)
+        if(cnt == 0)
             oss << status + 1;
         ++cnt;
     }
+    oss << "\n\n" << options.size() << ") Back";
     interface->Display(oss.str());
 }
 

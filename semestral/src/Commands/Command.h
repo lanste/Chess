@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../UI/UIManager.h"
+#include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
 
 #include <memory>
@@ -15,5 +15,5 @@ class Command
         Command() = default;
         virtual int Execute() = 0;
     protected:
-        std::shared_ptr<UIManager> interface;
+        std::shared_ptr<Interface> interface;
 };

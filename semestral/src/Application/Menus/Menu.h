@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../UI/UIManager.h"
+#include "../../UI/Interface.h"
 #include "../../UI/ITerminal.h"
 #include "../../Commands/Command.h"
 
@@ -23,7 +23,7 @@ class Menu
         virtual int ExecCommand(const std::string & command) = 0;
     protected:
 
-        std::shared_ptr<UIManager> interface;
+        std::shared_ptr<Interface> interface;
         std::string header;
         std::map<std::string, std::shared_ptr<Command>> commands; // every menu should have at least the "back" command
 };

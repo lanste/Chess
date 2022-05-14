@@ -4,7 +4,7 @@
 
 #include "StartGameCmd.h"
 
-StartGameCmd::StartGameCmd(const std::shared_ptr<UIManager> & ui) : interface(ui)
+StartGameCmd::StartGameCmd(const std::shared_ptr<Interface> & ui) : interface(ui)
 {
 
 }

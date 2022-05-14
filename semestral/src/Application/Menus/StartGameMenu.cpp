@@ -5,7 +5,7 @@
 
 #include "StartGameMenu.h"
 
-StartGameMenu::StartGameMenu(const std::shared_ptr<UIManager> & ui) : interface(ui), header("Choose game")
+StartGameMenu::StartGameMenu(const std::shared_ptr<Interface> & ui) : interface(ui), header("Choose game")
 {
     options.emplace_back("Chess", std::make_shared<ClassicalChessBoard>());
     //options.emplace_back("Checkers", std::make_shared<CheckersBoard>()); // different game example

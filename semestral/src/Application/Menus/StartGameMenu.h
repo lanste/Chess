@@ -19,7 +19,7 @@
 class StartGameMenu : public Menu
 {
     public:
-        StartGameMenu(const std::shared_ptr<UIManager> & ui);
+        StartGameMenu(const std::shared_ptr<Interface> & ui);
         int Show();
         int ExecCommand(const std::string & command);
     protected:
@@ -30,7 +30,7 @@ class StartGameMenu : public Menu
         void createContent();
         void createPrompt();
 
-        std::shared_ptr<UIManager> interface;
+        std::shared_ptr<Interface> interface;
         std::string header;
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::vector<std::pair<std::string, std::shared_ptr<Board>>> options; // vector<string, board>

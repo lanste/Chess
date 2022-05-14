@@ -3,7 +3,7 @@
  */
 #include "Application.h"
 
-Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), game(Game(interface)), mainMenu(MainMenu(options.GetInterface()))
+Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), mainMenu(MainMenu(options.GetInterface()))
 {
 }
 

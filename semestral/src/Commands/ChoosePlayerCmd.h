@@ -10,6 +10,7 @@
 class ChoosePlayerCmd : public Command
 {
     public:
+        ChoosePlayerCmd() = default;
         int Execute() override;
 };
 

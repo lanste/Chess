@@ -4,7 +4,7 @@
 
 #include "ComingSoonCmd.h"
 
-ComingSoonCmd::ComingSoonCmd(const std::shared_ptr<UIManager> & ui) : interface(ui)
+ComingSoonCmd::ComingSoonCmd(const std::shared_ptr<Interface> & ui) : interface(ui)
 {
 
 }

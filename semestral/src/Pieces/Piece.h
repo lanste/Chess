@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../UI/UIManager.h"
+#include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
 
 #include <memory>
@@ -20,7 +20,7 @@ class Piece
          * @return pointer to object of derived class (Chess pieces)
          */
         virtual std::shared_ptr<Piece> createInstance() = 0;
-        virtual void Print(UIManager & interface) = 0;
+        virtual void Print(Interface & interface) = 0;
     protected:
         struct coordinates
         {

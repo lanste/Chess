@@ -12,7 +12,7 @@ std::shared_ptr<Piece> King::createInstance()
 {
     return nullptr;
 }
-void King::Print(UIManager & interface)
+void King::Print(Interface & interface)
 {
 
 }

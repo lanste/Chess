@@ -11,10 +11,10 @@
 class StartGameCmd : public Command
 {
     public:
-        StartGameCmd(const std::shared_ptr<UIManager> & ui);
+        StartGameCmd(const std::shared_ptr<Interface> & ui);
         int Execute();
     protected:
-        std::shared_ptr<UIManager> interface;
+        std::shared_ptr<Interface> interface;
 };
 
 

@@ -6,7 +6,7 @@
 
 #include "Board.h" // base class
 
-#include "../UI/UIManager.h"
+#include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
 #include "../Pieces/Piece.h"
 #include "../Pieces/King.h"

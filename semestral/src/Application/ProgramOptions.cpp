@@ -5,14 +5,14 @@
 
 #include "ProgramOptions.h"
 #include "../UI/ITerminal.h"
-#include "../UI/UIManager.h"
+#include "../UI/Interface.h"
 
 ProgramOptions::ProgramOptions() : argumentCount(0)
 {
     validOptions.emplace("-t");
     validOptions.emplace("--terminal");
 }
-std::shared_ptr<UIManager> ProgramOptions::GetInterface() const
+std::shared_ptr<Interface> ProgramOptions::GetInterface() const
 {
     return interface->Create();
 }

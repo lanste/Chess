@@ -10,12 +10,12 @@
 /**
  * abstract class representing user interfaces
  */
-class UIManager
+class Interface
 {
     public:
-        UIManager() = default;
-        ~UIManager() = default;
-        virtual std::shared_ptr<UIManager> Create() = 0;
+        Interface() = default;
+        ~Interface() = default;
+        virtual std::shared_ptr<Interface> Create() = 0;
         virtual void Display(const std::string & message) = 0;
         virtual bool Receive(std::string & command) = 0;
     protected:
