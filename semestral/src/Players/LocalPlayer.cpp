@@ -3,3 +3,8 @@
 //
 
 #include "LocalPlayer.h"
+
+LocalPlayer::LocalPlayer()
+{
+ colour = true;
+}

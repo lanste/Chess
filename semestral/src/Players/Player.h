@@ -10,7 +10,7 @@
 class Player
 {
     public:
-    Player();
+    Player() = default;
     protected:
         bool colour;
 

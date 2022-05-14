@@ -12,5 +12,5 @@
  */
 class OnlinePlayer : public Player
 {
-
+    OnlinePlayer() = default;
 };

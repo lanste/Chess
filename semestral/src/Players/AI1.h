@@ -11,5 +11,6 @@
  */
 class AI1 : public Player
 {
-
+    public:
+        AI1() = default;
 };

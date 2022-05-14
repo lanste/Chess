@@ -11,5 +11,6 @@
 
 class AI3 : public Player
 {
-
+    public:
+        AI3() = default;
 };

@@ -66,12 +66,13 @@ void GameSetupMenu::createContent()
             oss << status + 1;
         ++cnt;
     }
+    interface->Display(oss.str());
 }
 
 void GameSetupMenu::createSubHeader()
 {
     std::stringstream oss;
-    oss << "Choose ";
+    oss << "\nChoose ";
     if(status)
         oss << "black";
     else
