@@ -25,6 +25,6 @@ bool ITerminal::Receive(std::string & command)
         command = "";
         return false;
     }
-    system("clear"); // todo decide if OK
+    output << "\033c"; // clear the screen
     return true;
 }

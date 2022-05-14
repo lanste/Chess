@@ -12,9 +12,9 @@ Application::Application(const ProgramOptions & options) : interface(options.Get
 int Application::Run()
 {
     int status = 0;
+    interface->Display("\033c"); // initial screen clearing todo funtion? this would be the only use
     while(true)
     {
-        system("clear"); //todo decide if OK
         mainMenu->Show();
         std::string command;
         interface->Receive(command);
