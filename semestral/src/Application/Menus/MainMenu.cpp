@@ -18,7 +18,7 @@ MainMenu::MainMenu(const std::shared_ptr<Interface> & ui) : interface(ui)
     menuOptions.emplace_back("Exit");
 
     commands.emplace("0", std::make_shared<StartGameCmd>(interface));
-    commands.emplace("1", std::make_shared<LoadGameCmd>());
+    commands.emplace("1", std::make_shared<LoadGameCmd>(interface));
     commands.emplace("2", std::make_shared<ExitCmd>());
 }
 

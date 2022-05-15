@@ -7,6 +7,7 @@
  * todo: fix author note in every class
  * todo: comment base classes
  * todo: cleanup of duplicate includes
+ * todo: organize code consistently
  */
 
 #include "Application/Application.h"
