@@ -6,6 +6,7 @@
 
 #include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
+#include "../Application/SaveManager.h"
 #include "../Boards/Board.h"
 #include "../Boards/ClassicalChessBoard.h"
 #include "../Players/Player.h"
@@ -14,10 +15,12 @@
 #include "../Players/AI2.h"
 #include "../Players/AI3.h"
 #include "../Commands/Command.h"
+#include "../Commands/BackCmd.h"
 
 
 #include <memory>
 #include <map>
+#include <sstream>
 
 /**
  *  Game manager class
@@ -28,12 +31,13 @@ class Game
     public:
         Game() = default;
         Game(const std::shared_ptr<Interface> & ui);
-        Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & game); // unnecessary ?
+        Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p); // unnecessary ?
         int Initialize(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p);
         int Start();
     protected:
         int status;
         bool initialized;
+        SaveManager saveManager;
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::shared_ptr<Interface> interface;
         std::shared_ptr<Board> game;

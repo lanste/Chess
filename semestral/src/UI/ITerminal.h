@@ -20,6 +20,7 @@ class ITerminal : public Interface
         std::shared_ptr<Interface> Create();
         void Display(const std::string & message);
         bool Receive(std::string & command);
+        bool ReceiveLine(std::string & command);
         void EmptyLine();
     protected:
         std::istream & input;
