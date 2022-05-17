@@ -9,9 +9,8 @@
 class King : public Piece
 {
     public:
-    King();
-        std::shared_ptr<Piece> createInstance() override;
-        void Print(Interface & interface) override;
+        King(const bool & col) : Piece('K', col){};
+        void Save(std::ofstream os) override;
+        std::shared_ptr<Piece> CreateInstance() override;
     protected:
-        char symbol;
 };

@@ -19,6 +19,7 @@ class ITerminal : public Interface
         ~ITerminal() = default;
         std::shared_ptr<Interface> Create();
         void Display(const std::string & message);
+        void Display(const char & message) override;
         bool Receive(std::string & command);
         bool ReceiveLine(std::string & command);
         void EmptyLine();

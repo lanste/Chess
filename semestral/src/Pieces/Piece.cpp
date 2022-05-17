@@ -2,7 +2,14 @@
 
 #include <iostream>
 
-void hello()
+Piece::Piece()
 {
-    std::cout << "Hello, World!" << std::endl;
+
+}
+void Piece::Print(ostream & interface)
+{
+    char out = symbol;
+    if(colour)
+        out = tolower(out);
+    interface.Display(out);
 }

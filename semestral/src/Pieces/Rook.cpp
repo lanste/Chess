@@ -3,3 +3,8 @@
 //
 
 #include "Rook.h"
+
+std::shared_ptr<Piece> Rook::CreateInstance()
+{
+    return std::make_shared<Rook>(*this);
+}

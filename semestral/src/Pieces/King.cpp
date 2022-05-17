@@ -4,15 +4,17 @@
 
 #include "King.h"
 
-King::King() : symbol('K')
-{
+//King::King(const bool & col) : Piece('K',col)
+//{
+//
+//}
 
-}
-std::shared_ptr<Piece> King::createInstance()
+std::shared_ptr<Piece> King::CreateInstance()
 {
-    return nullptr;
+    return std::make_shared<King>(*this);
 }
-void King::Print(Interface & interface)
-{
 
+void King::Save(std::ofstream os)
+{
+    return;
 }

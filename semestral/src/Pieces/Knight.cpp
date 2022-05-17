@@ -3,3 +3,8 @@
 //
 
 #include "Knight.h"
+
+std::shared_ptr<Piece> Knight::CreateInstance()
+{
+    return std::make_shared<Knight>(*this);
+}

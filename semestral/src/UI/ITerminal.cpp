@@ -43,3 +43,7 @@ void ITerminal::EmptyLine()
 {
     output << "\n";
 }
+void ITerminal::Display(const char & message)
+{
+    output << message;
+}

@@ -17,6 +17,7 @@ class Interface
         ~Interface() = default;
         virtual std::shared_ptr<Interface> Create() = 0;
         virtual void Display(const std::string & message) = 0;
+        virtual void Display(const char & message) = 0;
         virtual bool Receive(std::string & command) = 0;
         virtual bool ReceiveLine(std::string & command) = 0;
     protected:
