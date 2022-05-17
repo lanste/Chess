@@ -2,13 +2,13 @@
 // Created by teodor on 12.05.22.
 //
 
-#include "LoadGameCmd.h"
+#include "MenuLoadOptionCmd.h"
 
-LoadGameCmd::LoadGameCmd(const std::shared_ptr<Interface> & ui) : interface(ui)
+MenuLoadOptionCmd::MenuLoadOptionCmd(const std::shared_ptr<Interface> & ui) : interface(ui)
 {
 
 }
-int LoadGameCmd::Execute()
+int MenuLoadOptionCmd::Execute()
 {
     LoadGameMenu menu(interface);
     while(true)

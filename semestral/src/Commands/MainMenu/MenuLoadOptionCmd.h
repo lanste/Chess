@@ -7,10 +7,10 @@
 #include "../Command.h"
 #include "../../Application/Menus/LoadGameMenu.h"
 
-class LoadGameCmd : public Command
+class MenuLoadOptionCmd : public Command
 {
     public:
-        LoadGameCmd(const std::shared_ptr<Interface> & ui);
+        MenuLoadOptionCmd(const std::shared_ptr<Interface> & ui);
         int Execute();
     protected:
         std::shared_ptr<Interface> interface;

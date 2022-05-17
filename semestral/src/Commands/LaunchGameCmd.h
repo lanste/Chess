@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Command.h"
+#include "../Application/Game.h"
 
 class LaunchGameCmd : public Command
 {
@@ -13,6 +14,7 @@ class LaunchGameCmd : public Command
         int Execute() override;
     protected:
         std::shared_ptr<Interface> interface;
+        Game game;
 };
 
 

@@ -18,6 +18,8 @@ class Board
     public:
         Board() = default;
         virtual void Initialize() = 0;
+        virtual std::string State() = 0;
+        virtual int ProcessTurn(...) = 0;
     private:
         //virtual ostream & print(ostream & os) const = 0;
 };

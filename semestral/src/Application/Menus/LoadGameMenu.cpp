@@ -7,7 +7,7 @@
 LoadGameMenu::LoadGameMenu(const std::shared_ptr<Interface> & ui) : interface(ui), saves(SaveManager())
 {
     header = "Load game";
-    // LoadGameCmd is called dynamically based on number of existing saves
+    // MenuLoadOptionCmd is called dynamically based on number of existing saves
     saveList = saves.List();
     commands.emplace(std::to_string(saveList.size()), std::make_shared<BackCmd>());
 }
@@ -22,36 +22,16 @@ int LoadGameMenu::Show()
 }
 int LoadGameMenu::ExecCommand(const std::string & command)
 {
-    Game newGame;
-    int choice = 0;
+    size_t cnt = 0;
+    for(const auto & save : saveList)
+    {
+        commands.emplace(std::to_string(cnt++), std::make_shared<LoadGameCmd>(interface, save));
+    }
+
     const auto cmd = commands.find(command);
     if(cmd == commands.end())
-        return 1;
-    try
-    {
-        choice = std::stoi(command);
-    }
-    catch(const std::invalid_argument & e)
-    {
-        interface->Display("Unknown command"); // todo this is bad
-        return 2;
-    }
-    catch(const std::out_of_range & e)
-    {
-        interface->Display("Unknown command"); // this is bad
-        return 2;
-    }
-    if(choice > saveList.size())
-    {
-        interface->Display("Unknown command"); // this is bad
-        return 2;
-    }
-    else if(choice == saveList.size())
-        return cmd->second->Execute();
-
-    saves.Load(saveList[choice], newGame);
-    newGame.Start();
-    return 1;
+        return 0;
+    return cmd->second->Execute();
 }
 void LoadGameMenu::createHeader()
 {
@@ -82,10 +62,10 @@ void LoadGameMenu::createContent()
     }
     else for(const auto elem : saveList)
     {
-        oss << "\n" << cnt << ") " << elem;
+        oss << "\n" << cnt << ") " << elem.second;
         ++cnt;
     }
-    oss << "\n" << cnt << ") " << "Back";
+    oss << "\n\n" << cnt << ") " << "Back";
     interface->Display(oss.str());
 }
 void LoadGameMenu::createPrompt()
@@ -95,11 +75,11 @@ void LoadGameMenu::createPrompt()
     if(not saveList.empty())
     {
         optCnt = saves.List().size();
-        oss << "\nChoose save to load [0-" << optCnt << "]";
+        oss << "\nChoose save to load [0-" << optCnt << "] or type \"Back\":\n";
     }
     else
     {
-        oss << "\nChoose 0 or type \"Back\"";
+        oss << "\nChoose 0 or type \"Back\":\n";
     }
     interface->Display(oss.str());
 }

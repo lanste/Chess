@@ -8,10 +8,10 @@
 #include "../../Application/Game.h"
 #include "../../Application/Menus/StartGameMenu.h"
 
-class StartGameCmd : public Command
+class MenuStartOptionCmd : public Command
 {
     public:
-        StartGameCmd(const std::shared_ptr<Interface> & ui);
+        MenuStartOptionCmd(const std::shared_ptr<Interface> & ui);
         int Execute();
     protected:
         std::shared_ptr<Interface> interface;

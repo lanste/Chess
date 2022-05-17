@@ -6,6 +6,7 @@
 
 #include "Menu.h"
 #include "../../Commands/BackCmd.h"
+#include "../../Commands/LoadGameCmd.h"
 #include "../SaveManager.h"
 
 #include <vector>
@@ -26,7 +27,7 @@ class LoadGameMenu : public Menu
         std::map<std::string, std::shared_ptr<Command>> commands;
 
         SaveManager saves;
-        std::vector<std::string> saveList;
+        std::vector<std::pair<time_t,std::string>> saveList;
         std::string header;
 };
 

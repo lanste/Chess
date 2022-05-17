@@ -19,18 +19,22 @@
 #include <array>
 
 /**
- * Class representing 8x8 chess board
+ * Class representing rules and logic of classical chess
  */
 class ClassicalChessBoard : public Board
 {
     public:
-        /**
+        /* *
          * Populates game board with Pieces, players pieces go to
          * the lower part of the board i.e. closer to player
+         *
+         *
          * @param playerColour decides which colour of Pieces to put to the lower part of the board
          */
         ClassicalChessBoard();
         void Initialize() override;
+        std::string State() override;
+        int ProcessTurn(...) override;
     protected:
         std::array<std::array<std::shared_ptr<Piece>, 8>, 8> board;
 };

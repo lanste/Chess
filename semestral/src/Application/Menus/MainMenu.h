@@ -6,8 +6,8 @@
 
 
 #include "Menu.h"
-#include "../../Commands/MainMenu/StartGameCmd.h"
-#include "../../Commands/MainMenu/LoadGameCmd.h"
+#include "../../Commands/MainMenu/MenuStartOptionCmd.h"
+#include "../../Commands/MainMenu/MenuLoadOptionCmd.h"
 #include "../../Commands/MainMenu/ExitCmd.h"
 
 #include <vector>

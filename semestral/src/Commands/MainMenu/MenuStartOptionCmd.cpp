@@ -2,14 +2,14 @@
 // Created by teodor on 12.05.22.
 //
 
-#include "StartGameCmd.h"
+#include "MenuStartOptionCmd.h"
 
-StartGameCmd::StartGameCmd(const std::shared_ptr<Interface> & ui) : interface(ui)
+MenuStartOptionCmd::MenuStartOptionCmd(const std::shared_ptr<Interface> & ui) : interface(ui)
 {
 
 }
 
-int StartGameCmd::Execute()
+int MenuStartOptionCmd::Execute()
 {
     std::string command;
     StartGameMenu menu(interface);
