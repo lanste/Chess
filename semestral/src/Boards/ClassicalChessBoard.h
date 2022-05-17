@@ -37,5 +37,5 @@ class ClassicalChessBoard : public Board
         int ProcessMove(...) override;
         bool isMove(std::stringstream & command) override;
     protected:
-        std::array<std::array<std::shared_ptr<Piece>, 8>, 8> board;
+        std::array<std::shared_ptr<Piece>, 64> board;
 };

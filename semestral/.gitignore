@@ -1,0 +1,16 @@
+#Executable files
+*.out
+*.exe
+*.app
+
+#Experimental files
+exp.*
+*.tmp
+
+#CLion files
+.idea
+
+#Project unnecessary
+doc
+saves
+*.save
