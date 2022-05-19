@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../Boards/Board.h"
+#include "../Boards/ClassicalChessBoard.h"
 
 #include <memory>
 
@@ -15,7 +16,7 @@ class Player
 {
     public:
     Player() = default;
-    virtual bool makeTurn(std::shared_ptr<Board> & board) = 0;
+    //virtual bool makeTurn(std::shared_ptr<Board> & board) = 0;
     protected:
         bool colour;
 

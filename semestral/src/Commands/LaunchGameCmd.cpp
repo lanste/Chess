@@ -4,18 +4,12 @@
 
 #include "LaunchGameCmd.h"
 
-LaunchGameCmd::LaunchGameCmd(const std::shared_ptr<Interface> & ui) : interface(ui), game(Game(ui))
+LaunchGameCmd::LaunchGameCmd(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board , const std::vector<std::shared_ptr<Player>> & players) : interface(ui), game(Game(ui, board, players))
 {}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int LaunchGameCmd::Execute()
 {
-    while(true)
-    {
-        std::string command;
-        game.Start();
-        interface->Display("DEBUG: game started");
-        interface->Receive(command);
-    }
+        return game.Start();
 }

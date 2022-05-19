@@ -6,8 +6,8 @@
 
 #include "Board.h" // base class
 
-#include "../UI/Interface.h"
-#include "../UI/ITerminal.h"
+//#include "../UI/Interface.h"
+//#include "../UI/ITerminal.h"
 #include "../Pieces/Piece.h"
 #include "../Pieces/King.h"
 #include "../Pieces/Queen.h"
@@ -24,18 +24,16 @@
 class ClassicalChessBoard : public Board
 {
     public:
-        /* *
+        /**
          * Populates game board with Pieces, players pieces go to
          * the lower part of the board i.e. closer to player
-         *
-         *
-         * @param playerColour decides which colour of Pieces to put to the lower part of the board
+         * @param playerColour decides which colour of Pieces to put to the lower part of the board (last part not true)
          */
         ClassicalChessBoard();
-        void Initialize() override;
-        std::string State() override;
-        int ProcessMove(const std::stringstream & m) override;
-        bool isMove(std::stringstream & command) override;
+        void Initialize();
+        std::string State();
+        int ProcessMove(const std::stringstream & m);
+        bool isMove(std::stringstream & command);
     protected:
         std::array<std::shared_ptr<Piece>, 64> board;
 };

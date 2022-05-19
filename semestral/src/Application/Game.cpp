@@ -7,6 +7,7 @@
 Game::Game(const std::shared_ptr<Interface> & ui) : interface(ui)
 {
     initialized = false;
+    status = 0;
 }
 Game::Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p) : interface(ui), game(board), players(p)
 {
@@ -53,13 +54,16 @@ int Game::Start()
             const auto cmd = commands.find(command);
 
             if(cmd != commands.end() && cmd->second != nullptr)
-                    status = cmd->second->Execute();
-
-            if(command == "save") // this is stupid todo fix
             {
-                cmdStream >> argument;
-                status = saveManager.Save(argument, *this);
+                if(command == "save") // this is stupid todo fix
+                {
+                    cmdStream >> argument;
+
+                    //status = saveManager.Save(argument, *this);
+                }
+                status = cmd->second->Execute();
             }
+
 
             if(game->isMove(cmdStream))
                 status = game->ProcessMove(/*players[i],*/ cmdStream);
@@ -70,4 +74,14 @@ int Game::Start()
         }
 
     }
+}
+int Game::Save(const std::string & fileName)
+{
+    std::stringstream output;
+    for(const auto & player : players)
+    {
+        //player->Save();
+    }
+    //game.Save();
+    return 0;
 }

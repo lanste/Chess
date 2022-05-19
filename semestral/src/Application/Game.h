@@ -4,23 +4,20 @@
 
 #pragma once
 
-#include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
-#include "../Application/SaveManager.h"
-#include "../Boards/Board.h"
 #include "../Boards/ClassicalChessBoard.h"
-#include "../Players/Player.h"
 #include "../Players/LocalPlayer.h"
 #include "../Players/AI1.h"
 #include "../Players/AI2.h"
 #include "../Players/AI3.h"
-#include "../Commands/Command.h"
 #include "../Commands/BackCmd.h"
+//#include "../Commands/Game/SaveGameCmd.h"
 
 
 #include <memory>
 #include <map>
 #include <sstream>
+#include <fstream>
 
 /**
  *  Game manager class
@@ -34,13 +31,14 @@ class Game
         Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p); // unnecessary ?
         int Initialize(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p);
         int Start();
-    protected:
+    private:
+        int Save(const std::string & fileName);
         int status;
         bool initialized;
-        SaveManager saveManager;
-        enum gameStates{
-            ONE, TWO, THREE
-        };
+        //SaveManager saveManager;
+//        enum gameStates{
+//            ONE, TWO, THREE
+//        };
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::shared_ptr<Interface> interface;
         std::shared_ptr<Board> game;

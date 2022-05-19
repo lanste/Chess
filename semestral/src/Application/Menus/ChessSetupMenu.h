@@ -5,7 +5,6 @@
 #pragma once
 
 #include "Menu.h"
-#include "../../Commands/ChoosePlayerCmd.h"
 #include "../../Commands/BackCmd.h"
 #include "../../Commands/LaunchGameCmd.h"
 // players might be included in ^
@@ -21,10 +20,10 @@
 /**
  * Allows user to select players and potentially other game settings
  */
-class GameSetupMenu : public Menu
+class ChessSetupMenu : public Menu
 {
     public:
-        GameSetupMenu(const std::shared_ptr<Interface> & ui);
+        ChessSetupMenu(const std::shared_ptr<Interface> & ui);
         int Show() override;
         int ExecCommand(const std::string & command) override;
     protected:
@@ -35,12 +34,15 @@ class GameSetupMenu : public Menu
         void emptyLine() const{
             interface->Display("\n" + std::string( 20, ' ' ));
         }
+
+        enum{CHOOSEP1, CHOOSEP2, SETUPDONE, CONTINUE};
         std::shared_ptr<Interface> interface;
-        std::vector<std::pair<std::string, std::shared_ptr<Player>>> options;
+        std::vector<std::string> options;
+        std::map<std::string, std::shared_ptr<Player>> pChooser;
         std::map<std::string, std::shared_ptr<Command>> commands;
 
         std::vector<std::shared_ptr<Player>> players; // for game initialization
 
-        int status;
+        int execState;
         std::string header;
 };

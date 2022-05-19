@@ -14,6 +14,8 @@
 
 namespace fs = std::filesystem;
 
+class Game;
+
 class SaveManager
 {
     public:

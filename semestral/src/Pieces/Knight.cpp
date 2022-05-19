@@ -24,3 +24,7 @@ int Knight::makeMove(const int & startPos, const int & endPos) const
 {
     return 0;
 }
+void Knight::Save(std::ofstream os)
+{
+
+}

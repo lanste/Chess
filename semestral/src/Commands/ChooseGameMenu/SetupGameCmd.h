@@ -7,7 +7,7 @@
 #include "../Command.h"
 #include "../../Boards/ClassicalChessBoard.h"
 #include "../../Application/Game.h"
-#include "../../Application/Menus/GameSetupMenu.h"
+#include "../../Application/Menus/ChessSetupMenu.h"
 
 #include <memory>
 #include <map>

@@ -8,8 +8,8 @@ LocalPlayer::LocalPlayer()
 {
  colour = true;
 }
-bool LocalPlayer::makeTurn(std::shared_ptr<Board> & board)
-{
-
-    return false;
-}
+//bool LocalPlayer::makeTurn(std::shared_ptr<Board> & board)
+//{
+//
+//    return false;
+//}
