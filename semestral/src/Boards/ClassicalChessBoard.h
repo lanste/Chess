@@ -32,8 +32,8 @@ class ClassicalChessBoard : public Board
         ClassicalChessBoard();
         void Initialize();
         std::string State();
-        int ProcessMove(const std::stringstream & m);
-        bool isMove(std::stringstream & command);
+        int ProcessMove(const std::string & m);
+        bool ifMoveParse(std::string & command);
     protected:
         std::array<std::shared_ptr<Piece>, 64> board;
 };

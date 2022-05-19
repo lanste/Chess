@@ -23,6 +23,5 @@ void Pawn::Save(std::ofstream os)
 }
 int Pawn::makeMove(const int & startPos, const int & endPos) const
 {
-
     return 0;
 }

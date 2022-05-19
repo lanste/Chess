@@ -127,13 +127,24 @@ std::string ClassicalChessBoard::State()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int ClassicalChessBoard::ProcessMove(const std::stringstream & m)
+int ClassicalChessBoard::ProcessMove(const std::string & move)
 {
-    std::string move = m.str();
     int startPos, endPos;
-    startPos = move[0] - 'A' + move[1] - '0';
-    endPos   = move[2] - 'A' + move[3] - '0';
 
+    //std::cerr << '\n' << move[0] << std::endl;
+    //std::cerr << 'A';
+
+    startPos = (toupper(move[0]) - 'A') + (move[1] - '0' - 1) * 8;
+
+
+
+    endPos   = (toupper(move[2]) - 'A') + (move[3] - '0' - 1) * 8;
+
+
+
+
+    if(board[startPos] == nullptr)
+        return 1;
     if(board[startPos]->makeMove(startPos,endPos))
         return 1;
 
@@ -145,26 +156,32 @@ int ClassicalChessBoard::ProcessMove(const std::stringstream & m)
     board[endPos] = holdPiece;
     return 0;
 }
-bool ClassicalChessBoard::isMove(std::stringstream & command)
+bool ClassicalChessBoard::ifMoveParse(std::string & command)
 {
     std::string head, move;
-    command >> head;
+    if(command.size() < 4)
+        return false;
+    head = command.substr(0,4);
     if(head == "move")
     {
-        command >> move;
+        move = command.substr(5,4);
     }
     else
         move = head;
     if(move.size() != 4)
         return false;
 
-    for(int i = 0; i <= 2; i += 2)
-    {
-        if(move[i] < 'A' || move[i] > 'H')
+
+    if(toupper(move[0]) < 'A' || toupper(move[0]) > 'H')
             return false;
-        if(move[i+1] < '1' || move[i+1] > '8')
+    if(move[1] < '1' || move[1] > '8')
             return false;
-    }
+    if(toupper(move[2]) < 'A' || toupper(move[2]) > 'H')
+        return false;
+    if(move[3] < '1' || move[3] > '8')
+        return false;
+
+    command = move;
     return true;
 }
 

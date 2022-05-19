@@ -32,6 +32,7 @@ class Game
         int Initialize(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p);
         int Start();
     private:
+        std::string Show();
         int Save(const std::string & fileName);
         int status;
         bool initialized;

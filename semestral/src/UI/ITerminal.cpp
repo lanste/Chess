@@ -17,7 +17,7 @@ void ITerminal::Display(const std::string & message)
 {
     output << message;
 }
-bool ITerminal::Receive(std::string & command)
+bool ITerminal::ReceiveLine(std::string & command)
 {
     input >> command;
     if(input.fail())
@@ -28,12 +28,14 @@ bool ITerminal::Receive(std::string & command)
     output << "\033c"; // clear the screen
     return true;
 }
-bool ITerminal::ReceiveLine(std::string & command)
+bool ITerminal::Receive(std::string & command)
 {
-    getline(input,command);
-    if(input.fail())
+    command = "empty";
+    std::getline(input,command);
+    if(input.fail() || command == "empty")
     {
         command = "";
+        Display("Error while reading your message! Try again please.");
         return false;
     }
     output << "\033c"; // clear the screen

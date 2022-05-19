@@ -34,7 +34,7 @@ int Game::Start()
 
     if(not initialized)
         throw std::runtime_error("FATAL: call to game start without prior initialization");
-    interface->Display(game->State());
+    //interface->Display(game->State());
 
     std::string command;
     std::string argument;
@@ -43,34 +43,42 @@ int Game::Start()
     {
         for(size_t i = 0; i < turns; ++i)
         {
-            interface->Display(game->State());
-            interface->ReceiveLine(command);
+            interface->Display(Show());
+            interface->Receive(command);
             /*
              * commands here can have arguments, delimited by space
              * -> load whole line to stream and decompose word by word
             */
             std::stringstream cmdStream(command);
+            //std::cerr << cmdStream.str();
             cmdStream >> command;
             const auto cmd = commands.find(command);
 
-            if(cmd != commands.end() && cmd->second != nullptr)
+            if (cmd != commands.end() && cmd->second != nullptr)
             {
-                if(command == "save") // this is stupid todo fix
+                if (command == "save") // this is stupid todo fix
                 {
                     cmdStream >> argument;
-
+                    Save(argument);
                     //status = saveManager.Save(argument, *this);
                 }
                 status = cmd->second->Execute();
+                if(status)
+                    return 1;
             }
 
+            std::string move = cmdStream.str();
+            if (game->ifMoveParse(move))
+            {
+                status = game->ProcessMove(/*players[i],*/ move);
+                if(status == 1)
+                {
+                    interface->Display("\e[31m Invalid move! \e[0m\n");
+                }
+                continue;
+            }
 
-            if(game->isMove(cmdStream))
-                status = game->ProcessMove(/*players[i],*/ cmdStream);
             interface->Display("Invalid command\n");
-
-            if(status == 420)
-                return 1;
         }
 
     }
@@ -84,4 +92,8 @@ int Game::Save(const std::string & fileName)
     }
     //game.Save();
     return 0;
+}
+std::string Game::Show()
+{
+    return game->State() + "\nEnter a command:\n";
 }
