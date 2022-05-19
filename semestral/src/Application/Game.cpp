@@ -55,14 +55,14 @@ int Game::Start()
             if(cmd != commands.end() && cmd->second != nullptr)
                     status = cmd->second->Execute();
 
-            if(command == "save") // todo placeholder-ish...
+            if(command == "save") // this is stupid todo fix
             {
                 cmdStream >> argument;
                 status = saveManager.Save(argument, *this);
             }
 
             if(game->isMove(cmdStream))
-                status = players[i]->makeTurn(game);
+                status = game->ProcessMove(/*players[i],*/ cmdStream);
             interface->Display("Invalid command\n");
 
             if(status == 420)

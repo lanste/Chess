@@ -37,7 +37,7 @@ MainMenu.o: src/Application src/Application src/UI/Interface.h \
  src/Players/AI1.h src/Players/AI2.h src/Players/AI3.h
 ProgramOptions.o: src/Application/ProgramOptions.cpp src/Application/ProgramOptions.h \
  src/UI/Interface.h src/UI/ITerminal.h
-Board.o: src/Boards/Board.cpp src/Boards/Board.h \
+Board.o:src/Boards/Board.h \
  src/Boards/../Players/Player.h
 ClassicalChessBoard.o: src/Boards/ClassicalChessBoard.cpp \
  src/Boards/ClassicalChessBoard.h src/Boards/Board.h \

@@ -6,10 +6,10 @@ Piece::Piece()
 {
 
 }
-void Piece::Print(ostream & interface)
+void Piece::Print(std::ostream & os)
 {
     char out = symbol;
     if(colour)
         out = tolower(out);
-    interface.Display(out);
+    os << out;
 }

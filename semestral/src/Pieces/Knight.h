@@ -9,12 +9,8 @@
 class Knight : public Piece
 {
     public:
-        Knight(const bool & col) : Piece('N', col){};
+        Knight(const bool & col);// : Piece('N', col){};
         std::shared_ptr<Piece> CreateInstance() override;
+        int makeMove(const int & startPos, const int & endPos) const override;
         void Save(std::ofstream os) override;
 };
-
-void Knight::Save(std::ofstream os)
-{
-
-}

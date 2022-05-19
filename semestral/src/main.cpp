@@ -19,9 +19,9 @@
 int main (int argc, char* *argv)
 {
     ProgramOptions options;
-
     if(options.ReadOptions(argc, argv))
         return 0;
+
     Application(options).Run();
     return 0;
 }

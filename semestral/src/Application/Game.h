@@ -38,6 +38,9 @@ class Game
         int status;
         bool initialized;
         SaveManager saveManager;
+        enum gameStates{
+            ONE, TWO, THREE
+        };
         std::map<std::string, std::shared_ptr<Command>> commands;
         std::shared_ptr<Interface> interface;
         std::shared_ptr<Board> game;

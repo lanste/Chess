@@ -4,10 +4,8 @@
 
 #include "LaunchGameCmd.h"
 
-LaunchGameCmd::LaunchGameCmd(const std::shared_ptr<Interface> & ui) : interface(ui)
-{
-    game = Game(interface);
-}
+LaunchGameCmd::LaunchGameCmd(const std::shared_ptr<Interface> & ui) : interface(ui), game(Game(ui))
+{}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

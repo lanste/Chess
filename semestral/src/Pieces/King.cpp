@@ -4,10 +4,17 @@
 
 #include "King.h"
 
-//King::King(const bool & col) : Piece('K',col)
-//{
-//
-//}
+King::King(const bool & col) : Piece('K',col)
+{
+    moves.push_back(8);
+    moves.push_back(-8);
+    moves.push_back(1);
+    moves.push_back(-1);
+    moves.push_back(7);
+    moves.push_back(9);
+    moves.push_back(-7);
+    moves.push_back(-9);
+}
 
 std::shared_ptr<Piece> King::CreateInstance()
 {
@@ -17,4 +24,8 @@ std::shared_ptr<Piece> King::CreateInstance()
 void King::Save(std::ofstream os)
 {
     return;
+}
+int King::makeMove(const int & startPos, const int & endPos) const
+{
+    return 0;
 }

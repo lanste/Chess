@@ -9,12 +9,9 @@
 class Queen : public Piece
 {
     public:
-        Queen(const bool & col) : Piece('Q', col){};
-        std::shared_ptr<Piece> CreateInstance() override;
+        Queen(const bool & col);
         void Save(std::ofstream os) override;
+        void Print(std::ostream & os) override;
+        int makeMove(const int & startPos, const int & endPos) const override;
+        std::shared_ptr<Piece> CreateInstance() override;
 };
-
-void Queen::Save(std::ofstream os)
-{
-
-}

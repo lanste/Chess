@@ -9,12 +9,9 @@
 class Rook : public Piece
 {
     public:
-        Rook(const bool & col) : Piece('R', col){};
-        std::shared_ptr<Piece> CreateInstance() override;
+        Rook(const bool & col);
+        int makeMove(const int & startPos, const int & endPos) const override;
+        void Print(std::ostream & os) override;
         void Save(std::ofstream os) override;
+        std::shared_ptr<Piece> CreateInstance() override;
 };
-
-void Rook::Save(std::ofstream os)
-{
-
-}

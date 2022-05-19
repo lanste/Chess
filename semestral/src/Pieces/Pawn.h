@@ -9,7 +9,10 @@
 class Pawn : public Piece
 {
     public:
-        Pawn(const bool & col) : Piece('K', col){};
+        Pawn(const bool & col);
         std::shared_ptr<Piece> CreateInstance() override;
         void Save(std::ofstream os) override;
+        int makeMove(const int & startPos, const int & endPos) const override;
+    protected:
+        std::vector<int> moves;
 };

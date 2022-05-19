@@ -98,9 +98,22 @@ std::string ClassicalChessBoard::State()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int ClassicalChessBoard::ProcessMove(...)
+int ClassicalChessBoard::ProcessMove(const std::stringstream & m)
 {
+    std::string move = m.str();
+    int startPos, endPos;
+    startPos = move[0] - 'A' + move[1] - '0';
+    endPos   = move[2] - 'A' + move[3] - '0';
 
+    if(board[startPos]->makeMove(startPos,endPos))
+        return 1;
+
+    if(board[endPos] != nullptr)
+        return 1;
+
+    auto holdPiece = board[startPos];
+    board[startPos] = nullptr;
+    board[endPos] = holdPiece;
     return 0;
 }
 bool ClassicalChessBoard::isMove(std::stringstream & command)
