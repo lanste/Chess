@@ -20,8 +20,13 @@ std::shared_ptr<Piece> Knight::CreateInstance()
 {
     return std::make_shared<Knight>(*this);
 }
-int Knight::makeMove(const int & startPos, const int & endPos) const
+int Knight::makeMove(const int & startPos, const int & endPos)
 {
+    for(const int & move : moves)
+    {
+        if(startPos + move == endPos)
+            return 1;
+    }
     return 0;
 }
 void Knight::Save(std::ofstream os)

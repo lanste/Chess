@@ -19,9 +19,15 @@ class Piece
     public:
         Piece();
 //----------------------------------------------------------------------------------------------------------------------
-        Piece(const char & s, const bool & c) : symbol(s), colour(c)/*, coords(0,0)*/ {}
+        Piece(const char32_t & s, const bool & c) : symbol(s), colour(c)/*, coords(0,0)*/ {}
 //----------------------------------------------------------------------------------------------------------------------
-        virtual int makeMove(const int & startPos, const int & endPos) const = 0;
+        /**
+         * Evaluates if move requested by player is valid for this piece
+         * @param startPos
+         * @param endPos
+         * @return 1 if pseudo valid move, 0 otherwise
+         */
+        virtual int makeMove(const int & startPos, const int & endPos) = 0;
 //----------------------------------------------------------------------------------------------------------------------
         /**
          * @return pointer to object of derived class (Chess pieces)
@@ -49,7 +55,7 @@ class Piece
             int vertical;
         };
         std::vector<int> moves;
-        char symbol;
+        char32_t symbol;
         bool colour; // 0 = white | 1 = black
         //coordinates coords;
 };

@@ -25,7 +25,7 @@ void King::Save(std::ofstream os)
 {
     return;
 }
-int King::makeMove(const int & startPos, const int & endPos) const
+int King::makeMove(const int & startPos, const int & endPos)
 {
     return 0;
 }

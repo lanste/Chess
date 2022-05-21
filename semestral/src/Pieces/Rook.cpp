@@ -16,7 +16,7 @@ std::shared_ptr<Piece> Rook::CreateInstance()
     return std::make_shared<Rook>(*this);
 }
 
-int Rook::makeMove(const int & startPos, const int & endPos) const
+int Rook::makeMove(const int & startPos, const int & endPos)
 {
     return 0;
 }

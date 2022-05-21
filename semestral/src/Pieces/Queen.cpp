@@ -28,7 +28,7 @@ void Queen::Save(std::ofstream os)
 {
 
 }
-int Queen::makeMove(const int & startPos, const int & endPos) const
+int Queen::makeMove(const int & startPos, const int & endPos)
 {
     return 0;
 }
