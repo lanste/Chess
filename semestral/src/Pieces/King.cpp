@@ -41,7 +41,3 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos)
     }
     return 0;
 }
-void King::Print(std::ostream & os)
-{
-    Piece::Print(os);
-}

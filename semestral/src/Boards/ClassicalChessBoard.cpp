@@ -35,7 +35,7 @@ void ClassicalChessBoard::Initialize()
             board[i][j] = nullptr;
         }
     }
-    for(int i = 0; i < 8; ++i)
+    for (int i = 0; i < 8; ++i)
     {
         board[6][i] = std::make_shared<Pawn>(black);
     }
@@ -58,44 +58,47 @@ std::string ClassicalChessBoard::State()
      */
     std::stringstream output;
     output << "   ";
-    for(int i = 0; i < 8; ++i)
+    for (int i = 0; i < 8; ++i)
     {
         output << " " << static_cast<char>('A' + i);
-        if(i == 7)
+        if (i == 7)
             output << ' ';
     }
     output << '\n';
     output << "  +" << std::string(17, '-') << '+';
-    for(int i = 0; i < 64; ++i)
+    // actual board printing todo? methodize
+    for (int i = 7; i >= 0; --i)
     {
-        if(i % 8 == 0)
-            output << std::endl << (i/8) + 1 << " |";
-        if(board[i])
+        output << std::endl << i + 1 << " |";
+        for (int j = 0; j < 8; ++j)
         {
-            output << ' ';
-            board[i]->Print(output);
-            if(i % 8 == 7)
+            if (board[i][j])
+            {
                 output << ' ';
+                board[i][j]->Print(output);
+                if (j == 7)
+                    output << ' ';
+            }
+            else
+            {
+                output << std::noskipws << " .";
+                if (j == 7)
+                    output << ' ';
+            }
         }
-        else
-        {
-            output << std::noskipws << " .";
-            if(i % 8 == 7)
-                output << ' ';
-        }
-        if(i % 8 == 7)
-            output << "| " << (i+1) / 8;
+        output << "| " << i + 1;
     }
+    // end board print
     output << '\n';
     output << "  +" << std::string(17, '-') << '+' << std::endl << "   ";
-    for(int i = 0; i < 8; ++i)
+    for (int i = 0; i < 8; ++i)
     {
         //cout << 'A' + i;
         output << ' ' << static_cast<char>('A' + i);
-        if(i == 7)
+        if (i == 7)
             output << ' ';
     }
-    output << ' ' <<'\n';
+    output << ' ' << '\n';
     return output.str();
 }
 
@@ -104,51 +107,51 @@ std::string ClassicalChessBoard::State()
 int ClassicalChessBoard::ProcessMove(const std::string & move)
 {
     coordinates startPos(
-                    toupper(move[0]) - 'A',
-                    move[1] - '0' - 1),
-                endPos(
-                    toupper(move[2]) - 'A',
-                    move[3] - '0' - 1);
+            move[1] - '0' - 1,
+            toupper(move[0]) - 'A'),
+            endPos(
+            move[3] - '0' - 1,
+            toupper(move[2]) - 'A');
 
     //std::cerr << '\n' << move[0] << std::endl;
     //std::cerr << 'A';
 
-    if(board[startPos] == nullptr)
+    if (board[startPos.x][startPos.y] == nullptr)
         return 1;
-    if(board[startPos]->makeMove(startPos,endPos))
-        return 1;
-
-    if(board[endPos] != nullptr)
+    if (board[startPos.x][startPos.y]->makeMove(startPos, endPos))
         return 1;
 
-    auto holdPiece = board[startPos];
-    board[startPos] = nullptr;
-    board[endPos] = holdPiece;
+    if (board[endPos.x][endPos.y] != nullptr)
+        return 1;
+
+    auto holdPiece = board[startPos.x][startPos.y];
+    board[startPos.x][startPos.y] = nullptr;
+    board[endPos.x][endPos.y] = holdPiece;
     return 0;
 }
 bool ClassicalChessBoard::ifMoveParse(std::string & command)
 {
     std::string head, move;
-    if(command.size() < 4)
+    if (command.size() < 4)
         return false;
-    head = command.substr(0,4);
-    if(head == "move")
+    head = command.substr(0, 4);
+    if (head == "move")
     {
-        move = command.substr(5,4);
+        move = command.substr(5, 4);
     }
     else
         move = head;
-    if(move.size() != 4)
+    if (move.size() != 4)
         return false;
 
 
-    if(toupper(move[0]) < 'A' || toupper(move[0]) > 'H')
-            return false;
-    if(move[1] < '1' || move[1] > '8')
-            return false;
-    if(toupper(move[2]) < 'A' || toupper(move[2]) > 'H')
+    if (toupper(move[0]) < 'A' || toupper(move[0]) > 'H')
         return false;
-    if(move[3] < '1' || move[3] > '8')
+    if (move[1] < '1' || move[1] > '8')
+        return false;
+    if (toupper(move[2]) < 'A' || toupper(move[2]) > 'H')
+        return false;
+    if (move[3] < '1' || move[3] > '8')
         return false;
 
     command = move;

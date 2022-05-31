@@ -37,7 +37,3 @@ int Rook::makeMove(const coordinates & startPos, const coordinates & endPos)
     }
     return 0;
 }
-void Rook::Print(std::ostream & os)
-{
-    Piece::Print(os);
-}

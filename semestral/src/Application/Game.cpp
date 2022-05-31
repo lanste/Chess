@@ -4,6 +4,7 @@
 
 #include "Game.h"
 
+
 Game::Game(const std::shared_ptr<Interface> & ui) : interface(ui)
 {
     initialized = false;
@@ -73,7 +74,7 @@ int Game::Start()
                 status = game->ProcessMove(/*players[i],*/ move);
                 if(status == 1)
                 {
-                    interface->Display("\e[31m Invalid move! \e[0m\n");
+                    interface->Display("Invalid move!\n");
                 }
                 continue;
             }
@@ -85,11 +86,11 @@ int Game::Start()
 }
 int Game::Save(const std::string & fileName)
 {
-    std::stringstream output;
-    for(const auto & player : players)
-    {
-        //player->Save();
-    }
+//    std::stringstream output;
+//    for(const auto & player : players)
+//    {
+//        player->Save();
+//    }
     //game.Save();
     return 0;
 }

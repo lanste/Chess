@@ -12,6 +12,5 @@ class Knight : public Piece
         Knight(const bool & col);// : Piece('N', col){};
         std::shared_ptr<Piece> CreateInstance() override;
         int makeMove(const coordinates & startPos, const coordinates & endPos) override;
-        void Print(std::ostream & os) override;
         void Save(std::ofstream os) override;
 };

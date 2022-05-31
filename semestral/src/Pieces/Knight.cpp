@@ -25,10 +25,6 @@ void Knight::Save(std::ofstream os)
 {
 
 }
-void Knight::Print(std::ostream & os)
-{
-    Piece::Print(os);
-}
 int Knight::makeMove(const coordinates & startPos, const coordinates & endPos)
 {
     for (const auto & elem: moves)

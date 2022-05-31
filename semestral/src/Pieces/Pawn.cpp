@@ -4,7 +4,7 @@
 
 #include "Pawn.h"
 
-Pawn::Pawn(const bool & col) : Piece('K', col)
+Pawn::Pawn(const bool & col) : Piece('P', col)
 {
     if(col)
     {

@@ -20,10 +20,6 @@ std::shared_ptr<Piece> Queen::CreateInstance()
 {
     return std::make_shared<Queen>(*this);
 }
-void Queen::Print(std::ostream & os)
-{
-    Piece::Print(os);
-}
 int Queen::makeMove(const coordinates & startPos, const coordinates & endPos)
 {
     for (const auto & elem: moves)
