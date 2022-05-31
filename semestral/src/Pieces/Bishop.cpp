@@ -20,8 +20,7 @@ void Bishop::Save(std::ofstream os)
 {
 
 }
-int Bishop::makeMove(const int & startPos, const int & endPos)
+int Bishop::makeMove(const coordinates & startPos, const coordinates & endPos)
 {
-
     return 0;
 }

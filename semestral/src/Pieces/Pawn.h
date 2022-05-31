@@ -11,8 +11,7 @@ class Pawn : public Piece
     public:
         Pawn(const bool & col);
         std::shared_ptr<Piece> CreateInstance() override;
+        int makeMove(const coordinates& startPos, const coordinates & endPos) override;
         void Save(std::ofstream os) override;
-        int makeMove(const int & startPos, const int & endPos) override;
     protected:
-        std::vector<int> moves;
 };

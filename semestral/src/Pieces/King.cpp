@@ -25,7 +25,11 @@ void King::Save(std::ofstream os)
 {
     return;
 }
-int King::makeMove(const int & startPos, const int & endPos)
+int King::makeMove(const coordinates & startPos, const coordinates & endPos)
 {
     return 0;
+}
+void King::Print(std::ostream & os)
+{
+    Piece::Print(os);
 }

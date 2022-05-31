@@ -12,6 +12,6 @@ class Queen : public Piece
         Queen(const bool & col);
         void Save(std::ofstream os) override;
         void Print(std::ostream & os) override;
-        int makeMove(const int & startPos, const int & endPos) override;
+        int makeMove(const ::coordinates & startPos, const ::coordinates & endPos) override;
         std::shared_ptr<Piece> CreateInstance() override;
 };

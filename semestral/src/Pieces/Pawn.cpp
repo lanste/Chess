@@ -6,10 +6,14 @@
 
 Pawn::Pawn(const bool & col) : Piece('K', col)
 {
-    moves.push_back(8);
-    moves.push_back(7); //attacks?
-    moves.push_back(9);
-    moves.push_back(16);
+    if(col)
+    {
+        moves = {{1,0}, {1,1},{1,-1}};
+    }
+    else
+    {
+        moves = {{-1,0}, {-1,1},{-1,-1}};
+    }
 }
 
 
@@ -22,23 +26,23 @@ void Pawn::Save(std::ofstream os)
 {
 
 }
-int Pawn::makeMove(const int & startPos, const int & endPos)
+
+int Pawn::makeMove(const ::coordinates & startPos, const ::coordinates & endPos)
 {
-    for(const auto & elem : moves)
+    //vector<coordinates> myMoves = {{1,0}, {1,1},{1,-1}};
+    //vector<coordinates> myMoves = {{-1,0}, {-1,1},{-1,-1}};
+    for (const auto & elem: moves)
     {
-        int raw = startPos + elem;
-        if(raw == endPos)
+        int x = startPos.x;
+        int y = startPos.y;
+        if((x <= 7 && x >= 0) && (y <= 7 && y >= 0) )
         {
-            if(startPos % 8 == 7 && raw % 8 == 0)
-                break;
-            if(startPos % 8 == 0 && raw % 8 == 7)
-                break;
-            if(startPos > 56)
-                break;
-            if(moves.size() == 4)
-                moves.pop_back();
-            return 0;
+            x += elem.x;
+            y += elem.y;
+            if(x == endPos.x && y == endPos.y)
+                return 1;
+            //cout << x << " " << y << endl;
         }
     }
-    return 1;
+    return 0;
 }

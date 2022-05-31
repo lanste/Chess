@@ -12,6 +12,7 @@ class Bishop : public Piece
         Bishop(const bool & col);
         std::shared_ptr<Piece> CreateInstance() override;
         void Save(std::ofstream os) override;
-        int makeMove(const int & startPos, const int & endPos) override;
+        int makeMove(const ::coordinates & startPos, const ::coordinates & endPos) override;
+        void Print(std::ostream & os) override;
     protected:
 };

@@ -6,6 +6,7 @@
 
 #include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
+#include "../Application/coordinates.h"
 
 #include <memory>
 #include <vector>
@@ -27,7 +28,7 @@ class Piece
          * @param endPos
          * @return 1 if pseudo valid move, 0 otherwise
          */
-        virtual int makeMove(const int & startPos, const int & endPos) = 0;
+        virtual int makeMove(const coordinates & startPos, const coordinates & endPos) = 0;
 //----------------------------------------------------------------------------------------------------------------------
         /**
          * @return pointer to object of derived class (Chess pieces)
@@ -48,13 +49,7 @@ class Piece
         virtual void Save(std::ofstream os) = 0;
 //----------------------------------------------------------------------------------------------------------------------
     protected:
-        struct coordinates
-        {
-            coordinates(char h, int v) : horizontal(h), vertical(v){}
-            char horizontal;
-            int vertical;
-        };
-        std::vector<int> moves;
+        std::vector<coordinates> moves;
         char32_t symbol;
         bool colour; // 0 = white | 1 = black
         //coordinates coords;

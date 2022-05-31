@@ -16,11 +16,15 @@ std::shared_ptr<Piece> Rook::CreateInstance()
     return std::make_shared<Rook>(*this);
 }
 
-int Rook::makeMove(const int & startPos, const int & endPos)
-{
-    return 0;
-}
 void Rook::Save(std::ofstream os)
 {
 
+}
+int Rook::makeMove(const coordinates & startPos, const coordinates & endPos)
+{
+    return 0;
+}
+void Rook::Print(std::ostream & os)
+{
+    Piece::Print(os);
 }

@@ -7,36 +7,7 @@
 
 ClassicalChessBoard::ClassicalChessBoard()
 {
-#define white false
-#define black true
-    board[0] = std::make_shared<Rook>(white);
-    board[1] = std::make_shared<Knight>(white);
-    board[2] = std::make_shared<Bishop>(white);
-    board[3] = std::make_shared<King>(white);
-    board[4] = std::make_shared<Queen>(white);
-    board[5] = std::make_shared<Bishop>(white);
-    board[6] = std::make_shared<Knight>(white);
-    board[7] = std::make_shared<Rook>(white);
-    for(int i = 8; i < 16; ++i)
-    {
-        board[i] = std::make_shared<Pawn>(white);
-    }
-    for(int i = 16; i < 48; ++i)
-    {
-        board[i] = nullptr;
-    }
-    for(int i = 48; i < 56; ++i)
-    {
-        board[i] = std::make_shared<Pawn>(black);
-    }
-    board[56] = std::make_shared<Rook>(black);
-    board[57] = std::make_shared<Knight>(black);
-    board[58] = std::make_shared<Bishop>(black);
-    board[59] = std::make_shared<King>(black);
-    board[60] = std::make_shared<Queen>(black);
-    board[61] = std::make_shared<Bishop>(black);
-    board[62] = std::make_shared<Knight>(black);
-    board[63] = std::make_shared<Rook>(black);
+    Initialize();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,34 +16,37 @@ void ClassicalChessBoard::Initialize()
 {
 #define white false
 #define black true
-    board[0] = std::make_shared<Rook>(white);
-    board[1] = std::make_shared<Knight>(white);
-    board[2] = std::make_shared<Bishop>(white);
-    board[3] = std::make_shared<King>(white);
-    board[4] = std::make_shared<Queen>(white);
-    board[5] = std::make_shared<Bishop>(white);
-    board[6] = std::make_shared<Knight>(white);
-    board[7] = std::make_shared<Rook>(white);
-    for(int i = 8; i < 16; ++i)
+    board[0][0] = std::make_shared<Rook>(white);
+    board[0][1] = std::make_shared<Knight>(white);
+    board[0][2] = std::make_shared<Bishop>(white);
+    board[0][3] = std::make_shared<King>(white);
+    board[0][4] = std::make_shared<Queen>(white);
+    board[0][5] = std::make_shared<Bishop>(white);
+    board[0][6] = std::make_shared<Knight>(white);
+    board[0][7] = std::make_shared<Rook>(white);
+    for (int i = 0; i < 8; ++i)
     {
-        board[i] = std::make_shared<Pawn>(white);
+        board[1][i] = std::make_shared<Pawn>(white);
     }
-    for(int i = 16; i < 48; ++i)
+    for (int i = 2; i < 6; ++i)
     {
-        board[i] = nullptr;
+        for (int j = 0; i < 8; ++i)
+        {
+            board[i][j] = nullptr;
+        }
     }
-    for(int i = 48; i < 56; ++i)
+    for(int i = 0; i < 8; ++i)
     {
-        board[i] = std::make_shared<Pawn>(black);
+        board[6][i] = std::make_shared<Pawn>(black);
     }
-    board[56] = std::make_shared<Rook>(black);
-    board[57] = std::make_shared<Knight>(black);
-    board[58] = std::make_shared<Bishop>(black);
-    board[59] = std::make_shared<King>(black);
-    board[60] = std::make_shared<Queen>(black);
-    board[61] = std::make_shared<Bishop>(black);
-    board[62] = std::make_shared<Knight>(black);
-    board[63] = std::make_shared<Rook>(black);
+    board[7][0] = std::make_shared<Rook>(black);
+    board[7][1] = std::make_shared<Knight>(black);
+    board[7][2] = std::make_shared<Bishop>(black);
+    board[7][3] = std::make_shared<King>(black);
+    board[7][4] = std::make_shared<Queen>(black);
+    board[7][5] = std::make_shared<Bishop>(black);
+    board[7][6] = std::make_shared<Knight>(black);
+    board[7][7] = std::make_shared<Rook>(black);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,19 +103,15 @@ std::string ClassicalChessBoard::State()
 
 int ClassicalChessBoard::ProcessMove(const std::string & move)
 {
-    int startPos, endPos;
+    coordinates startPos(
+                    toupper(move[0]) - 'A',
+                    move[1] - '0' - 1),
+                endPos(
+                    toupper(move[2]) - 'A',
+                    move[3] - '0' - 1);
 
     //std::cerr << '\n' << move[0] << std::endl;
     //std::cerr << 'A';
-
-    startPos = (toupper(move[0]) - 'A') + (move[1] - '0' - 1) * 8;
-
-
-
-    endPos   = (toupper(move[2]) - 'A') + (move[3] - '0' - 1) * 8;
-
-
-
 
     if(board[startPos] == nullptr)
         return 1;
