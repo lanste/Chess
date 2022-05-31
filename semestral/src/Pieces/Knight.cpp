@@ -36,9 +36,9 @@ int Knight::makeMove(const coordinates & startPos, const coordinates & endPos)
             x += elem.x;
             y += elem.y;
             if(x == endPos.x && y == endPos.y)
-                return 1;
+                return 0;
             //cout << x << " " << y << endl;
         }
     }
-    return 0;
+    return 1;
 }

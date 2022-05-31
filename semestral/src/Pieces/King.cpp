@@ -4,7 +4,7 @@
 
 #include "King.h"
 
-King::King(const bool & col) : Piece('K',col)
+King::King(const bool & col) : Piece('K',col), moved(false)
 {
     moves = {{0,1},
              {1,0},
@@ -36,8 +36,8 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos)
                 break;
             if (startPos.x == 0 && raw.x == 7)
                 break;
-            return 1;
+            return 0;
         }
     }
-    return 0;
+    return 1;
 }

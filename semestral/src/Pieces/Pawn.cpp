@@ -4,15 +4,15 @@
 
 #include "Pawn.h"
 
-Pawn::Pawn(const bool & col) : Piece('P', col)
+Pawn::Pawn(const bool & col) : Piece('P', col), moved(false)
 {
-    if(col)
+    if(!col)
     {
-        moves = {{1,0}, {1,1},{1,-1}};
+        moves = {{1,0}, {1,1},{1,-1},{2,0}};
     }
     else
     {
-        moves = {{-1,0}, {-1,1},{-1,-1}};
+        moves = {{-1,0}, {-1,1},{-1,-1},{-2,0}};
     }
 }
 
@@ -27,7 +27,7 @@ void Pawn::Save(std::ofstream os)
 
 }
 
-int Pawn::makeMove(const ::coordinates & startPos, const ::coordinates & endPos)
+int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos)
 {
     //vector<coordinates> myMoves = {{1,0}, {1,1},{1,-1}};
     //vector<coordinates> myMoves = {{-1,0}, {-1,1},{-1,-1}};
@@ -40,9 +40,16 @@ int Pawn::makeMove(const ::coordinates & startPos, const ::coordinates & endPos)
             x += elem.x;
             y += elem.y;
             if(x == endPos.x && y == endPos.y)
-                return 1;
+            {
+                if(!moved)
+                {
+                    moves.pop_back(); //last inserted is move by 2 - kinda stupid but ok
+                    moved = true;
+                }
+                return 0;
+            }
             //cout << x << " " << y << endl;
         }
     }
-    return 0;
+    return 1;
 }

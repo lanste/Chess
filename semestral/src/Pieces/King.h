@@ -9,9 +9,10 @@
 class King : public Piece
 {
     public:
-        King(const bool & col);// : Piece('K', col){};
+        King(const bool & col);
         void Save(std::ofstream os) override;
         int makeMove(const ::coordinates & startPos, const ::coordinates & endPos) override;
         std::shared_ptr<Piece> CreateInstance() override;
     protected:
+        bool moved;
 };

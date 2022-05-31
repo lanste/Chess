@@ -14,4 +14,5 @@ class Pawn : public Piece
         int makeMove(const coordinates& startPos, const coordinates & endPos) override;
         void Save(std::ofstream os) override;
     protected:
+        bool moved;
 };
