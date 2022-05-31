@@ -6,14 +6,14 @@
 
 Knight::Knight(const bool & col) : Piece('N', col)
 {
-    moves.push_back(17);
-    moves.push_back(15);
-    moves.push_back(10);
-    moves.push_back(-6);
-    moves.push_back(-10);
-    moves.push_back(6);
-    moves.push_back(-15);
-    moves.push_back(-17);
+    moves = {{1,2},
+             {-1,2},
+             {1,-2},
+             {-1,-2},
+             {2,1},
+             {-2,1},
+             {2,-1},
+             {-2,-1}};
 }
 
 std::shared_ptr<Piece> Knight::CreateInstance()
@@ -25,15 +25,24 @@ void Knight::Save(std::ofstream os)
 {
 
 }
-int Knight::makeMove(const coordinates & startPos, const coordinates & endPos)
-{
-    return 0;
-}
 void Knight::Print(std::ostream & os)
 {
     Piece::Print(os);
 }
-int Knight::makeMove(const ::coordinates & startPos, const ::coordinates & endPos)
+int Knight::makeMove(const coordinates & startPos, const coordinates & endPos)
 {
+    for (const auto & elem: moves)
+    {
+        int x = startPos.x;
+        int y = startPos.y;
+        if((x <= 7 && x >= 0) && (y <= 7 && y >= 0) )
+        {
+            x += elem.x;
+            y += elem.y;
+            if(x == endPos.x && y == endPos.y)
+                return 1;
+            //cout << x << " " << y << endl;
+        }
+    }
     return 0;
 }

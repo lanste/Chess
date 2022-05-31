@@ -6,14 +6,14 @@
 
 King::King(const bool & col) : Piece('K',col)
 {
-    moves.push_back(8);
-    moves.push_back(-8);
-    moves.push_back(1);
-    moves.push_back(-1);
-    moves.push_back(7);
-    moves.push_back(9);
-    moves.push_back(-7);
-    moves.push_back(-9);
+    moves = {{0,1},
+             {1,0},
+             {0,-1},
+             {-1,0},
+             {1,1},
+             {1,-1},
+             {-1,1},
+             {-1,-1}};
 }
 
 std::shared_ptr<Piece> King::CreateInstance()
@@ -27,6 +27,18 @@ void King::Save(std::ofstream os)
 }
 int King::makeMove(const coordinates & startPos, const coordinates & endPos)
 {
+    for (const auto & elem: moves)
+    {
+        coordinates raw = startPos + elem;
+        if (raw == endPos)
+        {
+            if (startPos.x == 7 && raw.x == 0)
+                break;
+            if (startPos.x == 0 && raw.x == 7)
+                break;
+            return 1;
+        }
+    }
     return 0;
 }
 void King::Print(std::ostream & os)
