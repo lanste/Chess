@@ -13,3 +13,7 @@ void Piece::Print(std::ostream & os)
         out = tolower(out);
     os << out;
 }
+bool Piece::getColour()
+{
+    return colour;
+}

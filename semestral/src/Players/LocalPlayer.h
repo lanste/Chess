@@ -14,8 +14,6 @@ class LocalPlayer : public Player
 {
     public:
         LocalPlayer();
-        //bool makeTurn(std::shared_ptr<Board> & board) override;
+        std::string makeTurn(std::shared_ptr<Interface> interface) override;
     protected:
-        bool colour;
-
 };

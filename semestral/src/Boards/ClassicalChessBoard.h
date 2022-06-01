@@ -32,7 +32,7 @@ class ClassicalChessBoard : public Board
         ClassicalChessBoard();
         void Initialize();
         std::string State();
-        int ProcessMove(const std::string & m);
+        int ProcessMove(const bool & colour, const std::string & m);
         bool ifMoveParse(std::string & command);
     protected:
         std::array<std::array<std::shared_ptr<Piece>, 8>,8> board;

@@ -104,7 +104,7 @@ std::string ClassicalChessBoard::State()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int ClassicalChessBoard::ProcessMove(const std::string & move)
+int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & move)
 {
     coordinates startPos(
             move[1] - '0' - 1,
@@ -118,9 +118,10 @@ int ClassicalChessBoard::ProcessMove(const std::string & move)
 
     if (board[startPos.x][startPos.y] == nullptr)
         return 1;
+    if(board[startPos.x][startPos.y]->getColour() != colour)
+        return 1;
     if (board[startPos.x][startPos.y]->makeMove(startPos, endPos))
         return 1;
-
     if (board[endPos.x][endPos.y] != nullptr)
         return 1;
 

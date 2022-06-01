@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "../Boards/Board.h"
-#include "../Boards/ClassicalChessBoard.h"
+#include "../UI/Interface.h"
+#include "../UI/ITerminal.h"
 
 #include <memory>
 
@@ -15,9 +15,16 @@
 class Player
 {
     public:
-    Player() = default;
-    //virtual bool makeTurn(std::shared_ptr<Board> & board) = 0;
+        Player() = default;
+        explicit Player(const bool & nColour) : colour(nColour) {}
+        virtual std::string makeTurn(std::shared_ptr<Interface> interface) = 0;
+        virtual void setColour(bool nColour){
+            colour = nColour;
+        }
+        virtual bool getColour(){
+            return colour;}
     protected:
         bool colour;
 
 };
+

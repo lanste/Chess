@@ -45,7 +45,8 @@ int Game::Start()
         for(size_t i = 0; i < turns; ++i)
         {
             interface->Display(Show());
-            interface->Receive(command);
+            command = players[i]->makeTurn(interface);
+           // interface->Receive(command);
             /*
              * commands here can have arguments, delimited by space
              * -> load whole line to stream and decompose word by word
@@ -71,10 +72,11 @@ int Game::Start()
             std::string move = cmdStream.str();
             if (game->ifMoveParse(move))
             {
-                status = game->ProcessMove(/*players[i],*/ move);
+                status = game->ProcessMove(players[i]->getColour(), move);
                 if(status == 1)
                 {
                     interface->Display("Invalid move!\n");
+                    --i;
                 }
                 continue;
             }

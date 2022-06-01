@@ -3,3 +3,8 @@
 //
 
 #include "OnlinePlayer.h"
+
+//std::string OnlinePlayer::makeTurn()
+//{
+//    return std::string();
+//}

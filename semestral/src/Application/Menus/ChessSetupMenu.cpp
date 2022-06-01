@@ -13,24 +13,40 @@ ChessSetupMenu::ChessSetupMenu(const std::shared_ptr<Interface> & ui) : interfac
     options.emplace_back("Medium bot");
     options.emplace_back("Hard bot");
 
+    commands.emplace("4", std::make_shared<BackCmd>());
+
+}
+int ChessSetupMenu::ExecCommand(const std::string & command)
+{
+#define white false
+#define black true
+    pChooser.clear();
     pChooser.emplace("0", std::make_shared<LocalPlayer>());
     //pChooser.emplace("3", std::make_shared<OnlinePlayer>());
     pChooser.emplace("1", std::make_shared<AI1>());
     pChooser.emplace("2", std::make_shared<AI2>());
     pChooser.emplace("3", std::make_shared<AI3>());
-    commands.emplace("4", std::make_shared<BackCmd>());
-}
-int ChessSetupMenu::ExecCommand(const std::string & command)
-{
+
     const auto player = pChooser.find(command);
     const auto cmd = commands.find(command);
     if(player != pChooser.end())
     {
-        players.push_back(player->second);
-        ++execState;
-        if(execState == SETUPDONE)
+        switch (execState)
         {
-            return LaunchGameCmd(interface, std::make_shared<ClassicalChessBoard>() , players).Execute();
+            case CHOOSEP1:
+                ++execState;
+                player->second->setColour(white);
+                players.push_back(player->second);
+                break;
+            case CHOOSEP2:
+                ++execState;
+                player->second->setColour(black);
+                players.push_back(player->second);
+                //players.end()->get()->setColour(black);
+            case SETUPDONE:
+                return LaunchGameCmd(interface, std::make_shared<ClassicalChessBoard>() , players).Execute();
+            default:
+                break;
         }
     }
     else if( cmd != commands.end())

@@ -15,7 +15,7 @@
 //        SaveGameCmd(const std::string & name, const Game & toSave);
 //        SaveGameCmd(const std::string & name);
 //        SaveGameCmd(const Game & toSave);
-        SaveGameCmd(const std::string & name, const Game* toSave);
+//        SaveGameCmd(const std::string & name, const Game* toSave);
 //        int Execute() override;
 //    protected:
 //        std::string fileName;

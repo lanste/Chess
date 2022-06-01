@@ -4,12 +4,12 @@
 
 #include "LocalPlayer.h"
 
-LocalPlayer::LocalPlayer()
+LocalPlayer::LocalPlayer() : Player()
 {
- colour = true;
 }
-//bool LocalPlayer::makeTurn(std::shared_ptr<Board> & board)
-//{
-//
-//    return false;
-//}
+std::string LocalPlayer::makeTurn(std::shared_ptr<Interface> interface)
+{
+    std::string cmd;
+    interface->Receive(cmd);
+    return cmd;
+}

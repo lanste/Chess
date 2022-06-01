@@ -12,5 +12,7 @@
  */
 class OnlinePlayer : public Player
 {
-    OnlinePlayer() = default;
+    public:
+        OnlinePlayer() = default;
+        //std::string makeTurn(std::shared_ptr<Interface> interface) override;
 };
