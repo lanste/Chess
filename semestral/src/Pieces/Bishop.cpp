@@ -20,7 +20,8 @@ void Bishop::Save(std::ofstream os)
 {
 
 }
-int Bishop::makeMove(const coordinates & startPos, const coordinates & endPos)
+int Bishop::makeMove(const coordinates & startPos, const coordinates & endPos,
+        const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     for (const auto & elem: moves)
     {

@@ -26,9 +26,11 @@ class Piece
          * Evaluates if move requested by player is valid for this piece
          * @param startPos
          * @param endPos
-         * @return 1 if pseudo valid move, 0 otherwise
+         * @param board
+         * @return 1 if pseudo valid move, 0 otherwise, ?? 2-n special move ??
          */
-        virtual int makeMove(const coordinates & startPos, const coordinates & endPos) = 0;
+        virtual int makeMove(const coordinates & startPos, const coordinates & endPos,
+                             const std::array<std::array<std::shared_ptr<Piece>, 8>,8> & board) = 0;
 //----------------------------------------------------------------------------------------------------------------------
         /**
          * @return pointer to object of derived class (Chess pieces)

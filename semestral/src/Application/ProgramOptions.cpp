@@ -29,7 +29,7 @@ int ProgramOptions::ReadOptions(int argCnt, char ** args)
         std::string option = args[i];
         auto result = validOptions.find(option);
         if(result == validOptions.end())
-            throw std::invalid_argument("Option \"" + option + "\" doesn't exist"); // todo manage better
+            throw std::invalid_argument("Option \"" + option + "\" doesn't exist.\n Use -h to show available options."); // todo manage better
         arguments.emplace_back(option);
     }
     int counter = 0;

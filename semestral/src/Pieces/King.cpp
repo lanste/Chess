@@ -25,16 +25,17 @@ void King::Save(std::ofstream os)
 {
     return;
 }
-int King::makeMove(const coordinates & startPos, const coordinates & endPos)
+int King::makeMove(const coordinates & startPos, const coordinates & endPos,
+        const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     for (const auto & elem: moves)
     {
-        coordinates raw = startPos + elem;
-        if (raw == endPos)
+        coordinates pos = startPos + elem;
+        if (pos == endPos)
         {
-            if (startPos.x == 7 && raw.x == 0)
+            if (startPos.x == 7 && pos.x == 0)
                 break;
-            if (startPos.x == 0 && raw.x == 7)
+            if (startPos.x == 0 && pos.x == 7)
                 break;
             return 0;
         }

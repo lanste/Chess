@@ -25,7 +25,8 @@ void Knight::Save(std::ofstream os)
 {
 
 }
-int Knight::makeMove(const coordinates & startPos, const coordinates & endPos)
+int Knight::makeMove(const coordinates & startPos, const coordinates & endPos,
+        const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     for (const auto & elem: moves)
     {

@@ -26,9 +26,10 @@ void Pawn::Save(std::ofstream os)
 {
 
 }
-
-int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos)
+int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos,
+        const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
+    doubleStep = false;
     //vector<coordinates> myMoves = {{1,0}, {1,1},{1,-1}};
     //vector<coordinates> myMoves = {{-1,0}, {-1,1},{-1,-1}};
     for (const auto & elem: moves)
@@ -41,6 +42,12 @@ int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos)
             y += elem.y;
             if(x == endPos.x && y == endPos.y)
             {
+                if(moves.size() == 4 && elem == moves[3])
+                {
+                    doubleStep = true;
+                }
+                if(endPos == coordinates(colour?0:7,endPos.y))
+                    return 2;
                 if(!moved)
                 {
                     moves.pop_back(); //last inserted is move by 2 - kinda stupid but ok

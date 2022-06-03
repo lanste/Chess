@@ -20,7 +20,8 @@ void Rook::Save(std::ofstream os)
 {
 
 }
-int Rook::makeMove(const coordinates & startPos, const coordinates & endPos)
+int Rook::makeMove(const coordinates & startPos, const coordinates & endPos,
+        const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     for (const auto & elem: moves)
     {

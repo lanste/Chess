@@ -70,7 +70,7 @@ int Game::Start()
             }
 
             std::string move = cmdStream.str();
-            if (game->ifMoveParse(move))
+            if (game->isMove(move))
             {
                 status = game->ProcessMove(players[i]->getColour(), move);
                 if(status == 1)
