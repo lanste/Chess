@@ -17,3 +17,11 @@ bool Piece::getColour()
 {
     return colour;
 }
+char Piece::Save()
+{
+    if(colour)
+        return tolower(symbol);
+    return symbol;
+}
+
+

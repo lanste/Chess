@@ -3,6 +3,7 @@
 //
 
 #include "Game.h"
+#include "SaveManager.h"
 
 
 Game::Game(const std::shared_ptr<Interface> & ui) : interface(ui)
@@ -39,13 +40,13 @@ int Game::Start()
 
     std::string command;
     std::string argument;
-    size_t turns = players.size();
+    size_t playerCnt = players.size();
     main_loop
     {
-        for(size_t i = 0; i < turns; ++i)
+        for(onTurn = 0; onTurn < playerCnt; ++onTurn)
         {
             interface->Display(Show());
-            command = players[i]->makeTurn(interface);
+            command = players[onTurn]->makeTurn(interface);
            // interface->Receive(command);
             /*
              * commands here can have arguments, delimited by space
@@ -56,15 +57,27 @@ int Game::Start()
             cmdStream >> command;
             const auto cmd = commands.find(command);
 
-            if (cmd != commands.end() && cmd->second != nullptr)
+            if (cmd != commands.end())
             {
                 if (command == "save") // this is stupid todo fix
                 {
                     cmdStream >> argument;
-                    Save(argument);
+                    if(Save(argument))
+                    {
+                        interface->Display("Game \"" + argument + "\" successfully saved");
+                    }
+                    else
+                    {
+                        interface->Display("Saving unsuccessful");
+                    }
+                    --onTurn;
+                    continue;
                     //status = saveManager.Save(argument, *this);
                 }
-                status = cmd->second->Execute();
+                else
+                {
+                    status = cmd->second->Execute();
+                }
                 if(status)
                     return 1;
             }
@@ -72,11 +85,11 @@ int Game::Start()
             std::string move = cmdStream.str();
             if (game->isMove(move))
             {
-                status = game->ProcessMove(players[i]->getColour(), move);
+                status = game->ProcessMove(players[onTurn]->getColour(), move);
                 if(status == 1)
                 {
                     interface->Display("Invalid move!\n");
-                    --i;
+                    --onTurn;
                 }
                 continue;
             }
@@ -86,15 +99,14 @@ int Game::Start()
 
     }
 }
+
 int Game::Save(const std::string & fileName)
 {
-//    std::stringstream output;
-//    for(const auto & player : players)
-//    {
-//        player->Save();
-//    }
-    //game.Save();
-    return 0;
+    std::stringstream output;
+    output <<  "Chess " << status << std::endl;
+    output << onTurn << std::endl;
+    output << game->Save();
+    return SaveManager::Save(fileName, output.str());
 }
 std::string Game::Show()
 {

@@ -10,14 +10,17 @@ ClassicalChessBoard::ClassicalChessBoard()
     //Initialize();
 #define white false
 #define black true
-    board[0][0] = std::make_shared<Rook>(white);
+#define queenSide true
+#define kingSide false
+
+    board[0][0] = std::make_shared<Rook>(white, kingSide);
     board[0][1] = std::make_shared<Knight>(white);
     board[0][2] = std::make_shared<Bishop>(white);
     board[0][3] = std::make_shared<King>(white);
     board[0][4] = std::make_shared<Queen>(white);
     board[0][5] = std::make_shared<Bishop>(white);
     board[0][6] = std::make_shared<Knight>(white);
-    board[0][7] = std::make_shared<Rook>(white);
+    board[0][7] = std::make_shared<Rook>(white, queenSide);
     for (int i = 0; i < 8; ++i)
     {
         board[1][i] = std::make_shared<Pawn>(white);
@@ -33,53 +36,21 @@ ClassicalChessBoard::ClassicalChessBoard()
     {
         board[6][i] = std::make_shared<Pawn>(black);
     }
-    board[7][0] = std::make_shared<Rook>(black);
+    board[7][0] = std::make_shared<Rook>(black, kingSide);
     board[7][1] = std::make_shared<Knight>(black);
     board[7][2] = std::make_shared<Bishop>(black);
     board[7][3] = std::make_shared<King>(black);
     board[7][4] = std::make_shared<Queen>(black);
     board[7][5] = std::make_shared<Bishop>(black);
     board[7][6] = std::make_shared<Knight>(black);
-    board[7][7] = std::make_shared<Rook>(black);
+    board[7][7] = std::make_shared<Rook>(black, queenSide);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void ClassicalChessBoard::Initialize()
 {
-#define white false
-#define black true
-    board[0][0] = std::make_shared<Rook>(white);
-    board[0][1] = std::make_shared<Knight>(white);
-    board[0][2] = std::make_shared<Bishop>(white);
-    board[0][3] = std::make_shared<King>(white);
-    board[0][4] = std::make_shared<Queen>(white);
-    board[0][5] = std::make_shared<Bishop>(white);
-    board[0][6] = std::make_shared<Knight>(white);
-    board[0][7] = std::make_shared<Rook>(white);
-    for (int i = 0; i < 8; ++i)
-    {
-        board[1][i] = std::make_shared<Pawn>(white);
-    }
-    for (int i = 2; i < 6; ++i)
-    {
-        for (int j = 0; i < 8; ++i)
-        {
-            board[i][j] = nullptr;
-        }
-    }
-    for (int i = 0; i < 8; ++i)
-    {
-        board[6][i] = std::make_shared<Pawn>(black);
-    }
-    board[7][0] = std::make_shared<Rook>(black);
-    board[7][1] = std::make_shared<Knight>(black);
-    board[7][2] = std::make_shared<Bishop>(black);
-    board[7][3] = std::make_shared<King>(black);
-    board[7][4] = std::make_shared<Queen>(black);
-    board[7][5] = std::make_shared<Bishop>(black);
-    board[7][6] = std::make_shared<Knight>(black);
-    board[7][7] = std::make_shared<Rook>(black);
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -248,5 +219,81 @@ bool ClassicalChessBoard::isMove(std::string & command)
     }
     return false;
 }
+std::string ClassicalChessBoard::Save()
+{
+    std::stringstream output;
+    int emptyCnt;
+    bool bKing, wKing, wShort, wLong, bShort, bLong;
+    for(const auto & row : board)
+    {
+        emptyCnt = 0;
+        for(const auto & tile : row)
+        if(tile != nullptr)
+        {
+            if(emptyCnt != 0)
+            {
+                output << emptyCnt;
+                emptyCnt = 0;
+            }
+            output << tile->Save();
+            if(tile->Save() == 'K')
+            {
+                King found = static_cast<King>(tile.get());
+                wKing = found.canCastle();
+            }
+            if(tile->Save() == 'k')
+            {
+                King found = static_cast<King>(tile.get());
+                bKing = found.canCastle();
+            }
 
+            if(tile->Save() == 'R')
+            {
+                Rook * found = dynamic_cast<Rook*>(tile.get());
+                //Rook found = static_cast<Rook>(tile.get());
+                if(found->getSide())
+                    wLong = found->canCastle();
+                else
+                    wShort = found->canCastle();
+            }
+            if(tile->Save() == 'r')
+            {
+                Rook * found = dynamic_cast<Rook*>(tile.get());
+                if(found->canCastle())
+                    bLong = found->canCastle();
+                else
+                    bShort = found->canCastle();
+            }
+
+        }
+        else
+            ++emptyCnt;
+        if(emptyCnt != 0)
+        {
+            output << emptyCnt;
+            emptyCnt = 0;
+        }
+        if(row != board.back())
+            output << '/';
+    }
+
+    output << " ";
+
+    if(wKing)
+    {
+        if(wShort)
+            output << 'K';
+        if(wLong)
+            output << 'Q';
+    }
+    if(bKing)
+    {
+        if(bShort)
+            output << 'k';
+        if(bLong)
+            output << 'q';
+    }
+
+    return output.str();
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

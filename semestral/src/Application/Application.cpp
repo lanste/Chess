@@ -3,6 +3,9 @@
  */
 #include "Application.h"
 
+std::string SaveManager::saveFolder = "../saves";
+std::string SaveManager::saveExtension = ".save";
+
 Application::Application(const ProgramOptions & options) : interface(options.GetInterface()), mainMenu(MainMenu(options.GetInterface()))
 {
 }

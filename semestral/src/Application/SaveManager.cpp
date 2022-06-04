@@ -4,22 +4,32 @@
 
 #include "SaveManager.h"
 
-bool SaveManager::Save(const std::string & filename, const Game & data)
+bool SaveManager::Save(const std::string & filename, const std::string & data)
 {
     if (not fs::exists(saveFolder))
     {
         fs::create_directory(saveFolder);
     }
-    std::fstream fin(filename);
-    //fin.open()
-    return false;
+    std::fstream fin;
+    fin.open(saveFolder + "/" + filename + saveExtension, std::fstream::out | std::fstream::binary);
+    if(!fin.is_open())
+        return false;
+    fin.write(data.c_str(),data.size());
+    if(fin.fail())
+        return false;
+    //std::string test;
+    //fin >> test;
+    //if(test != data)
+    //    return false;
+    fin.close();
+    return true;
 }
-bool SaveManager::Load(const std::string & filename, Game & data)
+bool SaveManager::Load(const std::string & filename, std::string & data)
 {
     if (not fs::exists(saveFolder))
         return false;
     // debug
-    std::cout << "Game loaded" << std::endl;
+    //std::cout << "Game loaded" << std::endl;
     return true;
 }
 std::vector<std::pair<time_t,std::string>> SaveManager::List()

@@ -37,8 +37,8 @@ void LoadGameMenu::createHeader()
 {
 #define WIDTH 20;
     std::string output;
-    size_t size = header.size();
-    size_t wDiff = WIDTH - size;
+    //size_t size = header.size();
+    size_t wDiff = WIDTH;
     size_t leftW, rightW;
     if (wDiff % 2)
     {
@@ -60,7 +60,7 @@ void LoadGameMenu::createContent()
     {
         oss << "\nYou have no saves.";
     }
-    else for(const auto elem : saveList)
+    else for(const auto & elem : saveList)
     {
         oss << "\n" << cnt << ") " << elem.second;
         ++cnt;

@@ -21,10 +21,6 @@ std::shared_ptr<Piece> King::CreateInstance()
     return std::make_shared<King>(*this);
 }
 
-void King::Save(std::ofstream os)
-{
-    return;
-}
 int King::makeMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
@@ -37,8 +33,14 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos,
                 break;
             if (startPos.x == 0 && pos.x == 7)
                 break;
+            if(!moved)
+                moved = true;
             return 0;
         }
     }
     return 1;
+}
+bool King::canCastle() const
+{
+    return !moved;
 }

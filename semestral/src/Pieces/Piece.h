@@ -48,13 +48,13 @@ class Piece
          * prints Piece in a format used by SaveManager
          * @param os file to write to
          */
-        virtual void Save(std::ofstream os) = 0;
+        virtual char Save();
 //----------------------------------------------------------------------------------------------------------------------
         bool getColour();
 //----------------------------------------------------------------------------------------------------------------------
     protected:
         std::vector<coordinates> moves;
-        char32_t symbol;
+        char symbol;
         bool colour; // 0 = white | 1 = black
         //coordinates coords;
 };

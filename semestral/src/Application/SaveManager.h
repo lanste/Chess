@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../Application/Game.h"
+
 
 #include <fstream>
 #include <string>
@@ -14,18 +14,17 @@
 
 namespace fs = std::filesystem;
 
-class Game;
-
 class SaveManager
 {
     public:
         SaveManager() = default;
-        bool Save(const std::string & filename, const Game & data);
-        bool Load(const std::string & filename, Game & data);
+        static bool Save(const std::string & filename, const std::string & data);
+        static bool Load(const std::string & filename, std::string & data);
         std::vector<std::pair<time_t,std::string>> List();
+        static std::string saveFolder;
+        static std::string saveExtension;
     protected:
         template <typename TP> std::time_t to_time_t(TP tp);
 
-        const std::string saveFolder = "../saves";
-        const std::string saveExtension = ".save";
+
 };

@@ -32,6 +32,12 @@ class ClassicalChessBoard : public Board
         ClassicalChessBoard();
         void Initialize();
         std::string State();
+
+        /**
+         * Generates string representing the board in slightly altered FEN notation
+         * @return
+         */
+        std::string Save();
         int ProcessMove(const bool & colour, const std::string & m);
         bool isMove(std::string & command);
     protected:

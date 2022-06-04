@@ -38,7 +38,3 @@ int Queen::makeMove(const coordinates & startPos, const coordinates & endPos,
     }
     return 1;
 }
-void Queen::Save(std::ofstream os)
-{
-
-}

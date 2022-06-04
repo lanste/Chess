@@ -22,10 +22,6 @@ std::shared_ptr<Piece> Pawn::CreateInstance()
 {
     return std::make_shared<Pawn>(*this);
 }
-void Pawn::Save(std::ofstream os)
-{
-
-}
 int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
