@@ -223,7 +223,7 @@ std::string ClassicalChessBoard::Save()
 {
     std::stringstream output;
     int emptyCnt;
-    bool bKing, wKing, wShort, wLong, bShort, bLong;
+    bool bKing = false, wKing = false, wShort = false, wLong = false, bShort = false, bLong = false;
     for(const auto & row : board)
     {
         emptyCnt = 0;
@@ -259,10 +259,16 @@ std::string ClassicalChessBoard::Save()
             if(tile->Save() == 'r')
             {
                 Rook * found = dynamic_cast<Rook*>(tile.get());
-                if(found->canCastle())
+                bool res = found->getSide();
+                if(res)
+                {
+
                     bLong = found->canCastle();
+                }
                 else
+                {
                     bShort = found->canCastle();
+                }
             }
 
         }

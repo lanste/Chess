@@ -93,7 +93,7 @@ int Game::Start()
                 }
                 continue;
             }
-
+            --onTurn;
             interface->Display("Invalid command\n");
         }
 

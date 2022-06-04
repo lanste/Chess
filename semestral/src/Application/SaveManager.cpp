@@ -11,7 +11,7 @@ bool SaveManager::Save(const std::string & filename, const std::string & data)
         fs::create_directory(saveFolder);
     }
     std::fstream fin;
-    fin.open(saveFolder + "/" + filename + saveExtension, std::fstream::out | std::fstream::binary);
+    fin.open(saveFolder + "/" + filename + saveExtension, std::fstream::out);
     if(!fin.is_open())
         return false;
     fin.write(data.c_str(),data.size());
@@ -28,6 +28,23 @@ bool SaveManager::Load(const std::string & filename, std::string & data)
 {
     if (not fs::exists(saveFolder))
         return false;
+    if (not fs::exists(saveFolder))
+    {
+        fs::create_directory(saveFolder);
+    }
+    std::fstream fin;
+    fin.open(saveFolder + "/" + filename + saveExtension, std::fstream::in);
+    if(!fin.is_open())
+        return false;
+    fin.write(data.c_str(),data.size());
+    if(fin.fail())
+        return false;
+    //std::string test;
+    //fin >> test;
+    //if(test != data)
+    //    return false;
+    fin.close();
+    return true;
     // debug
     //std::cout << "Game loaded" << std::endl;
     return true;
