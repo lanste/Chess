@@ -30,7 +30,7 @@ class ClassicalChessBoard : public Board
          * @param playerColour decides which colour of Pieces to put to the lower part of the board (last part not true)
          */
         ClassicalChessBoard();
-        void Initialize();
+        void Initialize(const std::string & initData);
         std::string State();
 
         /**

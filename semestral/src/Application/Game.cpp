@@ -11,6 +11,11 @@ Game::Game(const std::shared_ptr<Interface> & ui) : interface(ui)
     initialized = false;
     status = 0;
 }
+Game::Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const int & status,
+        const std::vector<std::shared_ptr<Player>> & p, const int & turn)
+{
+
+}
 Game::Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p) : interface(ui), game(board), players(p)
 {
     //commands.emplace("save", std::make_shared<SaveGameCmd>(this));
@@ -30,6 +35,7 @@ int Game::Initialize(const std::shared_ptr<Interface> & ui, const std::shared_pt
     status = 0;
     return 0;
 }
+
 int Game::Start()
 {
 #define main_loop while(true) // lol
@@ -99,12 +105,15 @@ int Game::Start()
 
     }
 }
-
 int Game::Save(const std::string & fileName)
 {
     std::stringstream output;
-    output <<  "Chess " << status << std::endl;
-    output << onTurn << std::endl;
+    output << game->getName() << " " << status << std::endl;
+    for(const auto & player : players)
+    {
+        output << player->Save() << " ";
+    }
+    output << "- " << onTurn << std::endl;
     output << game->Save();
     return SaveManager::Save(fileName, output.str());
 }

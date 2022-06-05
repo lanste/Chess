@@ -4,7 +4,7 @@
 
 #include "LocalPlayer.h"
 
-LocalPlayer::LocalPlayer() : Player()
+LocalPlayer::LocalPlayer() : Player("loc")
 {
 }
 std::string LocalPlayer::makeTurn(std::shared_ptr<Interface> interface)
@@ -12,4 +12,8 @@ std::string LocalPlayer::makeTurn(std::shared_ptr<Interface> interface)
     std::string cmd;
     interface->Receive(cmd);
     return cmd;
+}
+std::string LocalPlayer::Save()
+{
+    return id;
 }

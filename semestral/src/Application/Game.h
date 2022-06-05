@@ -28,7 +28,9 @@ class Game
     public:
         Game() = default;
         Game(const std::shared_ptr<Interface> & ui);
-        Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p); // unnecessary ?
+        Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p);
+        Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const int & status,
+             const std::vector<std::shared_ptr<Player>> & p, const int & turn);
         int Initialize(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p);
         int Start();
     private:

@@ -6,6 +6,14 @@
 
 #include "Command.h"
 #include "../Application/SaveManager.h"
+#include "../Players/Player.h"
+#include "../Players/LocalPlayer.h"
+#include "../Players/OnlinePlayer.h"
+#include "../Players/AI1.h"
+#include "../Players/AI2.h"
+#include "../Players/AI3.h"
+#include "../Boards/Board.h"
+#include "../Boards/ClassicalChessBoard.h"
 
 class LoadGameCmd : public Command
 {
@@ -13,6 +21,12 @@ class LoadGameCmd : public Command
         LoadGameCmd(const std::shared_ptr<Interface> & ui, const std::pair<time_t, std::string> & save);
         int Execute() override;
     protected:
+        int parseData(const std::vector<std::string> & data);
         std::shared_ptr<Interface> interface;
+        int status, turn;
+        std::shared_ptr<Board> board;
+        std::vector<std::shared_ptr<Player>> players;
+        std::string saveName;
+        int parseFEN(const std::basic_string<char> & basicString);
 };
 

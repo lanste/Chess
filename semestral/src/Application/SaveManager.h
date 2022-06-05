@@ -19,7 +19,7 @@ class SaveManager
     public:
         SaveManager() = default;
         static bool Save(const std::string & filename, const std::string & data);
-        static bool Load(const std::string & filename, std::string & data);
+        static bool Load(const std::string & filename, std::vector<std::string> & data);
         std::vector<std::pair<time_t,std::string>> List();
         static std::string saveFolder;
         static std::string saveExtension;

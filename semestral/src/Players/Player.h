@@ -15,16 +15,20 @@
 class Player
 {
     public:
-        Player() = default;
-        explicit Player(const bool & nColour) : colour(nColour) {}
+        Player(const std::string & nId) : id(nId)
+        {}
+        explicit Player(const bool & nColour, const std::string & nId) : colour(nColour), id(nId) {}
         virtual std::string makeTurn(std::shared_ptr<Interface> interface) = 0;
-        virtual void setColour(bool nColour){
+        virtual void setColour(int nColour){
             colour = nColour;
         }
-        virtual bool getColour(){
+        virtual int getColour(){
             return colour;}
+        virtual std::string Save() = 0;
     protected:
-        bool colour;
+        int colour;
+        std::string id;
+
 
 };
 

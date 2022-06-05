@@ -12,6 +12,7 @@
 class AI1 : public Player
 {
     public:
-        AI1() = default;
+        AI1();
+        std::string Save() override;
         std::string makeTurn(std::shared_ptr<Interface> interface) override;
 };

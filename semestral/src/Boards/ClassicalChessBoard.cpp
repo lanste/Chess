@@ -5,7 +5,7 @@
 
 #include "ClassicalChessBoard.h"
 
-ClassicalChessBoard::ClassicalChessBoard()
+ClassicalChessBoard::ClassicalChessBoard() : Board("Chess")
 {
     //Initialize();
 #define white false
@@ -48,9 +48,101 @@ ClassicalChessBoard::ClassicalChessBoard()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void ClassicalChessBoard::Initialize()
+void ClassicalChessBoard::Initialize(const std::string & FENdata)
 {
+    enum pieces
+    {
+        whitePawn = 'P', whiteRook = 'R', whiteKnight = 'N', whiteBishop = 'B', whiteQueen = 'Q', whiteKing = 'K',
+        blackPawn = 'p', blackRook = 'r', blackKnight = 'n', blackBishop = 'b', blackQueen = 'q', blackKing = 'k'
+    };
 
+    int row = 0, tile = 0;
+    std::shared_ptr<Piece> pc;
+    for (const auto & piece: FENdata)
+    {
+        switch (piece)
+        {
+            case whitePawn:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case whiteRook:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case whiteKnight:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case whiteBishop:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case whiteQueen:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case whiteKing:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case blackPawn:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case blackRook:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case blackKnight:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case blackBishop:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case blackQueen:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case blackKing:
+            {
+                pc = std::make_shared<Pawn>(false);
+                break;
+            }
+            case '/':
+            {
+                ++row;
+                break;
+            }
+            case ' ':
+            {
+                break;
+            }
+            default:
+                int n = piece - '0';
+                for(; n >= 0; ++n)
+                {
+                    board[row][tile] = nullptr;
+                    ++tile;
+                }
+                break;
+        }
+        board[row][tile] = pc;
+        ++tile;
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +202,10 @@ std::string ClassicalChessBoard::State()
 
 int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & move)
 {
-    enum specialMoves{VALID, INVALID, PROMOTION, SCASTLE, LCASTLE, ENPASSANT, CHECK};
+    enum specialMoves
+    {
+        VALID, INVALID, PROMOTION, SCASTLE, LCASTLE, ENPASSANT, CHECK
+    };
     coordinates startPos(
             move[1] - '0' - 1,
             toupper(move[0]) - 'A'),
@@ -122,22 +217,25 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
     std::shared_ptr<Piece> endPiece = board[endPos.x][endPos.y];
     if (startPiece == nullptr)
         return 1;
-    if(startPiece->getColour() != colour)
+    if (startPiece->getColour() != colour)
         return 1;
 
-    switch(startPiece->makeMove(startPos, endPos, board))
+    switch (startPiece->makeMove(startPos, endPos, board))
     {
         case INVALID:
             return 1;
-        case VALID:{
+        case VALID:
+        {
             auto holdPiece = board[startPos.x][startPos.y];
             board[startPos.x][startPos.y] = nullptr;
             board[endPos.x][endPos.y] = holdPiece;
-            break;}
-        case PROMOTION:{
+            break;
+        }
+        case PROMOTION:
+        {
             board[startPos.x][startPos.y] = nullptr;
             std::shared_ptr<Piece> promoted;
-            switch(toupper(move[4]))
+            switch (toupper(move[4]))
             {
                 case 'N':
                     promoted = std::make_shared<Knight>(colour);
@@ -155,22 +253,25 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
                     return 1;
             }
             board[endPos.x][endPos.y] = promoted;
-            break;}
+            break;
+        }
         case LCASTLE:
             break;
         case SCASTLE:
             break;
-        case ENPASSANT:{
+        case ENPASSANT:
+        {
             auto holdPiece = board[startPos.x][startPos.y];
             board[startPos.x][startPos.y] = nullptr;
             board[endPos.x][endPos.y] = holdPiece;
             board[endPos.x - 1][endPos.y] = nullptr;
-            break;}
+            break;
+        }
         default:
             break;
     }
 
-    if(endPiece != nullptr && endPiece->getColour() == colour)
+    if (endPiece != nullptr && endPiece->getColour() == colour)
     {
         return 1;
     }
@@ -202,7 +303,7 @@ bool ClassicalChessBoard::isMove(std::string & command)
         if (move[3] < '1' || move[3] > '8')
             return false;
 
-        if(moveSize == 5)
+        if (moveSize == 5)
         {
             int lastLetter = toupper(move[4]);
             if (lastLetter != 'Q' && lastLetter != 'N' &&
@@ -211,7 +312,7 @@ bool ClassicalChessBoard::isMove(std::string & command)
                 return false;
             }
         }
-        if(moveSize > 5)
+        if (moveSize > 5)
             return false;
 
         command = move;
@@ -224,79 +325,79 @@ std::string ClassicalChessBoard::Save()
     std::stringstream output;
     int emptyCnt;
     bool bKing = false, wKing = false, wShort = false, wLong = false, bShort = false, bLong = false;
-    for(const auto & row : board)
+    for (const auto & row: board)
     {
         emptyCnt = 0;
-        for(const auto & tile : row)
-        if(tile != nullptr)
-        {
-            if(emptyCnt != 0)
+        for (const auto & tile: row)
+            if (tile != nullptr)
             {
-                output << emptyCnt;
-                emptyCnt = 0;
-            }
-            output << tile->Save();
-            if(tile->Save() == 'K')
-            {
-                King found = static_cast<King>(tile.get());
-                wKing = found.canCastle();
-            }
-            if(tile->Save() == 'k')
-            {
-                King found = static_cast<King>(tile.get());
-                bKing = found.canCastle();
-            }
-
-            if(tile->Save() == 'R')
-            {
-                Rook * found = dynamic_cast<Rook*>(tile.get());
-                //Rook found = static_cast<Rook>(tile.get());
-                if(found->getSide())
-                    wLong = found->canCastle();
-                else
-                    wShort = found->canCastle();
-            }
-            if(tile->Save() == 'r')
-            {
-                Rook * found = dynamic_cast<Rook*>(tile.get());
-                bool res = found->getSide();
-                if(res)
+                if (emptyCnt != 0)
                 {
-
-                    bLong = found->canCastle();
+                    output << emptyCnt;
+                    emptyCnt = 0;
                 }
-                else
+                output << tile->Save();
+                if (tile->Save() == 'K')
                 {
-                    bShort = found->canCastle();
+                    King found = static_cast<King>(tile.get());
+                    wKing = found.canCastle();
                 }
-            }
+                if (tile->Save() == 'k')
+                {
+                    King found = static_cast<King>(tile.get());
+                    bKing = found.canCastle();
+                }
 
-        }
-        else
-            ++emptyCnt;
-        if(emptyCnt != 0)
+                if (tile->Save() == 'R')
+                {
+                    Rook * found = dynamic_cast<Rook *>(tile.get());
+                    //Rook found = static_cast<Rook>(tile.get());
+                    if (found->getSide())
+                        wLong = found->canCastle();
+                    else
+                        wShort = found->canCastle();
+                }
+                if (tile->Save() == 'r')
+                {
+                    Rook * found = dynamic_cast<Rook *>(tile.get());
+                    bool res = found->getSide();
+                    if (res)
+                    {
+
+                        bLong = found->canCastle();
+                    }
+                    else
+                    {
+                        bShort = found->canCastle();
+                    }
+                }
+
+            }
+            else
+                ++emptyCnt;
+        if (emptyCnt != 0)
         {
             output << emptyCnt;
             emptyCnt = 0;
         }
-        if(row != board.back())
+        if (row != board.back())
             output << '/';
     }
 
     output << " ";
 
-    if(wKing)
+    if (wKing)
     {
-        if(wShort)
+        if (wShort)
             output << 'K';
-        if(wLong)
+        if (wLong)
             output << 'Q';
     }
-    if(bKing)
+    if (bKing)
     {
-        if(bShort)
+        if (bShort)
             output << 'k';
-        if(bLong)
+        if (bLong)
             output << 'q';
     }
 

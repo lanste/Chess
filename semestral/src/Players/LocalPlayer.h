@@ -15,5 +15,6 @@ class LocalPlayer : public Player
     public:
         LocalPlayer();
         std::string makeTurn(std::shared_ptr<Interface> interface) override;
+        std::string Save() override;
     protected:
 };

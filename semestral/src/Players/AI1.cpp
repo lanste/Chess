@@ -4,7 +4,15 @@
 
 #include "AI1.h"
 
+AI1::AI1() : Player("ai1")
+{
+
+}
 std::string AI1::makeTurn(std::shared_ptr<Interface> interface)
 {
     return std::string();
+}
+std::string AI1::Save()
+{
+    return id;
 }
