@@ -54,7 +54,9 @@ int LoadGameCmd::parseData(const std::vector<std::string> & data)
     players[1]->setColour(true);
     turn = std::stoi(data[4]);
 
-    board->Initialize(status, data[5]);
+    board->Initialize();
+
+    LaunchGameCmd(interface,board, status, players, turn).Execute();
     return 0;
 }
 

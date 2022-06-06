@@ -48,7 +48,7 @@ ClassicalChessBoard::ClassicalChessBoard() : Board("Chess")
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void ClassicalChessBoard::Initialize(const std::string & FENdata)
+void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
 {
     enum pieces
     {
@@ -58,77 +58,64 @@ void ClassicalChessBoard::Initialize(const std::string & FENdata)
 
     int row = 0, tile = 0;
     std::shared_ptr<Piece> pc;
-    for (const auto & piece: FENdata)
+    for (const auto & piece: data[0])
     {
-        switch (piece)
+        switch (piece) // there is something wrong about this
         {
-            case whitePawn:
-            {
+            case whitePawn:{
                 pc = std::make_shared<Pawn>(false);
                 break;
             }
-            case whiteRook:
-            {
+            case whiteRook:{
+                pc = std::make_shared<Rook>(false);
+                break;
+            }
+            case whiteKnight:{
+                pc = std::make_shared<Knight>(false);
+                break;
+            }
+            case whiteBishop:{
+                pc = std::make_shared<Bishop>(false);
+                break;
+            }
+            case whiteQueen:{
+                pc = std::make_shared<Queen>(false);
+                break;
+            }
+            case whiteKing:{
+                pc = std::make_shared<King>(false);
+                break;
+            }
+            case blackPawn:{
                 pc = std::make_shared<Pawn>(false);
                 break;
             }
-            case whiteKnight:
-            {
-                pc = std::make_shared<Pawn>(false);
+            case blackRook:{
+                pc = std::make_shared<Rook>(false);
                 break;
             }
-            case whiteBishop:
-            {
-                pc = std::make_shared<Pawn>(false);
+            case blackKnight:{
+                pc = std::make_shared<Knight>(false);
                 break;
             }
-            case whiteQueen:
-            {
-                pc = std::make_shared<Pawn>(false);
+            case blackBishop:{
+                pc = std::make_shared<Bishop>(false);
                 break;
             }
-            case whiteKing:
-            {
-                pc = std::make_shared<Pawn>(false);
+            case blackQueen:{
+                pc = std::make_shared<Queen>(false);
                 break;
             }
-            case blackPawn:
-            {
-                pc = std::make_shared<Pawn>(false);
+            case blackKing:{
+                pc = std::make_shared<King>(false);
                 break;
             }
-            case blackRook:
-            {
-                pc = std::make_shared<Pawn>(false);
-                break;
-            }
-            case blackKnight:
-            {
-                pc = std::make_shared<Pawn>(false);
-                break;
-            }
-            case blackBishop:
-            {
-                pc = std::make_shared<Pawn>(false);
-                break;
-            }
-            case blackQueen:
-            {
-                pc = std::make_shared<Pawn>(false);
-                break;
-            }
-            case blackKing:
-            {
-                pc = std::make_shared<Pawn>(false);
-                break;
-            }
-            case '/':
-            {
+            case '/':{
                 ++row;
                 break;
             }
-            case ' ':
-            {
+            case ' ':{
+                row = -1;
                 break;
             }
             default:
@@ -140,6 +127,7 @@ void ClassicalChessBoard::Initialize(const std::string & FENdata)
                 }
                 break;
         }
+        if(row == -1)
         board[row][tile] = pc;
         ++tile;
     }
@@ -378,7 +366,6 @@ std::string ClassicalChessBoard::Save()
         if (emptyCnt != 0)
         {
             output << emptyCnt;
-            emptyCnt = 0;
         }
         if (row != board.back())
             output << '/';

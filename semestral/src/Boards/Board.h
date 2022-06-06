@@ -18,7 +18,7 @@ class Board
 {
     public:
         Board(const std::string & nName) : name(nName) {}
-        virtual void Initialize(const std::string & initData) = 0;
+        virtual void Initialize(const std::vector<std::string> & initData) = 0;
         virtual std::string State() = 0;
         virtual std::string Save() = 0;
         virtual std::string getName() {return name;}

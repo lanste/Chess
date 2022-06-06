@@ -17,10 +17,6 @@ bool SaveManager::Save(const std::string & filename, const std::string & data)
     fin.write(data.c_str(),data.size());
     if(fin.fail())
         return false;
-    //std::string test;
-    //fin >> test;
-    //if(test != data)
-    //    return false;
     fin.close();
     return true;
 }

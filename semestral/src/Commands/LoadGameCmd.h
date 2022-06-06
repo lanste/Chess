@@ -4,7 +4,9 @@
 
 #pragma once
 
-#include "Command.h"
+#include "Command.h" // base class
+
+#include "LaunchGameCmd.h"
 #include "../Application/SaveManager.h"
 #include "../Players/Player.h"
 #include "../Players/LocalPlayer.h"
@@ -27,6 +29,5 @@ class LoadGameCmd : public Command
         std::shared_ptr<Board> board;
         std::vector<std::shared_ptr<Player>> players;
         std::string saveName;
-        int parseFEN(const std::basic_string<char> & basicString);
 };
 
