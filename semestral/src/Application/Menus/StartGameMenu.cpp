@@ -7,7 +7,7 @@
 
 StartGameMenu::StartGameMenu(const std::shared_ptr<Interface> & ui) : interface(ui), header("Choose game")
 {
-    options.emplace_back("Chess", std::make_shared<ClassicalChessBoard>());
+    options.emplace_back("Chess", std::make_shared<ClassicalChessBoard>(false));
     //options.emplace_back("Checkers", std::make_shared<CheckersBoard>()); // different game example
     options.emplace_back(">Coming soon<", nullptr);
     options.emplace_back("Back", nullptr);

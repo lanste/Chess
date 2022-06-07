@@ -52,11 +52,14 @@ int LoadGameCmd::parseData(const std::vector<std::string> & data)
     }
     players[0]->setColour(false);
     players[1]->setColour(true);
-    turn = std::stoi(data[4]);
+    turn = std::stoi(data[5]);
 
-    board->Initialize();
+    std::vector<std::string> boardData(data.begin() + 6, data.end());
+    board = std::make_shared<ClassicalChessBoard>(true);
+    board->Initialize(boardData);
 
-    LaunchGameCmd(interface,board, status, players, turn).Execute();
+    LaunchGameCmd loaded(interface,board, status, players, turn);
+    loaded.Execute();
     return 0;
 }
 

@@ -5,9 +5,13 @@
 
 #include "ClassicalChessBoard.h"
 
-ClassicalChessBoard::ClassicalChessBoard() : Board("Chess")
+ClassicalChessBoard::ClassicalChessBoard(const bool & empty) : Board("Chess")
 {
     //Initialize();
+    if(empty)
+    {
+        return;
+    }
 #define white false
 #define black true
 #define queenSide true
@@ -56,81 +60,150 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
         blackPawn = 'p', blackRook = 'r', blackKnight = 'n', blackBishop = 'b', blackQueen = 'q', blackKing = 'k'
     };
 
+    bool bShort = false,
+    bLong = false,
+    wShort = false,
+    wLong = false,
+    newEmpty = false;
     int row = 0, tile = 0;
     std::shared_ptr<Piece> pc;
+
+    for(const auto & cstlAb : data[1])
+    {
+        switch(cstlAb)
+        {
+            case 'K':
+                wShort = true;
+                break;
+            case 'Q':
+                wLong = true;
+                break;
+            case 'k':
+                bShort = true;
+                break;
+            case 'q':
+                bLong = true;
+                break;
+        }
+    }
     for (const auto & piece: data[0])
     {
         switch (piece) // there is something wrong about this
         {
-            case whitePawn:{
+            case whitePawn:
+            {
                 pc = std::make_shared<Pawn>(false);
                 break;
             }
-            case whiteRook:{
+            case whiteRook:
+            {
+                if(wShort && tile == 0 && row == 0)
+                {
+                    pc = std::make_shared<Rook>(false, false);
+                    break;
+                }
+                if(wLong&& tile == 7 && row == 0)
+                {
+                    pc = std::make_shared<Rook>(false, true);
+                    break;
+                }
                 pc = std::make_shared<Rook>(false);
                 break;
             }
-            case whiteKnight:{
+            case whiteKnight:
+            {
                 pc = std::make_shared<Knight>(false);
                 break;
             }
-            case whiteBishop:{
+            case whiteBishop:
+            {
                 pc = std::make_shared<Bishop>(false);
                 break;
             }
-            case whiteQueen:{
+            case whiteQueen:
+            {
                 pc = std::make_shared<Queen>(false);
                 break;
             }
-            case whiteKing:{
+            case whiteKing:
+            {
                 pc = std::make_shared<King>(false);
                 break;
             }
-            case blackPawn:{
-                pc = std::make_shared<Pawn>(false);
+            case blackPawn:
+            {
+                pc = std::make_shared<Pawn>(true);
                 break;
             }
-            case blackRook:{
-                pc = std::make_shared<Rook>(false);
+            case blackRook:
+            {
+                if(bShort && tile == 0 && row == 7)
+                {
+                    pc = std::make_shared<Rook>(true, false);
+                    break;
+                }
+                if(bLong&& tile == 7 && row == 7)
+                {
+                    pc = std::make_shared<Rook>(true, true);
+                    break;
+                }
+                pc = std::make_shared<Rook>(true);
                 break;
             }
-            case blackKnight:{
-                pc = std::make_shared<Knight>(false);
+            case blackKnight:
+            {
+                pc = std::make_shared<Knight>(true);
                 break;
             }
-            case blackBishop:{
-                pc = std::make_shared<Bishop>(false);
+            case blackBishop:
+            {
+                pc = std::make_shared<Bishop>(true);
                 break;
             }
-            case blackQueen:{
-                pc = std::make_shared<Queen>(false);
+            case blackQueen:
+            {
+                pc = std::make_shared<Queen>(true);
                 break;
             }
-            case blackKing:{
-                pc = std::make_shared<King>(false);
+            case blackKing:
+            {
+                pc = std::make_shared<King>(true);
                 break;
             }
-            case '/':{
+            case '/':
+            {
                 ++row;
+                tile = -1;
                 break;
             }
-            case ' ':{
+            case ' ':
+            {
                 row = -1;
                 break;
             }
             default:
-                int n = piece - '0';
-                for(; n >= 0; ++n)
+                int n = piece - '0' - 1 ;
+                for (; n >= 0; --n)
                 {
                     board[row][tile] = nullptr;
                     ++tile;
                 }
+                newEmpty = true;
                 break;
         }
-        if(row == -1)
-        board[row][tile] = pc;
-        ++tile;
+        if (row == -1)
+            break;
+        if(tile != -1)
+        {
+            board[row][tile] = pc;
+        }
+        if(!newEmpty)
+            ++tile;
+        newEmpty = false;
     }
+    //DEBUG
+    std::cout << "LOADING FEN COMPLETE" << std::endl;
+    std::cout << this->State() << std::endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

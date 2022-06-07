@@ -37,9 +37,11 @@ bool SaveManager::Load(const std::string & filename, std::vector<std::string> & 
             data.clear();
             return false;
         }
-        if(fin.eof())
-            break;
         data.push_back(datapoint);
+        if(fin.eof())
+        {
+            break;
+        }
     }
     fin.close();
     return true;

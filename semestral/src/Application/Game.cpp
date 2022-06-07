@@ -11,10 +11,17 @@ Game::Game(const std::shared_ptr<Interface> & ui) : interface(ui)
     initialized = false;
     status = 0;
 }
-Game::Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const int & status,
-        const std::vector<std::shared_ptr<Player>> & p, const int & turn)
+Game::Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const int & nStatus,
+        const std::vector<std::shared_ptr<Player>> & p, const int & turn) : status(nStatus), onTurn(turn), interface(ui), game(board), players(p)
 {
+    //commands.emplace("save", std::make_shared<SaveGameCmd>(this));
+    commands.emplace("exit", std::make_shared<BackCmd>());
+    //commands.emplace("help", std::make_shared<GameHelpCmd>(interface));
+    commands.emplace("save", nullptr);
+    //commands.emplace("exit", std::make_shared<>());
 
+
+    initialized = true;
 }
 Game::Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board, const std::vector<std::shared_ptr<Player>> & p) : interface(ui), game(board), players(p)
 {
@@ -51,6 +58,8 @@ int Game::Start()
     {
         for(onTurn = 0; onTurn < playerCnt; ++onTurn)
         {
+            interface->Display(players[onTurn]->getColour()?"black":"white"); // placeholder just for chess
+            interface->Display("'s turn\n");
             interface->Display(Show());
             command = players[onTurn]->makeTurn(interface);
            // interface->Receive(command);

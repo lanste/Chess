@@ -44,7 +44,7 @@ int ChessSetupMenu::ExecCommand(const std::string & command)
                 players.push_back(player->second);
                 //players.end()->get()->setColour(black);
             case SETUPDONE:
-                return LaunchGameCmd(interface, std::make_shared<ClassicalChessBoard>() , players).Execute();
+                return LaunchGameCmd(interface, std::make_shared<ClassicalChessBoard>(false) , players).Execute();
             default:
                 break;
         }
