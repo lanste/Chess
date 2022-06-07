@@ -24,7 +24,11 @@ int LoadGameCmd::Execute()
 
 int LoadGameCmd::parseData(const std::vector<std::string> & data)
 {
-
+    if(data.size() == 0)
+    {
+        interface->Display("Loading failed unexpectedly.\n");
+        return 1;
+    }
     if(data[0] != "Chess") // placeholder todo ability to load different games
     {
         interface->Display("Invalid savefile.\n");
