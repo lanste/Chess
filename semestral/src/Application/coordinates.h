@@ -24,4 +24,9 @@ struct coordinates
     {
         return x == rop.x && y == rop.y;
     }
+
+    bool operator != (const coordinates & rop) const
+    {
+        return !(*this == rop);
+    }
 };

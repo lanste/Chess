@@ -20,8 +20,8 @@ ClassicalChessBoard::ClassicalChessBoard(const bool & empty) : Board("Chess")
     board[0][0] = std::make_shared<Rook>(white, kingSide);
     board[0][1] = std::make_shared<Knight>(white);
     board[0][2] = std::make_shared<Bishop>(white);
-    board[0][3] = std::make_shared<King>(white);
-    board[0][4] = std::make_shared<Queen>(white);
+    board[0][3] = std::make_shared<Queen>(white);
+    board[0][4] = std::make_shared<King>(white);
     board[0][5] = std::make_shared<Bishop>(white);
     board[0][6] = std::make_shared<Knight>(white);
     board[0][7] = std::make_shared<Rook>(white, queenSide);
@@ -43,8 +43,8 @@ ClassicalChessBoard::ClassicalChessBoard(const bool & empty) : Board("Chess")
     board[7][0] = std::make_shared<Rook>(black, kingSide);
     board[7][1] = std::make_shared<Knight>(black);
     board[7][2] = std::make_shared<Bishop>(black);
-    board[7][3] = std::make_shared<King>(black);
-    board[7][4] = std::make_shared<Queen>(black);
+    board[7][3] = std::make_shared<Queen>(black);
+    board[7][4] = std::make_shared<King>(black);
     board[7][5] = std::make_shared<Bishop>(black);
     board[7][6] = std::make_shared<Knight>(black);
     board[7][7] = std::make_shared<Rook>(black, queenSide);
@@ -91,12 +91,9 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
         switch (piece) // there is something wrong about this
         {
             case whitePawn:
-            {
                 pc = std::make_shared<Pawn>(false);
                 break;
-            }
             case whiteRook:
-            {
                 if(wShort && tile == 0 && row == 0)
                 {
                     pc = std::make_shared<Rook>(false, false);
@@ -109,34 +106,22 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
                 }
                 pc = std::make_shared<Rook>(false);
                 break;
-            }
             case whiteKnight:
-            {
                 pc = std::make_shared<Knight>(false);
                 break;
-            }
             case whiteBishop:
-            {
                 pc = std::make_shared<Bishop>(false);
                 break;
-            }
             case whiteQueen:
-            {
                 pc = std::make_shared<Queen>(false);
                 break;
-            }
             case whiteKing:
-            {
                 pc = std::make_shared<King>(false);
                 break;
-            }
             case blackPawn:
-            {
                 pc = std::make_shared<Pawn>(true);
                 break;
-            }
             case blackRook:
-            {
                 if(bShort && tile == 0 && row == 7)
                 {
                     pc = std::make_shared<Rook>(true, false);
@@ -149,38 +134,25 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
                 }
                 pc = std::make_shared<Rook>(true);
                 break;
-            }
             case blackKnight:
-            {
                 pc = std::make_shared<Knight>(true);
                 break;
-            }
             case blackBishop:
-            {
                 pc = std::make_shared<Bishop>(true);
                 break;
-            }
             case blackQueen:
-            {
                 pc = std::make_shared<Queen>(true);
                 break;
-            }
             case blackKing:
-            {
                 pc = std::make_shared<King>(true);
                 break;
-            }
             case '/':
-            {
                 ++row;
                 tile = -1;
                 break;
-            }
             case ' ':
-            {
                 row = -1;
                 break;
-            }
             default:
                 int n = piece - '0' - 1 ;
                 for (; n >= 0; --n)
@@ -201,12 +173,10 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
             ++tile;
         newEmpty = false;
     }
-    //DEBUG
-    std::cout << "LOADING FEN COMPLETE" << std::endl;
-    std::cout << this->State() << std::endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 std::string ClassicalChessBoard::State()
 {
     /*
@@ -265,7 +235,7 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
 {
     enum specialMoves
     {
-        VALID, INVALID, PROMOTION, SCASTLE, LCASTLE, ENPASSANT, CHECK
+        VALID, INVALID, PROMOTION, ENPASSANT, SCASTLE, LCASTLE, CHECK
     };
     coordinates startPos(
             move[1] - '0' - 1,
@@ -294,6 +264,8 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
         }
         case PROMOTION:
         {
+            if(move.size() != 5)
+                return 1;
             board[startPos.x][startPos.y] = nullptr;
             std::shared_ptr<Piece> promoted;
             switch (toupper(move[4]))
@@ -317,9 +289,41 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
             break;
         }
         case LCASTLE:
-            break;
+        {
+            // king calling to castle already verified that it can castle
+            // need to check relevant rook - LongCASTLE => over queen
+            int row = startPos.x;
+            Rook buddy = dynamic_cast<Rook&>(*(board[row][7]));
+            if(buddy.canCastle())
+            {
+                auto holdKing = board[row][startPos.y];
+                auto holdRook = board[row][7];
+                board[row][startPos.y] = nullptr;
+                board[row][7] = nullptr;
+                board[row][endPos.y] = holdKing;
+                board[row][endPos.y - 1] = holdRook;
+                break;
+            }
+            return 1;
+        }
         case SCASTLE:
-            break;
+        {
+            // king calling to castle already verified that it can castle
+            // need to check relevant rook - LongCASTLE => over queen
+            int row = startPos.x;
+            Rook buddy = dynamic_cast<Rook&>(*(board[row][0]));
+            if(buddy.canCastle())
+            {
+                auto holdKing = board[row][startPos.y];
+                auto holdRook = board[row][0];
+                board[row][startPos.y] = nullptr;
+                board[row][0] = nullptr;
+                board[row][endPos.y] = holdKing;
+                board[row][endPos.y + 1] = holdRook;
+                break;
+            }
+            return 1;
+        }
         case ENPASSANT:
         {
             auto holdPiece = board[startPos.x][startPos.y];
@@ -332,10 +336,10 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
             break;
     }
 
-    if (endPiece != nullptr && endPiece->getColour() == colour)
-    {
-        return 1;
-    }
+    //if (endPiece != nullptr && endPiece->getColour() == colour)
+    //{
+    //    return 1;
+    //}
 
     return 0;
 }

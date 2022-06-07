@@ -14,6 +14,7 @@ class Pawn : public Piece
         int makeMove(const coordinates & startPos, const coordinates & endPos,
                 const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board) override;
     protected:
+        int traveledSquares;
         bool moved;
         bool doubleStep;
 };

@@ -30,10 +30,15 @@ int Knight::makeMove(const coordinates & startPos, const coordinates & endPos,
         int y = startPos.y;
         if((x <= 7 && x >= 0) && (y <= 7 && y >= 0) )
         {
+
             x += elem.x;
             y += elem.y;
             if(x == endPos.x && y == endPos.y)
+            {
+                if(board[x][y] != nullptr && board[x][y]->getColour() != colour)
+                    return 1;
                 return 0;
+            }
             //cout << x << " " << y << endl;
         }
     }

@@ -31,13 +31,14 @@ Game::Game(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> &
     commands.emplace("save", nullptr);
     //commands.emplace("exit", std::make_shared<>());
 
-
+    onTurn = 0;
     initialized = true;
     status = 0;
 }
 int Game::Initialize(const std::shared_ptr<Interface> & ui, const std::shared_ptr<Board> & board,
         const std::vector<std::shared_ptr<Player>> & p)
 {
+    onTurn = 0;
     initialized = true;
     status = 0;
     return 0;
@@ -56,8 +57,9 @@ int Game::Start()
     size_t playerCnt = players.size();
     main_loop
     {
-        for(onTurn = 0; onTurn < playerCnt; ++onTurn)
+        for(; onTurn < playerCnt; ++onTurn)
         {
+            //std::cerr << "game.start.mainLoop" << std::endl;
             interface->Display(players[onTurn]->getColour()?"black":"white"); // placeholder just for chess
             interface->Display("'s turn\n");
             interface->Display(Show());
@@ -111,7 +113,8 @@ int Game::Start()
             --onTurn;
             interface->Display("Invalid command\n");
         }
-
+        std::cerr << "game.start.mainLoop.inf" << std::endl;
+        onTurn = 0;
     }
 }
 int Game::Save(const std::string & fileName)

@@ -15,5 +15,6 @@ class King : public Piece
                 const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board) override;
         bool canCastle() const;
     protected:
+        enum emove{left, right, down, up, rup, lup, rdown, ldown, scastle, lcastle};
         bool moved;
 };

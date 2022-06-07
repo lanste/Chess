@@ -30,17 +30,19 @@ int Rook::makeMove(const coordinates & startPos, const coordinates & endPos,
 {
     for (const auto & elem: moves)
     {
-        int x = startPos.x;
-        int y = startPos.y;
-        while((x <= 7 && x >= 0) && (y <= 7 && y >= 0) )
+        bool hitFlag = false;
+        coordinates pos = startPos;
+        while((pos.x <= 7 && pos.x >= 0) && (pos.y <= 7 && pos.y >= 0) )
         {
-            if(x == endPos.x && y == endPos.y)
+            if(board[pos.x][pos.y] != nullptr && startPos != pos)
+                hitFlag = true;
+            if(pos == endPos)
             {
-                moved = true;
+                if(hitFlag)
+                    return 1;
                 return 0;
             }
-            x += elem.x;
-            y += elem.y;
+            pos = pos + elem;
             //cout << x << " " << y << endl;
         }
     }

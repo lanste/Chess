@@ -4,16 +4,18 @@
 
 #include "King.h"
 
-King::King(const bool & col) : Piece('K',col), moved(false)
+King::King(const bool & col) : Piece('K', col), moved(false)
 {
-    moves = {{0,1},
-             {1,0},
-             {0,-1},
-             {-1,0},
-             {1,1},
-             {1,-1},
-             {-1,1},
-             {-1,-1}};
+    moves = {{0, 1},
+             {1, 0},
+             {0, -1},
+             {-1, 0},
+             {1, 1},
+             {1, -1},
+             {-1, 1},
+             {-1, -1},
+             {0, -2},
+             {0, 2},};
 }
 
 std::shared_ptr<Piece> King::CreateInstance()
@@ -29,13 +31,23 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos,
         coordinates pos = startPos + elem;
         if (pos == endPos)
         {
+            int result = 1;
             if (startPos.x == 7 && pos.x == 0)
                 break;
             if (startPos.x == 0 && pos.x == 7)
                 break;
-            if(!moved)
+            //request
+            //long castle
+            if(elem == moves[lcastle] && !moved)
+                result = 5;
+            // short castle
+            if(elem == moves[scastle] && !moved)
+                result = 4;
+            if(elem != moves[lcastle] && elem != moves[scastle])
+                result = 0;
+            if (!moved && result != 1)
                 moved = true;
-            return 0;
+            return result;
         }
     }
     return 1;
