@@ -113,7 +113,7 @@ int Game::Start()
             --onTurn;
             interface->Display("Invalid command\n");
         }
-        std::cerr << "game.start.mainLoop.inf" << std::endl;
+        //std::cerr << "game.start.mainLoop.inf" << std::endl;
         onTurn = 0;
     }
 }

@@ -42,4 +42,5 @@ class ClassicalChessBoard : public Board
         bool isMove(std::string & command);
     protected:
         std::array<std::array<std::shared_ptr<Piece>, 8>,8> board;
+        coordinates bKingPos, wKingPos;
 };

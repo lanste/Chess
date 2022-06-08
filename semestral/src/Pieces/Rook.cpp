@@ -40,6 +40,7 @@ int Rook::makeMove(const coordinates & startPos, const coordinates & endPos,
             {
                 if(hitFlag)
                     return 1;
+                moved = true;
                 return 0;
             }
             pos = pos + elem;
