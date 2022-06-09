@@ -40,8 +40,10 @@ class ClassicalChessBoard : public Board
         std::string Save();
         int ProcessMove(const bool & colour, const std::string & m);
         bool isMove(std::string & command);
+        void revertMove();
     protected:
         void findCheck(const bool & colour);
+        void findMate(const bool & colour);
         std::array<std::array<std::shared_ptr<Piece>, 8>,8> board;
         std::vector<std::shared_ptr<Piece>> onBoard;
         coordinates bKingPos, wKingPos;

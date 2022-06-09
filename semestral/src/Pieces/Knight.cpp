@@ -24,6 +24,8 @@ std::shared_ptr<Piece> Knight::CreateInstance()
 int Knight::makeMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
+    if(startPos == endPos)
+        return 1;
     for (const auto & elem: moves)
     {
         int x = startPos.x;
@@ -35,9 +37,9 @@ int Knight::makeMove(const coordinates & startPos, const coordinates & endPos,
             y += elem.y;
             if(x == endPos.x && y == endPos.y)
             {
-                if(board[x][y] != nullptr && board[x][y]->getColour() != colour)
+                if(board[x][y] != nullptr && board[x][y]->getColour() == colour)
                     return 1;
-                //position = endPos;
+                //pastPosition = position;
                 return 0;
             }
             //cout << x << " " << y << endl;

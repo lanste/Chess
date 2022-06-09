@@ -25,6 +25,8 @@ std::shared_ptr<Piece> Pawn::CreateInstance()
 int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
+    if(startPos == endPos)
+        return 1;
     int validResult = 0;
     doubleStep = false;
     for (const auto & elem: moves)
@@ -69,7 +71,7 @@ int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos,
                     moved = true;
                 }
                 traveledSquares += abs(elem.x);
-                //position = endPos;
+                //pastPosition = position;
                 return validResult;
             }
         }

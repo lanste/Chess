@@ -182,6 +182,8 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
             break;
         if (tile != -1 && !newEmpty)
         {
+            pc->updatePosition({row, tile});
+            pc->updatePosition({row, tile});
             board[row][tile] = pc;
             onBoard.push_back(pc);
             pc = nullptr;
@@ -204,7 +206,7 @@ std::string ClassicalChessBoard::State()
     if (check == 0)
         output << "White check!\n";
     else if (check == 1)
-        output << "White check!\n";
+        output << "Black check!\n";
     output << "   ";
     for (int i = 0; i < 8; ++i)
     {
@@ -258,6 +260,9 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
     {
         VALID, INVALID, PROMOTION, ENPASSANT, SCASTLE, LCASTLE, CHECK, CHECKMATE
     };
+    auto beforeMove = board;
+    std::vector<coordinates> affected;
+    //std::vector<std::pair<std::shared_ptr<Piece>,coordinates>> removed;
     coordinates startPos(
             move[1] - '0' - 1,
             toupper(move[0]) - 'A'),
@@ -274,43 +279,6 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
     if (startPiece->getColour() != colour)
         return 1;
 
-    /* prevent King from selfcheck
-    * this logic allows King to step into its own pieces
-    * but that is caught later
-    */
-    if (toupper(startPiece->Save()) == 'K' || check == colour)
-    {
-        int tmpCheck = check;
-        coordinates tmpKingPos = wKingPos;
-
-        wKingPos = endPos;
-        findCheck(colour);
-        if (check == 0)
-        {
-            wKingPos = tmpKingPos;
-            check = tmpCheck;
-            return 1;
-        }
-        wKingPos = tmpKingPos;
-        check = tmpCheck;
-    }
-
-    if (toupper(startPiece->Save()) == 'k' || check == colour)
-    {
-        int tmpCheck = check;
-        coordinates tmpKingPos = bKingPos;
-
-        bKingPos = endPos;
-        findCheck(colour);
-        if (check == 0)
-        {
-            bKingPos = tmpKingPos;
-            check = tmpCheck;
-            return 1;
-        }
-        bKingPos = tmpKingPos;
-        check = tmpCheck;
-    }
     switch (startPiece->makeMove(startPos, endPos, board))
     {
         case INVALID:
@@ -328,7 +296,10 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
             {
                 bKingPos = holdPiece->getPosition();
             }
+            //if(board[endPos.x][endPos.y] != nullptr)
+                //removed.emplace_back(board[endPos.x][endPos.y], endPos);
             board[endPos.x][endPos.y] = holdPiece;
+            affected.push_back(endPos);
             break;
         }
         case PROMOTION:
@@ -428,6 +399,17 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
     //    return 1;
     //}
     findCheck(colour);
+    if(check == colour)
+    {
+        for(const auto & pos : affected)
+        {
+            board[pos.x][pos.y]->revertPosition();
+        }
+        board = beforeMove;
+        check = 2;
+        return 1;
+    }
+    findMate(colour);
     return 0;
 }
 
@@ -437,15 +419,19 @@ void ClassicalChessBoard::findCheck(const bool & colour)
 {
     for (const auto & piece: onBoard)
     {
+        //int randomPieceOfCode = 42;
         if (piece->makeMove(piece->getPosition(), wKingPos, board) == 0)
         {
-            if (colour == white && piece->Save() == 'K')
-                continue;
+            //if (colour == white || piece->Save() == 'K')
+            //    continue;
             check = white;
             return;
         }
-        if (colour != black && piece->makeMove(piece->getPosition(), bKingPos, board) == 0)
+        if (piece->makeMove(piece->getPosition(), bKingPos, board) == 0)
         {
+            //if (colour == black || piece->Save() == 'k')
+            //    continue;
+            //check = randomPieceOfCode;
             check = black;
             return;
         }
@@ -500,6 +486,10 @@ bool ClassicalChessBoard::isMove(std::string & command)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void ClassicalChessBoard::findMate(const bool & colour)
+{
+
+}
 std::string ClassicalChessBoard::Save()
 {
     std::stringstream output;

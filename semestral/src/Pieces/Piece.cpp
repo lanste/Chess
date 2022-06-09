@@ -29,7 +29,12 @@ coordinates Piece::getPosition()
 }
 void Piece::updatePosition(const coordinates & newPos)
 {
+    pastPosition = position;
     position = newPos;
+}
+void Piece::revertPosition()
+{
+        position = pastPosition;
 }
 
 

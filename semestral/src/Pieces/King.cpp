@@ -49,7 +49,7 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos,
                 result = 0;
             if (!moved && result != 1)
                 moved = true;
-            //position = endPos;
+            //pastPosition = position;
             return result;
         }
     }

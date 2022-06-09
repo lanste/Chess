@@ -20,7 +20,7 @@ class Piece
     public:
         Piece();
 //----------------------------------------------------------------------------------------------------------------------
-        Piece(const char & s, const bool & c, const coordinates myPos) : position(myPos), symbol(s), colour(c) {}
+        Piece(const char & s, const bool & c, const coordinates myPos) : position(myPos), pastPosition(myPos), symbol(s), colour(c) {}
 //----------------------------------------------------------------------------------------------------------------------
         /**
          * Evaluates if move requested by player is valid for this piece
@@ -53,10 +53,12 @@ class Piece
         bool getColour();
         coordinates getPosition();
         void updatePosition(const coordinates & newPos);
+        void revertPosition();
 //----------------------------------------------------------------------------------------------------------------------
     protected:
         std::vector<coordinates> moves;
         coordinates position;
+        coordinates pastPosition;
         char symbol;
         bool colour; // 0 = white | 1 = black
         //coordinates coords;
