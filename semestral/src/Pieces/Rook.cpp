@@ -4,7 +4,7 @@
 
 #include "Rook.h"
 
-Rook::Rook(const bool & col, const bool & nSide) : Piece('R', col),moved(false), side(nSide)
+Rook::Rook(const bool & col, const bool & nSide, const coordinates & myPos) : Piece('R', col, myPos),moved(false), side(nSide)
 {
     moves = {{-1,0},
              {0,-1},
@@ -12,7 +12,7 @@ Rook::Rook(const bool & col, const bool & nSide) : Piece('R', col),moved(false),
              {1,0}};
 }
 
-Rook::Rook(const bool & col) : Piece('R', col), moved(true), side(false)
+Rook::Rook(const bool & col, const coordinates & myPos) : Piece('R', col, myPos), moved(true), side(false)
 {
     moves = {{-1,0},
              {0,-1},
@@ -38,9 +38,10 @@ int Rook::makeMove(const coordinates & startPos, const coordinates & endPos,
                 hitFlag = true;
             if(pos == endPos)
             {
-                if(hitFlag)
+                if(hitFlag && board[pos.x][pos.y]->getColour() == colour)
                     return 1;
                 moved = true;
+                //position = endPos;
                 return 0;
             }
             pos = pos + elem;

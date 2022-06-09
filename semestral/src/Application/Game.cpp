@@ -47,7 +47,7 @@ int Game::Initialize(const std::shared_ptr<Interface> & ui, const std::shared_pt
 int Game::Start()
 {
 #define main_loop while(true) // lol
-
+enum states{};
     if(not initialized)
         throw std::runtime_error("FATAL: call to game start without prior initialization");
     //interface->Display(game->State());
@@ -81,7 +81,7 @@ int Game::Start()
                     cmdStream >> argument;
                     if(Save(argument))
                     {
-                        interface->Display("Game \"" + argument + "\" successfully saved");
+                        interface->Display("Game \"" + argument + "\" successfully saved\n");
                     }
                     else
                     {
@@ -107,6 +107,11 @@ int Game::Start()
                 {
                     interface->Display("Invalid move!\n");
                     --onTurn;
+                }
+                if(status == 2)
+                {
+                    interface->Display(std::to_string(onTurn) + "wins!");
+                    return 0;
                 }
                 continue;
             }

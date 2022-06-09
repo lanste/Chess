@@ -4,7 +4,7 @@
 
 #include "King.h"
 
-King::King(const bool & col) : Piece('K', col), moved(false)
+King::King(const bool & col, const coordinates & myPos) : Piece('K', col, myPos), moved(false)
 {
     moves = {{0, 1},
              {1, 0},
@@ -26,6 +26,8 @@ std::shared_ptr<Piece> King::CreateInstance()
 int King::makeMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
+    if(startPos == endPos)
+        return 1;
     for (const auto & elem: moves)
     {
         coordinates pos = startPos + elem;
@@ -47,6 +49,7 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos,
                 result = 0;
             if (!moved && result != 1)
                 moved = true;
+            //position = endPos;
             return result;
         }
     }

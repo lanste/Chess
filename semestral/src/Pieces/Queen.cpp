@@ -4,7 +4,7 @@
 
 #include "Queen.h"
 
-Queen::Queen(const bool & col) : Piece('Q', col)
+Queen::Queen(const bool & col, const coordinates & myPos) : Piece('Q', col, myPos)
 {
     moves = {{-1,0},
              {0,-1},
@@ -23,6 +23,8 @@ std::shared_ptr<Piece> Queen::CreateInstance()
 int Queen::makeMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
+    if(startPos == endPos)
+        return 1;
     for (const auto & elem: moves)
     {
         bool hitFlag = false;
@@ -33,8 +35,9 @@ int Queen::makeMove(const coordinates & startPos, const coordinates & endPos,
                 hitFlag = true;
             if(pos == endPos)
             {
-                if(hitFlag)
+                if(hitFlag && board[pos.x][pos.y]->getColour() == colour)
                     return 1;
+                //position = endPos;
                 return 0;
             }
             pos = pos + elem;

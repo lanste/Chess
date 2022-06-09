@@ -10,6 +10,8 @@ ClassicalChessBoard::ClassicalChessBoard(const bool & empty) : Board("Chess")
     //Initialize();
     if (empty)
     {
+        check = 2;
+        checkmate = false;
         return;
     }
 #define white false
@@ -17,17 +19,17 @@ ClassicalChessBoard::ClassicalChessBoard(const bool & empty) : Board("Chess")
 #define queenSide true
 #define kingSide false
 
-    board[0][0] = std::make_shared<Rook>(white, kingSide);
-    board[0][1] = std::make_shared<Knight>(white);
-    board[0][2] = std::make_shared<Bishop>(white);
-    board[0][3] = std::make_shared<Queen>(white);
-    board[0][4] = std::make_shared<King>(white);
-    board[0][5] = std::make_shared<Bishop>(white);
-    board[0][6] = std::make_shared<Knight>(white);
-    board[0][7] = std::make_shared<Rook>(white, queenSide);
+    onBoard.push_back(board[0][0] = std::make_shared<Rook>(white, kingSide, coordinates{0, 0}));
+    onBoard.push_back(board[0][1] = std::make_shared<Knight>(white, coordinates{0, 1}));
+    onBoard.push_back(board[0][2] = std::make_shared<Bishop>(white, coordinates{0, 2}));
+    onBoard.push_back(board[0][3] = std::make_shared<Queen>(white, coordinates{0, 3}));
+    onBoard.push_back(board[0][4] = std::make_shared<King>(white, coordinates{0, 4}));
+    onBoard.push_back(board[0][5] = std::make_shared<Bishop>(white, coordinates{0, 5}));
+    onBoard.push_back(board[0][6] = std::make_shared<Knight>(white, coordinates{0, 6}));
+    onBoard.push_back(board[0][7] = std::make_shared<Rook>(white, queenSide, coordinates{0, 7}));
     for (int i = 0; i < 8; ++i)
     {
-        board[1][i] = std::make_shared<Pawn>(white);
+        onBoard.push_back(board[1][i] = std::make_shared<Pawn>(white, coordinates{1, i}));
     }
     for (int i = 2; i < 6; ++i)
     {
@@ -38,19 +40,21 @@ ClassicalChessBoard::ClassicalChessBoard(const bool & empty) : Board("Chess")
     }
     for (int i = 0; i < 8; ++i)
     {
-        board[6][i] = std::make_shared<Pawn>(black);
+        onBoard.push_back(board[6][i] = std::make_shared<Pawn>(black, coordinates{6, i}));
     }
-    board[7][0] = std::make_shared<Rook>(black, kingSide);
-    board[7][1] = std::make_shared<Knight>(black);
-    board[7][2] = std::make_shared<Bishop>(black);
-    board[7][3] = std::make_shared<Queen>(black);
-    board[7][4] = std::make_shared<King>(black);
-    board[7][5] = std::make_shared<Bishop>(black);
-    board[7][6] = std::make_shared<Knight>(black);
-    board[7][7] = std::make_shared<Rook>(black, queenSide);
+    onBoard.push_back(board[7][0] = std::make_shared<Rook>(black, kingSide, coordinates{7, 0}));
+    onBoard.push_back(board[7][1] = std::make_shared<Knight>(black, coordinates{7, 1}));
+    onBoard.push_back(board[7][2] = std::make_shared<Bishop>(black, coordinates{7, 2}));
+    onBoard.push_back(board[7][3] = std::make_shared<Queen>(black, coordinates{7, 3}));
+    onBoard.push_back(board[7][4] = std::make_shared<King>(black, coordinates{7, 4}));
+    onBoard.push_back(board[7][5] = std::make_shared<Bishop>(black, coordinates{7, 5}));
+    onBoard.push_back(board[7][6] = std::make_shared<Knight>(black, coordinates{7, 6}));
+    onBoard.push_back(board[7][7] = std::make_shared<Rook>(black, queenSide, coordinates{7, 7}));
 
-    bKingPos = {7,4};
-    wKingPos = {0,4};
+    bKingPos = {7, 4};
+    wKingPos = {0, 4}; // todo unnecessary?
+    check = 2;
+    checkmate = false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +75,8 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
     int row = 0, tile = 0;
     std::shared_ptr<Piece> pc;
 
-    //if (data.size() > 1)
+    if (data.size() > 1)
+    {
         for (const auto & cstlAb: data[1])
         {
             switch (cstlAb)
@@ -92,66 +97,68 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
                     throw std::invalid_argument("Invalid savefile: unknown character in castling definition");
             }
         }
+    }
+
     for (const auto & piece: data[0])
     {
         switch (piece) // there is something wrong about this
         {
             case whitePawn:
-                pc = std::make_shared<Pawn>(false);
+                pc = std::make_shared<Pawn>(false, coordinates{row, tile});
                 break;
             case whiteRook:
                 if (wShort && tile == 0 && row == 0)
                 {
-                    pc = std::make_shared<Rook>(false, false);
+                    pc = std::make_shared<Rook>(false, false, coordinates{row, tile});
                     break;
                 }
                 if (wLong && tile == 7 && row == 0)
                 {
-                    pc = std::make_shared<Rook>(false, true);
+                    pc = std::make_shared<Rook>(false, true, coordinates{row, tile});
                     break;
                 }
-                pc = std::make_shared<Rook>(false);
+                pc = std::make_shared<Rook>(false, coordinates{row, tile});
                 break;
             case whiteKnight:
-                pc = std::make_shared<Knight>(false);
+                pc = std::make_shared<Knight>(false, coordinates{row, tile});
                 break;
             case whiteBishop:
-                pc = std::make_shared<Bishop>(false);
+                pc = std::make_shared<Bishop>(false, coordinates{row, tile});
                 break;
             case whiteQueen:
-                pc = std::make_shared<Queen>(false);
+                pc = std::make_shared<Queen>(false, coordinates{row, tile});
                 break;
             case whiteKing:
-                pc = std::make_shared<King>(false);
+                pc = std::make_shared<King>(false, coordinates{row, tile});
                 wKingPos = {row, tile};
                 break;
             case blackPawn:
-                pc = std::make_shared<Pawn>(true);
+                pc = std::make_shared<Pawn>(true, coordinates{row, tile});
                 break;
             case blackRook:
                 if (bShort && tile == 0 && row == 7)
                 {
-                    pc = std::make_shared<Rook>(true, false);
+                    pc = std::make_shared<Rook>(true, false, coordinates{row, tile});
                     break;
                 }
                 if (bLong && tile == 7 && row == 7)
                 {
-                    pc = std::make_shared<Rook>(true, true);
+                    pc = std::make_shared<Rook>(true, true, coordinates{row, tile});
                     break;
                 }
-                pc = std::make_shared<Rook>(true);
+                pc = std::make_shared<Rook>(true, coordinates{row, tile});
                 break;
             case blackKnight:
-                pc = std::make_shared<Knight>(true);
+                pc = std::make_shared<Knight>(true, coordinates{row, tile});
                 break;
             case blackBishop:
-                pc = std::make_shared<Bishop>(true);
+                pc = std::make_shared<Bishop>(true, coordinates{row, tile});
                 break;
             case blackQueen:
-                pc = std::make_shared<Queen>(true);
+                pc = std::make_shared<Queen>(true, coordinates{row, tile});
                 break;
             case blackKing:
-                pc = std::make_shared<King>(true);
+                pc = std::make_shared<King>(true, coordinates{row, tile});
                 bKingPos = {row, tile};
                 break;
             case '/':
@@ -173,9 +180,11 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
         }
         if (row == -1)
             break;
-        if (tile != -1)
+        if (tile != -1 && !newEmpty)
         {
             board[row][tile] = pc;
+            onBoard.push_back(pc);
+            pc = nullptr;
         }
         if (!newEmpty)
             ++tile;
@@ -192,6 +201,10 @@ std::string ClassicalChessBoard::State()
      * -> would loose some generality (todo) even though it doesn't have any at the moment
      */
     std::stringstream output;
+    if (check == 0)
+        output << "White check!\n";
+    else if (check == 1)
+        output << "White check!\n";
     output << "   ";
     for (int i = 0; i < 8; ++i)
     {
@@ -254,25 +267,67 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
 
     std::shared_ptr<Piece> startPiece = board[startPos.x][startPos.y];
     std::shared_ptr<Piece> endPiece = board[endPos.x][endPos.y];
-    if(startPos == endPos) // todo pieces should probably guard this
+    if (startPos == endPos) // todo pieces should probably guard this
         return 1;
     if (startPiece == nullptr)
         return 1;
     if (startPiece->getColour() != colour)
         return 1;
 
+    /* prevent King from selfcheck
+    * this logic allows King to step into its own pieces
+    * but that is caught later
+    */
+    if (toupper(startPiece->Save()) == 'K' || check == colour)
+    {
+        int tmpCheck = check;
+        coordinates tmpKingPos = wKingPos;
+
+        wKingPos = endPos;
+        findCheck(colour);
+        if (check == 0)
+        {
+            wKingPos = tmpKingPos;
+            check = tmpCheck;
+            return 1;
+        }
+        wKingPos = tmpKingPos;
+        check = tmpCheck;
+    }
+
+    if (toupper(startPiece->Save()) == 'k' || check == colour)
+    {
+        int tmpCheck = check;
+        coordinates tmpKingPos = bKingPos;
+
+        bKingPos = endPos;
+        findCheck(colour);
+        if (check == 0)
+        {
+            bKingPos = tmpKingPos;
+            check = tmpCheck;
+            return 1;
+        }
+        bKingPos = tmpKingPos;
+        check = tmpCheck;
+    }
     switch (startPiece->makeMove(startPos, endPos, board))
     {
         case INVALID:
             return 1;
         case VALID:
         {
-            if(board[startPos.x][startPos.y]->Save() == 'K')
-                wKingPos = endPos;
-            if(board[startPos.x][startPos.y]->Save() == 'k')
-                bKingPos = endPos;
             auto holdPiece = board[startPos.x][startPos.y];
             board[startPos.x][startPos.y] = nullptr;
+            holdPiece->updatePosition(endPos);
+            if (holdPiece->Save() == 'K')
+            {
+                wKingPos = holdPiece->getPosition();
+            }
+            if (holdPiece->Save() == 'k')
+            {
+                bKingPos = holdPiece->getPosition();
+            }
             board[endPos.x][endPos.y] = holdPiece;
             break;
         }
@@ -285,21 +340,22 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
             switch (toupper(move[4]))
             {
                 case 'N':
-                    promoted = std::make_shared<Knight>(colour);
+                    promoted = std::make_shared<Knight>(colour, endPos);
                     break;
                 case 'B':
-                    promoted = std::make_shared<Bishop>(colour);
+                    promoted = std::make_shared<Bishop>(colour, endPos);
                     break;
                 case 'R':
-                    promoted = std::make_shared<Rook>(colour);
+                    promoted = std::make_shared<Rook>(colour, endPos);
                     break;
                 case 'Q':
-                    promoted = std::make_shared<Queen>(colour);
+                    promoted = std::make_shared<Queen>(colour, endPos);
                     break;
                 default:
                     return 1;
             }
             board[endPos.x][endPos.y] = promoted;
+            board[endPos.x][endPos.y]->updatePosition(endPos);
             break;
         }
         case LCASTLE:
@@ -310,9 +366,9 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
             Rook buddy = dynamic_cast<Rook &>(*(board[row][7]));
             if (buddy.canCastle())
             {
-                if(board[startPos.x][startPos.y]->Save() == 'K')
+                if (board[startPos.x][startPos.y]->Save() == 'K')
                     wKingPos = endPos;
-                if(board[startPos.x][startPos.y]->Save() == 'k')
+                if (board[startPos.x][startPos.y]->Save() == 'k')
                     bKingPos = endPos;
                 auto holdKing = board[row][startPos.y];
                 auto holdRook = board[row][7];
@@ -320,8 +376,10 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
                 board[row][7] = nullptr;
                 board[row][endPos.y] = holdKing;
                 // todo stupid workaround (make a move without moving)
-                holdRook->makeMove({row,7},{row,7},board);
+                holdRook->makeMove({row, 7}, {row, 7}, board);
                 board[row][endPos.y - 1] = holdRook;
+                board[endPos.x][endPos.y]->updatePosition(endPos);
+                board[endPos.x][endPos.y - 1]->updatePosition(endPos);
                 break;
             }
             return 1;
@@ -334,35 +392,34 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
             Rook buddy = dynamic_cast<Rook &>(*(board[row][0]));
             if (buddy.canCastle())
             {
-                if(board[startPos.x][startPos.y]->Save() == 'K')
+                if (board[startPos.x][startPos.y]->Save() == 'K')
                     wKingPos = endPos;
-                if(board[startPos.x][startPos.y]->Save() == 'k')
+                if (board[startPos.x][startPos.y]->Save() == 'k')
                     bKingPos = endPos;
                 auto holdKing = board[row][startPos.y];
                 auto holdRook = board[row][0];
                 board[row][startPos.y] = nullptr;
                 board[row][0] = nullptr;
                 // todo stupid workaround (make a move without moving)
-                holdRook->makeMove({row,0},{row,0},board);
+                holdRook->makeMove({row, 0}, {row, 0}, board);
                 board[row][endPos.y] = holdKing;
                 board[row][endPos.y + 1] = holdRook;
-
+                board[endPos.x][endPos.y]->updatePosition(endPos);
+                board[endPos.x][endPos.y + 1]->updatePosition(endPos);
                 break;
             }
             return 1;
         }
-        case ENPASSANT:{
+        case ENPASSANT:
+        {
             auto holdPiece = board[startPos.x][startPos.y];
             board[startPos.x][startPos.y] = nullptr;
             board[endPos.x][endPos.y] = holdPiece;
+            board[endPos.x][endPos.y]->updatePosition(endPos);
             board[endPos.x - 1][endPos.y] = nullptr;
-            break;}
-        case CHECK:{
 
-            break;}
-        case CHECKMATE:{
-
-        break;}
+            break;
+        }
         default:
             break;
     }
@@ -370,9 +427,34 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
     //{
     //    return 1;
     //}
-
+    findCheck(colour);
     return 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void ClassicalChessBoard::findCheck(const bool & colour)
+{
+    for (const auto & piece: onBoard)
+    {
+        if (piece->makeMove(piece->getPosition(), wKingPos, board) == 0)
+        {
+            if (colour == white && piece->Save() == 'K')
+                continue;
+            check = white;
+            return;
+        }
+        if (colour != black && piece->makeMove(piece->getPosition(), bKingPos, board) == 0)
+        {
+            check = black;
+            return;
+        }
+    }
+    check = 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 bool ClassicalChessBoard::isMove(std::string & command)
 {
     std::string head, move;
@@ -415,6 +497,9 @@ bool ClassicalChessBoard::isMove(std::string & command)
     }
     return false;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 std::string ClassicalChessBoard::Save()
 {
     std::stringstream output;
@@ -434,12 +519,12 @@ std::string ClassicalChessBoard::Save()
                 output << tile->Save();
                 if (tile->Save() == 'K')
                 {
-                    King * found = dynamic_cast<King*>(tile.get());
+                    King * found = dynamic_cast<King *>(tile.get());
                     wKing = found->canCastle();
                 }
                 if (tile->Save() == 'k')
                 {
-                    King * found = dynamic_cast<King*>(tile.get());
+                    King * found = dynamic_cast<King *>(tile.get());
                     bKing = found->canCastle();
                 }
 
@@ -497,4 +582,5 @@ std::string ClassicalChessBoard::Save()
 
     return output.str();
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

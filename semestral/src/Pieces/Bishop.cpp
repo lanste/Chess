@@ -4,7 +4,7 @@
 
 #include "Bishop.h"
 
-Bishop::Bishop(const bool & col) : Piece('B', col)
+Bishop::Bishop(const bool & col, const coordinates & myPos) : Piece('B', col, myPos)
 {
     moves = {{-1, -1},
              {1,  -1},
@@ -31,8 +31,9 @@ int Bishop::makeMove(const coordinates & startPos, const coordinates & endPos,
                 hitFlag = true;
             if(pos == endPos)
             {
-                if(hitFlag)
+                if(hitFlag && board[pos.x][pos.y]->getColour() == colour)
                     return 1;
+                //position = endPos;
                 return 0;
             }
             pos = pos + elem;

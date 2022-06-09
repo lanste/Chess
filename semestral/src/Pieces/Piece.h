@@ -20,14 +20,14 @@ class Piece
     public:
         Piece();
 //----------------------------------------------------------------------------------------------------------------------
-        Piece(const char32_t & s, const bool & c) : symbol(s), colour(c)/*, coords(0,0)*/ {}
+        Piece(const char & s, const bool & c, const coordinates myPos) : position(myPos), symbol(s), colour(c) {}
 //----------------------------------------------------------------------------------------------------------------------
         /**
          * Evaluates if move requested by player is valid for this piece
          * @param startPos
          * @param endPos
          * @param board
-         * @return 1 if pseudo valid move, 0 otherwise, ?? 2-n special move ??
+         * @return 0 if pseudo valid move, 1 otherwise, ?? 2-n special move ??
          */
         virtual int makeMove(const coordinates & startPos, const coordinates & endPos,
                              const std::array<std::array<std::shared_ptr<Piece>, 8>,8> & board) = 0;
@@ -51,9 +51,12 @@ class Piece
         virtual char Save();
 //----------------------------------------------------------------------------------------------------------------------
         bool getColour();
+        coordinates getPosition();
+        void updatePosition(const coordinates & newPos);
 //----------------------------------------------------------------------------------------------------------------------
     protected:
         std::vector<coordinates> moves;
+        coordinates position;
         char symbol;
         bool colour; // 0 = white | 1 = black
         //coordinates coords;

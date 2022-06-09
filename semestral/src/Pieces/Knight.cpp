@@ -4,7 +4,7 @@
 
 #include "Knight.h"
 
-Knight::Knight(const bool & col) : Piece('N', col)
+Knight::Knight(const bool & col, const coordinates & myPos) : Piece('N', col, myPos)
 {
     moves = {{1,2},
              {-1,2},
@@ -37,6 +37,7 @@ int Knight::makeMove(const coordinates & startPos, const coordinates & endPos,
             {
                 if(board[x][y] != nullptr && board[x][y]->getColour() != colour)
                     return 1;
+                //position = endPos;
                 return 0;
             }
             //cout << x << " " << y << endl;

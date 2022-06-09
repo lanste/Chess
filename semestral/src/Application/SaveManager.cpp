@@ -32,7 +32,6 @@ bool SaveManager::Load(const std::string & filename, std::vector<std::string> & 
     while(true)
     {
         fin >> datapoint;
-        data.push_back(datapoint);
         if(fin.fail())
         {
             if(fin.eof())
@@ -43,6 +42,7 @@ bool SaveManager::Load(const std::string & filename, std::vector<std::string> & 
                 return false;
             }
         }
+        data.push_back(datapoint);
     }
     fin.close();
     return true;

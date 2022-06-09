@@ -23,5 +23,13 @@ char Piece::Save()
         return tolower(symbol);
     return symbol;
 }
+coordinates Piece::getPosition()
+{
+    return position;
+}
+void Piece::updatePosition(const coordinates & newPos)
+{
+    position = newPos;
+}
 
 

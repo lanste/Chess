@@ -4,7 +4,7 @@
 
 #include "Pawn.h"
 
-Pawn::Pawn(const bool & col) : Piece('P', col), traveledSquares(0), moved(false)
+Pawn::Pawn(const bool & col, const coordinates & myPos) : Piece('P', col, myPos), traveledSquares(0), moved(false)
 {
     if(!col)
     {
@@ -69,6 +69,7 @@ int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos,
                     moved = true;
                 }
                 traveledSquares += abs(elem.x);
+                //position = endPos;
                 return validResult;
             }
         }
