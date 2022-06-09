@@ -51,6 +51,7 @@ class Piece
         virtual char Save();
 //----------------------------------------------------------------------------------------------------------------------
         bool getColour();
+        std::vector<coordinates> getMoves();
         coordinates getPosition();
         void updatePosition(const coordinates & newPos);
         void revertPosition();

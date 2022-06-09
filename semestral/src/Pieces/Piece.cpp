@@ -36,5 +36,9 @@ void Piece::revertPosition()
 {
         position = pastPosition;
 }
+std::vector<coordinates> Piece::getMoves()
+{
+    return moves;
+}
 
 

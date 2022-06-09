@@ -410,6 +410,8 @@ int ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & mo
         return 1;
     }
     findMate(colour);
+    if(checkmate)
+        return 2;
     return 0;
 }
 
@@ -440,6 +442,88 @@ void ClassicalChessBoard::findCheck(const bool & colour)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void ClassicalChessBoard::findMate(const bool & colour)
+{
+    int holdcheck = check;
+    coordinates endKingPos;
+    bool foundWay = false;
+    if(check == white)
+    {
+        for(const auto move: board[wKingPos.x][wKingPos.y]->getMoves())
+        {
+            endKingPos = wKingPos + move;
+            if(!board[wKingPos.x][wKingPos.y]->makeMove(wKingPos,endKingPos,board))
+            {
+                findCheck(colour);
+                if(check == white)
+                {
+                    continue;
+                }
+                foundWay = true;
+            }
+            if(foundWay)
+                break;
+            checkmate = true;
+        }
+        for(const auto & piece : onBoard)
+        {
+            std::shared_ptr<Piece> p = piece->CreateInstance();
+            if(p->getColour() == black)
+            {
+                continue;
+            }
+            for(const auto & pm : p->getMoves())
+            {
+                p->makeMove(p->getPosition(), p->getPosition() + pm, board);
+                findCheck(colour);
+                if(check != 0)
+                {
+                    checkmate = false;
+                    return;
+                }
+            }
+        }
+        return;
+    }
+    check = holdcheck;
+    if(check == black)
+    {
+        for(const auto move: board[bKingPos.x][bKingPos.y]->getMoves())
+        {
+            endKingPos = bKingPos + move;
+            if(!board[bKingPos.x][bKingPos.y]->makeMove(bKingPos,endKingPos,board))
+            {
+                findCheck(colour);
+                if(check == black)
+                    continue;
+                foundWay = true;
+            }
+            if(foundWay)
+                break;
+            checkmate = true;
+        }
+        for(const auto & piece : onBoard)
+        {
+            std::shared_ptr<Piece> p = piece->CreateInstance();
+            if(p->getColour() == white)
+            {
+                continue;
+            }
+            for(const auto & pm : p->getMoves())
+            {
+                p->makeMove(p->getPosition(), p->getPosition() + pm, board);
+                findCheck(colour);
+                if(check != 0)
+                {
+                    checkmate = false;
+                    return;
+                }
+            }
+        }
+    }
+    check = holdcheck;
+}
 
 bool ClassicalChessBoard::isMove(std::string & command)
 {
@@ -485,11 +569,6 @@ bool ClassicalChessBoard::isMove(std::string & command)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void ClassicalChessBoard::findMate(const bool & colour)
-{
-
-}
 std::string ClassicalChessBoard::Save()
 {
     std::stringstream output;

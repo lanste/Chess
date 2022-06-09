@@ -47,8 +47,8 @@ int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos,
                    board[endPos.x][endPos.y] == nullptr// conventional attack is invalid
                         ) // todo this is unreadable and i feel like YandereDev
                 {
-                    Pawn captured = dynamic_cast<Pawn&>(*(board[endPos.x - 1][endPos.y]));
-                    if(captured.doubleStep)
+                    auto * captured = dynamic_cast<Pawn*>((board[endPos.x - 1][endPos.y].get()));
+                    if(captured && captured->doubleStep)
                         validResult = 3;
                     else
                         return 1;

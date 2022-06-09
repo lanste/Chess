@@ -110,8 +110,8 @@ enum states{};
                 }
                 if(status == 2)
                 {
-                    interface->Display(std::to_string(onTurn) + "wins!");
-                    return 0;
+                    interface->Display(std::string((onTurn?"Black":"White")) + " wins!\n");
+                    return 1;
                 }
                 continue;
             }
