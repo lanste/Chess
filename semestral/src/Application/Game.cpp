@@ -3,7 +3,6 @@
 //
 
 #include "Game.h"
-#include "SaveManager.h"
 
 
 Game::Game(const std::shared_ptr<Interface> & ui) : interface(ui)
@@ -63,6 +62,7 @@ enum states{};
             interface->Display(players[onTurn]->getColour()?"black":"white"); // placeholder just for chess
             interface->Display("'s turn\n");
             interface->Display(Show());
+
             command = players[onTurn]->makeTurn(interface);
            // interface->Receive(command);
             /*
@@ -99,11 +99,14 @@ enum states{};
                     return 1;
             }
 
-            std::string move = cmdStream.str();
-            if (game->isMove(move))
+            std::string moveCmd = cmdStream.str();
+
+            if (game->isMove(moveCmd))
             {
-                status = game->ProcessMove(players[onTurn]->getColour(), move);
-                if(status == 1)
+                ChessMove move = game->ProcessMove(players[onTurn]->getColour(), moveCmd);
+                if(move.isValid())
+                    status = game->ExecuteMove(move);
+                else
                 {
                     interface->Display("Invalid move!\n");
                     --onTurn;

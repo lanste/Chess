@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "../Application/Moves/ChessMove.h"
 //#include "../Players/Player.h"
 
 #include <vector>
@@ -22,7 +23,8 @@ class Board
         virtual std::string State() = 0;
         virtual std::string Save() = 0;
         virtual std::string getName() {return name;}
-        virtual int ProcessMove(const bool & colour, const std::string & m) = 0;
+        virtual ChessMove ProcessMove(const bool & colour, const std::string & m) = 0;
+        virtual int ExecuteMove(const ChessMove & move) = 0;
         virtual bool isMove(std::string & command) = 0;
     private:
         std::string name;

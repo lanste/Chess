@@ -34,7 +34,7 @@ void Piece::updatePosition(const coordinates & newPos)
 }
 void Piece::revertPosition()
 {
-        position = pastPosition;
+    position = pastPosition;
 }
 std::vector<coordinates> Piece::getMoves()
 {

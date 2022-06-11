@@ -25,7 +25,7 @@ std::shared_ptr<Piece> Rook::CreateInstance()
     return std::make_shared<Rook>(*this);
 }
 
-int Rook::makeMove(const coordinates & startPos, const coordinates & endPos,
+int Rook::tryMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     if(startPos == endPos)

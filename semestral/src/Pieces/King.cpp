@@ -23,7 +23,7 @@ std::shared_ptr<Piece> King::CreateInstance()
     return std::make_shared<King>(*this);
 }
 
-int King::makeMove(const coordinates & startPos, const coordinates & endPos,
+int King::tryMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     if(startPos == endPos)
@@ -31,12 +31,12 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos,
     for (const auto & elem: moves)
     {
         coordinates pos = startPos + elem;
+        if((pos.x <= 7 && pos.x >= 0) && (pos.y <= 7 && pos.y >= 0))
+            continue;
         if (pos == endPos)
         {
-            int result = 1;
-            if (startPos.x == 7 && pos.x == 0)
-                break;
-            if (startPos.x == 0 && pos.x == 7)
+            int result = 0;
+            if(board[endPos.x][endPos.y] != nullptr && board[endPos.x][endPos.y]->getColour() == colour)
                 break;
             //request
             //long castle
@@ -47,7 +47,7 @@ int King::makeMove(const coordinates & startPos, const coordinates & endPos,
                 result = 4;
             if(elem != moves[lcastle] && elem != moves[scastle])
                 result = 0;
-            if (!moved && result != 1)
+            if (!moved)
                 moved = true;
             //pastPosition = position;
             return result;

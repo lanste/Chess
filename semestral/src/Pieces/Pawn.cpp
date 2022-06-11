@@ -22,7 +22,7 @@ std::shared_ptr<Piece> Pawn::CreateInstance()
 {
     return std::make_shared<Pawn>(*this);
 }
-int Pawn::makeMove(const coordinates & startPos, const coordinates & endPos,
+int Pawn::tryMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     if(startPos == endPos)

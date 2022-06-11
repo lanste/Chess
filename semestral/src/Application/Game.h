@@ -11,6 +11,8 @@
 #include "../Players/AI2.h"
 #include "../Players/AI3.h"
 #include "../Commands/BackCmd.h"
+#include "SaveManager.h"
+#include "Moves/ChessMove.h"
 //#include "../Commands/Game/SaveGameCmd.h"
 
 

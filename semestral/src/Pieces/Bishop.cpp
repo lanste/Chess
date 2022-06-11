@@ -16,7 +16,7 @@ std::shared_ptr<Piece> Bishop::CreateInstance()
 {
     return std::make_shared<Bishop>(*this);
 }
-int Bishop::makeMove(const coordinates & startPos, const coordinates & endPos,
+int Bishop::tryMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     if(startPos == endPos)

@@ -21,7 +21,7 @@ std::shared_ptr<Piece> Knight::CreateInstance()
     return std::make_shared<Knight>(*this);
 }
 
-int Knight::makeMove(const coordinates & startPos, const coordinates & endPos,
+int Knight::tryMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     if(startPos == endPos)

@@ -7,6 +7,7 @@
 #include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
 #include "../Application/coordinates.h"
+//#include "../Application/moveTypes.h"
 
 #include <memory>
 #include <vector>
@@ -29,7 +30,7 @@ class Piece
          * @param board
          * @return 0 if pseudo valid move, 1 otherwise, ?? 2-n special move ??
          */
-        virtual int makeMove(const coordinates & startPos, const coordinates & endPos,
+        virtual int tryMove(const coordinates & startPos, const coordinates & endPos,
                              const std::array<std::array<std::shared_ptr<Piece>, 8>,8> & board) = 0;
 //----------------------------------------------------------------------------------------------------------------------
         /**

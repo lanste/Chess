@@ -20,7 +20,7 @@ std::shared_ptr<Piece> Queen::CreateInstance()
 {
     return std::make_shared<Queen>(*this);
 }
-int Queen::makeMove(const coordinates & startPos, const coordinates & endPos,
+int Queen::tryMove(const coordinates & startPos, const coordinates & endPos,
         const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board)
 {
     if(position == endPos)
