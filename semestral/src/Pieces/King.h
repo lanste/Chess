@@ -14,7 +14,9 @@ class King : public Piece
         int tryMove(const coordinates & startPos, const coordinates & endPos,
                 const std::array<std::array<std::shared_ptr<Piece>, 8>, 8> & board) override;
         bool canCastle() const;
+        void updatePosition(const coordinates & newPos) override;
+        void revertPosition() override;
     protected:
         enum emove{left, right, down, up, rup, lup, rdown, ldown, scastle, lcastle};
-        bool moved;
+        int moved;
 };

@@ -26,6 +26,7 @@ class Board
         virtual ChessMove ProcessMove(const bool & colour, const std::string & m) = 0;
         virtual int ExecuteMove(const ChessMove & move) = 0;
         virtual bool isMove(std::string & command) = 0;
+        virtual std::string announceWinner(const bool & colour) = 0;
     private:
         std::string name;
         //virtual ostream & print(ostream & os) const = 0;

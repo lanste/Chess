@@ -18,5 +18,8 @@ class Rook : public Piece
         bool getSide() const {return side;}
     protected:
         bool moved;
+    public:
+        void updatePosition(const coordinates & newPos) override;
+    protected:
         bool side;
 };

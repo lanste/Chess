@@ -4,5 +4,6 @@
 
 enum moveTypes
 {
-    VALID, INVALID, PROMOTION, ENPASSANT, SCASTLE, LCASTLE
+    //0       1         2         3         4         5         6
+    VALID, INVALID, PROMOTION, ENPASSANT, SCASTLE, LCASTLE, DOUBLESTEP
 };

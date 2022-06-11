@@ -52,14 +52,16 @@ int Rook::tryMove(const coordinates & startPos, const coordinates & endPos,
                         return 0;
                     return 1;
                 }
-                moved = true;
-                //pastPosition = position;
-                //position = endPos;
                 return 0;
             }
             pos = pos + elem;
-            //cout << x << " " << y << endl;
         }
     }
     return 1;
+}
+void Rook::updatePosition(const coordinates & newPos)
+{
+    pastPosition = position;
+    position = newPos;
+    moved = true;
 }

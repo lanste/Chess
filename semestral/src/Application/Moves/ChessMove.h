@@ -9,7 +9,8 @@
 class ChessMove //: Move
 {
     public:
-        ChessMove() : valid(false) {}
+        ChessMove() : dummy(true), valid(false)
+        {}
 
         void setValidMove(const coordinates & nStartPos, const coordinates & nEndPos, const int & nStatus)
         {
@@ -23,7 +24,8 @@ class ChessMove //: Move
             start = nStartPos;
             target = nEndPos;
         }
-        void setPromotion(const coordinates & nStartPos, const coordinates & nEndPos, const int & nStatus, const char & promoteTo)
+        void setPromotion(const coordinates & nStartPos, const coordinates & nEndPos, const int & nStatus,
+                const char & promoteTo)
         {
             movetype = nStatus;
             start = nStartPos;
@@ -36,18 +38,40 @@ class ChessMove //: Move
             target = buddy;
             movetype = nStatus;
         }
+        void setCheckMate(const bool & cm)
+        { checkmate = cm; }
+        void setColour(const bool & nC)
+        { movedBy = nC; }
 
-        void setCheckMate(const bool & cm) {checkmate = cm;}
-        void setColour(const bool & nC) {movedBy = nC;}
+        ChessMove validate()
+        {
+            valid = true;
+            dummy = false;
+            return *this;
+        }
+        ChessMove inValidate()
+        {
+            valid = false;
+            dummy = false;
+            return *this;
+        }
 
-        [[nodiscard]] bool getColour() const {return movedBy;}
-        [[nodiscard]] bool isValid() const {return valid;}
-        void validate() {valid = true;}
-        [[nodiscard]] int moveType() const {return movetype;}
-        [[nodiscard]] coordinates startPos() const {return start;}
-        [[nodiscard]] coordinates endPos() const {return target;}
-        [[nodiscard]] char promotionResult() const {return pieceId;}
+        [[nodiscard]] bool isValid() const
+        { return valid; }
+        [[nodiscard]] bool isDummy() const
+        { return dummy; }
+        [[nodiscard]] bool getColour() const
+        { return movedBy; }
+        [[nodiscard]] int moveType() const
+        { return movetype; }
+        [[nodiscard]] coordinates startPos() const
+        { return start; }
+        [[nodiscard]] coordinates endPos() const
+        { return target; }
+        [[nodiscard]] char promotionResult() const
+        { return pieceId; }
     protected:
+        bool dummy;
         bool valid;
         bool movedBy;
         bool checkmate;

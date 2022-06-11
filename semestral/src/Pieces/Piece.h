@@ -54,8 +54,8 @@ class Piece
         bool getColour();
         std::vector<coordinates> getMoves();
         coordinates getPosition();
-        void updatePosition(const coordinates & newPos);
-        void revertPosition();
+        virtual void updatePosition(const coordinates & newPos);
+        virtual void revertPosition();
 //----------------------------------------------------------------------------------------------------------------------
     protected:
         std::vector<coordinates> moves;

@@ -104,16 +104,16 @@ enum states{};
             if (game->isMove(moveCmd))
             {
                 ChessMove move = game->ProcessMove(players[onTurn]->getColour(), moveCmd);
-                if(move.isValid())
-                    status = game->ExecuteMove(move);
-                else
+                // game (board) needs to know about the invalid move
+                status = game->ExecuteMove(move);
+                if(status == 1)
                 {
                     interface->Display("Invalid move!\n");
                     --onTurn;
                 }
                 if(status == 2)
                 {
-                    interface->Display(std::string((onTurn?"Black":"White")) + " wins!\n");
+                    interface->Display(game->announceWinner(onTurn));
                     return 1;
                 }
                 continue;
