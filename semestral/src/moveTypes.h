@@ -2,6 +2,8 @@
 // Created by teodor on 10.06.22.
 //
 
+#pragma once
+
 enum moveTypes
 {
     //0       1         2         3         4         5         6

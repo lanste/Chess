@@ -1,0 +1,10 @@
+#! /bin/bash
+mkdir lanskteo
+cp src lanskteo/src
+doxygen
+cp doc lanskteo/doc
+cp Doxyfile lanskteo/Doxyfile
+cp examples lanskteo/examples
+cp Makefile lanskteo/Makefile
+cp zadani.txt lanskteo/zadani.txt
+cp prohlaseni.txt lanskteo/src

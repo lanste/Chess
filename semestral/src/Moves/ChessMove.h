@@ -6,6 +6,10 @@
 
 #include "../coordinates.h"
 
+/**
+ * class representing any move in classical Chess
+ * polymorphism delayed/dropped for simplification
+ */
 class ChessMove //: Move
 {
     public:

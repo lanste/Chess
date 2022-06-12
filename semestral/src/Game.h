@@ -4,13 +4,13 @@
 
 #pragma once
 
-#include "UI/ITerminal.h"
-#include "Boards/ClassicalChessBoard.h"
-#include "Players/LocalPlayer.h"
-#include "Players/AI1.h"
-#include "Players/AI2.h"
-#include "Players/AI3.h"
-#include "Commands/BackCmd.h"
+#include "ITerminal.h"
+#include "ClassicalChessBoard.h"
+#include "LocalPlayer.h"
+#include "AI1.h"
+#include "AI2.h"
+#include "AI3.h"
+#include "BackCmd.h"
 #include "SaveManager.h"
 #include "Moves/ChessMove.h"
 //#include "../Commands/Game/SaveGameCmd.h"

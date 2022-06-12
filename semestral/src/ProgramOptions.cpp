@@ -4,8 +4,8 @@
 
 
 #include "ProgramOptions.h"
-#include "UI/ITerminal.h"
-#include "UI/Interface.h"
+#include "ITerminal.h"
+#include "Interface.h"
 
 ProgramOptions::ProgramOptions() : argumentCount(0)
 {
