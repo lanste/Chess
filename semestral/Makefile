@@ -17,35 +17,35 @@ clean:
 
 # here add output of "g++ -MM *.cpp >>Makefile"
 
-Application.o: src/Application/Application.cpp src/Application/Application.h src/UI/Interface.h \
- src/Application src/UI/ITerminal.h src/Application/Game.h src/Boards/Board.h \
- src/Boards/../Players/Player.h src/Players/LocalPlayer.h \
+Application.o: src/Application.cpp src/Application.h src/UI/Interface.h \
+ src/Application src/UI/ITerminal.h src/Game.h src/Boards \
+ src/Boards src/Players/LocalPlayer.h \
  src/Players/AI1.h src/Players/AI2.h src/Players/AI3.h \
- src/Application/ProgramOptions.h
-Game.o: src/Application/Game.cpp src/Application/Game.h src/UI/Interface.h src/UI/ITerminal.h \
- src/Boards/Board.h src/Boards/../Players/Player.h \
+ src/ProgramOptions.h
+Game.o: src/Game.cpp src/Game.h src/UI/Interface.h src/UI/ITerminal.h \
+ src/Boards src/Boards \
  src/Players/LocalPlayer.h src/Players/AI1.h src/Players/AI2.h \
  src/Players/AI3.h
-main.o: src/main.cpp src/Application/Application.h src/UI/Interface.h src/Application \
- src/UI/ITerminal.h src/Application/Game.h src/Boards/Board.h \
- src/Boards/../Players/Player.h src/Players/LocalPlayer.h \
+main.o: src/main.cpp src/Application.h src/UI/Interface.h src/Application \
+ src/UI/ITerminal.h src/Game.h src/Boards \
+ src/Boards src/Players/LocalPlayer.h \
  src/Players/AI1.h src/Players/AI2.h src/Players/AI3.h \
- src/Application/ProgramOptions.h
+ src/ProgramOptions.h
 MainMenu.o: src/Application src/Application src/UI/Interface.h \
- src/UI/ITerminal.h src/Application/Game.h src/Boards/Board.h \
- src/Boards/../Players/Player.h src/Players/LocalPlayer.h \
+ src/UI/ITerminal.h src/Game.h src/Boards \
+ src/Boards src/Players/LocalPlayer.h \
  src/Players/AI1.h src/Players/AI2.h src/Players/AI3.h
-ProgramOptions.o: src/Application/ProgramOptions.cpp src/Application/ProgramOptions.h \
+ProgramOptions.o: src/ProgramOptions.cpp src/ProgramOptions.h \
  src/UI/Interface.h src/UI/ITerminal.h
-Board.o:src/Boards/Board.h \
- src/Boards/../Players/Player.h
-ClassicalChessBoard.o: src/Boards/ClassicalChessBoard.cpp \
- src/Boards/ClassicalChessBoard.h src/Boards/Board.h \
- src/Boards/../Players/Player.h src/UI/Interface.h \
- src/Boards/../UI/ITerminal.h src/Boards/../Pieces/Piece.h \
- src/Boards/../Pieces/King.h src/Boards/../Pieces/Queen.h \
- src/Boards/../Pieces/Bishop.h src/Boards/../Pieces/Knight.h \
- src/Boards/../Pieces/Rook.h src/Boards/../Pieces/Pawn.h
+Board.o:src/Boards \
+ src/Boards
+ClassicalChessBoard.o: src/Boards \
+ src/Boards src/Boards \
+ src/Boards src/UI/Interface.h \
+ src/Boards src/Boards \
+ src/Boards src/Boards \
+ src/Boards src/Boards \
+ src/Boards src/Boards
 Bishop.o: src/Pieces/Bishop.cpp src/Pieces/Bishop.h src/Pieces/Piece.h \
  src/UI/Interface.h src/Pieces/../UI/ITerminal.h
 King.o: src/Pieces/King.cpp src/Pieces/King.h src/Pieces/Piece.h \

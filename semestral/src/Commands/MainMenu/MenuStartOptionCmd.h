@@ -5,8 +5,8 @@
 #pragma once
 
 #include "../Command.h"
-#include "../../Application/Game.h"
-#include "../../Application/Menus/StartGameMenu.h"
+#include "../../Game.h"
+#include "../../Menus/StartGameMenu.h"
 
 class MenuStartOptionCmd : public Command
 {

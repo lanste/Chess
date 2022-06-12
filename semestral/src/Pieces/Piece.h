@@ -6,7 +6,7 @@
 
 #include "../UI/Interface.h"
 #include "../UI/ITerminal.h"
-#include "../Application/coordinates.h"
+#include "../coordinates.h"
 //#include "../Application/moveTypes.h"
 
 #include <memory>

@@ -8,7 +8,7 @@
 
 //#include "../UI/Interface.h"
 //#include "../UI/ITerminal.h"
-#include "../Application/moveTypes.h"
+#include "../moveTypes.h"
 #include "../Pieces/Piece.h"
 #include "../Pieces/King.h"
 #include "../Pieces/Queen.h"

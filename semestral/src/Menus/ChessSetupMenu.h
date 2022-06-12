@@ -5,14 +5,14 @@
 #pragma once
 
 #include "Menu.h"
-#include "../../Commands/BackCmd.h"
-#include "../../Commands/LaunchGameCmd.h"
+#include "../Commands/BackCmd.h"
+#include "../Commands/LaunchGameCmd.h"
 // players might be included in ^
-#include "../../Players/Player.h"
-#include "../../Players/LocalPlayer.h"
-#include "../../Players/AI1.h"
-#include "../../Players/AI2.h"
-#include "../../Players/AI3.h"
+#include "../Players/Player.h"
+#include "../Players/LocalPlayer.h"
+#include "../Players/AI1.h"
+#include "../Players/AI2.h"
+#include "../Players/AI3.h"
 
 #include <vector>
 #include <sstream>

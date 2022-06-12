@@ -5,9 +5,9 @@
 #pragma once
 
 #include "Menu.h"
-#include "../../Commands/ChooseGameMenu/SetupGameCmd.h"
-#include "../../Commands/BackCmd.h"
-#include "../../Commands/ChooseGameMenu/ComingSoonCmd.h"
+#include "../Commands/ChooseGameMenu/SetupGameCmd.h"
+#include "../Commands/BackCmd.h"
+#include "../Commands/ChooseGameMenu/ComingSoonCmd.h"
 
 
 #include <memory>

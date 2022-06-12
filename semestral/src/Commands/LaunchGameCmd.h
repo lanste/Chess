@@ -5,7 +5,7 @@
 #pragma once
 
 #include "Command.h"
-#include "../Application/Game.h"
+#include "../Game.h"
 
 class LaunchGameCmd : public Command
 {

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../UI/Interface.h"
+#include "UI/Interface.h"
 #include "Menus/MainMenu.h"
 #include "Game.h"
 #include "ProgramOptions.h"

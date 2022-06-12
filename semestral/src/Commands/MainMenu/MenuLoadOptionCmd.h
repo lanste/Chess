@@ -5,7 +5,7 @@
 #pragma once
 
 #include "../Command.h"
-#include "../../Application/Menus/LoadGameMenu.h"
+#include "../../Menus/LoadGameMenu.h"
 
 class MenuLoadOptionCmd : public Command
 {

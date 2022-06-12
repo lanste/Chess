@@ -7,7 +7,7 @@
 #include "Command.h" // base class
 
 #include "LaunchGameCmd.h"
-#include "../Application/SaveManager.h"
+#include "../SaveManager.h"
 #include "../Players/Player.h"
 #include "../Players/LocalPlayer.h"
 #include "../Players/OnlinePlayer.h"

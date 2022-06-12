@@ -6,9 +6,9 @@
 
 
 #include "Menu.h"
-#include "../../Commands/MainMenu/MenuStartOptionCmd.h"
-#include "../../Commands/MainMenu/MenuLoadOptionCmd.h"
-#include "../../Commands/MainMenu/ExitCmd.h"
+#include "../Commands/MainMenu/MenuStartOptionCmd.h"
+#include "../Commands/MainMenu/MenuLoadOptionCmd.h"
+#include "../Commands/MainMenu/ExitCmd.h"
 
 #include <vector>
 #include <map>

@@ -10,8 +10,8 @@
  * todo: organize code consistently
  */
 
-#include "Application/Application.h"
-#include "Application/ProgramOptions.h"
+#include "Application.h"
+#include "ProgramOptions.h"
 
 #include <string>
 
