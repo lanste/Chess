@@ -28,22 +28,24 @@ int King::tryMove(const coordinates & startPos, const coordinates & endPos,
 {
     if(startPos == endPos)
         return 1;
+
     for (const auto & elem: moves)
     {
+
         coordinates pos = startPos + elem;
-        //if((pos.x < 8 && pos.x > -1) && (pos.y < 8 && pos.y > -1))
-        //    continue;
         if (pos == endPos)
         {
+            if (endPos.x > 7 || endPos.x < 0 || endPos.y > 7 || endPos.y < 0)
+                return 1;
             int result = 1;
             if(board[endPos.x][endPos.y] != nullptr && board[endPos.x][endPos.y]->getColour() == colour)
                 break;
             //request
             //long castle
-            if(elem == moves[lcastle] && !moved && board[pos.x][5] == nullptr)
+            if(elem == moves[lcastle] && !moved && board[pos.x][3] == nullptr)
                 result = 5;
             // short castle
-            if(elem == moves[scastle] && !moved && board[pos.x][3] == nullptr)
+            if(elem == moves[scastle] && !moved && board[pos.x][5] == nullptr)
                 result = 4;
             if(elem != moves[lcastle] && elem != moves[scastle])
                 result = 0;

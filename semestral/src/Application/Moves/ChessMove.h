@@ -9,7 +9,7 @@
 class ChessMove //: Move
 {
     public:
-        ChessMove() : dummy(true), valid(false)
+        ChessMove() : dummy(true), valid(false), checkmate(false)
         {}
 
         void setValidMove(const coordinates & nStartPos, const coordinates & nEndPos, const int & nStatus)
@@ -38,8 +38,8 @@ class ChessMove //: Move
             target = buddy;
             movetype = nStatus;
         }
-        void setCheckMate(const bool & cm)
-        { checkmate = cm; }
+        void checkMate()
+        { checkmate = true;}
         void setColour(const bool & nC)
         { movedBy = nC; }
 
@@ -60,6 +60,8 @@ class ChessMove //: Move
         { return valid; }
         [[nodiscard]] bool isDummy() const
         { return dummy; }
+        [[nodiscard]] bool isCheckMate() const
+        { return checkmate; }
         [[nodiscard]] bool getColour() const
         { return movedBy; }
         [[nodiscard]] int moveType() const

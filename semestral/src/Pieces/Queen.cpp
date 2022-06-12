@@ -28,7 +28,7 @@ int Queen::tryMove(const coordinates & startPos, const coordinates & endPos,
     for (const auto & elem: moves)
     {
         bool hitFlag = false;
-        coordinates pos = position;
+        coordinates pos = position + elem;
         coordinates hitPos = {-1,-1};
         while((pos.x <= 7 && pos.x >= 0) && (pos.y <= 7 && pos.y >= 0) )
         {

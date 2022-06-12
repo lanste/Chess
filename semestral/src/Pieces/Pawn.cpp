@@ -4,7 +4,7 @@
 
 #include "Pawn.h"
 
-Pawn::Pawn(const bool & col, const coordinates & myPos) : Piece('P', col, myPos), traveledSquares(0), moved(false)
+Pawn::Pawn(const bool & col, const coordinates & myPos) : Piece('P', col, myPos), traveledSquares(0), moved(false), doubleStep(false)
 {
     if (!col)
     {
@@ -41,6 +41,11 @@ int Pawn::tryMove(const coordinates & startPos, const coordinates & endPos,
             pos = pos + elem;
             if (pos == endPos)
             {
+                doubleStep = false;
+                //problematic
+                if(!moved && moves.size() == 4 && elem == moves[3])
+                   doubleStep = true;
+
                 if (moves.size() == 4 && elem == moves[3] && // this move is doublestep
                         board[forwardRank][startPos.y] == nullptr && // no piece directly in front
                         board[endPos.x][endPos.y] == nullptr) // no pieces in endPos
@@ -88,7 +93,7 @@ int Pawn::tryMove(const coordinates & startPos, const coordinates & endPos,
                     moves.pop_back(); //last inserted is move by 2 - kinda stupid but ok
                     moved = true;
                 }
-                traveledSquares += abs(elem.x);
+                traveledSquares += abs(elem.x); //todo this is problem
                 //pastPosition = position;
                 return validResult;
             }

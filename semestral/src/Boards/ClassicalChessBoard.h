@@ -74,6 +74,9 @@ class ClassicalChessBoard : public Board
     protected:
         [[nodiscard]] bool isContested(const coordinates & tile, const char & exclude = 'O');
         [[nodiscard]] bool findMate(const bool & colour);
+        [[nodiscard]] bool kingCanMove(const bool & colour);
+        [[nodiscard]] bool canPrevent(const bool & colour);
+
 
         struct ChessBoard{
             bool real;
@@ -83,6 +86,7 @@ class ClassicalChessBoard : public Board
             std::shared_ptr<Piece> & operator [] (const coordinates & i);
         };
         coordinates bKingPos, wKingPos;
+        coordinates dummybKingPos, dummywKingPos;
         ChessBoard board;
         std::vector<std::shared_ptr<Piece>> onBoard;
         std::vector<std::shared_ptr<Piece>> affected;

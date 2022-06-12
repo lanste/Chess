@@ -53,7 +53,9 @@ ClassicalChessBoard::ClassicalChessBoard(const bool & empty) : Board("Chess")
 
     board.dummy = board.data;
     bKingPos = {7, 4};
+    dummybKingPos = {7, 4};
     wKingPos = {0, 4};
+    dummywKingPos = {0, 4};
     check = 2;
     checkmate = false;
 }
@@ -133,6 +135,7 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
             case whiteKing:
                 pc = std::make_shared<King>(false, coordinates{row, tile});
                 wKingPos = {row, tile};
+                dummywKingPos = {row, tile};
                 break;
             case blackPawn:
                 pc = std::make_shared<Pawn>(true, coordinates{row, tile});
@@ -162,6 +165,7 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
             case blackKing:
                 pc = std::make_shared<King>(true, coordinates{row, tile});
                 bKingPos = {row, tile};
+                dummybKingPos = {row, tile};
                 break;
             case '/':
                 ++row;
@@ -206,7 +210,7 @@ std::string ClassicalChessBoard::State()
      * -> would loose some generality (todo) even though it doesn't have any at the moment
      */
     std::stringstream output;
-    if(checkmate)
+    if (checkmate)
     {
         // todo
     }
@@ -264,7 +268,6 @@ std::string ClassicalChessBoard::State()
 ChessMove ClassicalChessBoard::ProcessMove(const bool & colour, const std::string & move)
 {
     ChessMove output;// initialize dummy move
-    check = 2;
     // switches which board is being altered - staging or executing
     board.isReal(not output.isDummy());
 
@@ -358,7 +361,7 @@ ChessMove ClassicalChessBoard::ProcessMove(const bool & colour, const std::strin
             if (board[endPos] != nullptr && board[endPos]->getColour() != colour)
                 affected.push_back(board[endPos]);
             affected.push_back(board[startPos]);
-            output.setValidMove(startPos, endPos, VALID);
+            output.setValidMove(startPos, endPos, DOUBLESTEP);
             break;
         default:
             break;
@@ -366,20 +369,22 @@ ChessMove ClassicalChessBoard::ProcessMove(const bool & colour, const std::strin
 
     ExecuteMove(output); // executes move on dummy board
 
-    if(isContested(wKingPos, 'K'))
+    if (isContested(dummywKingPos, white))
         check = white;
-    if(isContested(bKingPos, 'k'))
+    else if (isContested(dummybKingPos, black))
         check = black;
+    else
+        check = 2;
     if (check == colour)
     {
         return output.inValidate();
     }
-
-    checkmate = findMate(colour);
+    if (check != 2)
+        checkmate = findMate(colour);
     if (checkmate)
     {
-        output.setCheckMate(checkmate);
-        return output.inValidate();
+        output.checkMate();
+        return output.validate();
     }
     output.setColour(colour);
     return output.validate();
@@ -388,7 +393,7 @@ ChessMove ClassicalChessBoard::ProcessMove(const bool & colour, const std::strin
 int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
 {
     //std::cout << "Execute start: " << board.real << std::endl;
-    if(not move.isValid() && not move.isDummy())
+    if (not move.isValid() && not move.isDummy())
     {
         //std::cout << "Execute Invalid move" << std::endl;
         board.dummy = board.data;
@@ -397,9 +402,12 @@ int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
 
     board.isReal(not move.isDummy());
 
+    if (move.isCheckMate())
+        return 2;
+
     //std::cout << "Execute after checks: " << board.real << std::endl;
-    std::cout << "white king: " << wKingPos.x << wKingPos.y << std::endl;
-    std::cout << "black king: " << bKingPos.x << bKingPos.y << std::endl;
+    std::cerr << "white king: " << wKingPos.x << wKingPos.y << std::endl;
+    std::cerr << "black king: " << bKingPos.x << bKingPos.y << std::endl;
 
     coordinates startPos = move.startPos();
     coordinates endPos = move.endPos();
@@ -416,11 +424,17 @@ int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
             holdPiece->updatePosition(endPos);
             if (holdPiece->Save() == 'K')
             {
-                wKingPos = holdPiece->getPosition();
+                if (move.isDummy())
+                    dummywKingPos = holdPiece->getPosition();
+                else
+                    wKingPos = dummywKingPos;
             }
             if (holdPiece->Save() == 'k')
             {
-                bKingPos = holdPiece->getPosition();
+                if (move.isDummy())
+                    dummybKingPos = holdPiece->getPosition();
+                else
+                    bKingPos = dummybKingPos;
             }
             board[endPos] = holdPiece;
             break;
@@ -459,9 +473,20 @@ int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
             int row = startPos.x;
             Rook buddy = dynamic_cast<Rook &>(*(board[endPos]));
             if (board[startPos]->Save() == 'K')
-                wKingPos = {row, 2};
+            {
+                if (move.isDummy())
+                    dummywKingPos = board[startPos]->getPosition();
+                else
+                    wKingPos = dummywKingPos;
+            }
             if (board[startPos]->Save() == 'k')
-                bKingPos = {row, 2};
+            {
+                if (move.isDummy())
+                    dummybKingPos = board[startPos]->getPosition();
+                else
+                    bKingPos = dummybKingPos;
+            }
+
             auto holdKing = board[{row, 4}];
             auto holdRook = board[endPos];
             board[{row, 4}] = nullptr;
@@ -477,9 +502,19 @@ int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
             int row = startPos.x;
             Rook buddy = dynamic_cast<Rook &>(*(board[endPos]));
             if (board[startPos]->Save() == 'K')
-                wKingPos = {row, 2};
+            {
+                if (move.isDummy())
+                    dummywKingPos = board[startPos]->getPosition();
+                else
+                    wKingPos = dummywKingPos;
+            }
             if (board[startPos]->Save() == 'k')
-                bKingPos = {row, 2};
+            {
+                if (move.isDummy())
+                    dummybKingPos = board[startPos]->getPosition();
+                else
+                    bKingPos = dummybKingPos;
+            }
             auto holdKing = board[{row, startPos.y}];
             auto holdRook = board[endPos];
             board[{row, startPos.y}] = nullptr;
@@ -500,6 +535,15 @@ int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
             board[{targetRank, endPos.y}] = nullptr;
             break;
         }
+        case DOUBLESTEP:
+        {
+            auto holdPiece = board[startPos];
+            board[startPos] = nullptr;
+
+            holdPiece->updatePosition(endPos);
+            board[endPos] = holdPiece;
+            break;
+        }
         default:
             break;
     }
@@ -509,7 +553,6 @@ bool ClassicalChessBoard::isContested(const coordinates & tile, const char & exc
 {
     for (const auto & piece: onBoard)
     {
-
         auto pCopy = piece->CreateInstance();
         if (exclude != 'O' && (exclude == pCopy->getColour() || pCopy->Save() == exclude))
             continue;
@@ -526,7 +569,61 @@ bool ClassicalChessBoard::isContested(const coordinates & tile, const char & exc
 
 bool ClassicalChessBoard::findMate(const bool & colour)
 {
-   return false;
+    if (kingCanMove(colour))
+    {
+        return false;
+    }
+    if (canPrevent(colour))
+    {
+        return false;
+    }
+    return true;
+}
+
+bool ClassicalChessBoard::kingCanMove(const bool & colour)
+{
+    coordinates checkedKingPos;
+    if (check == white)
+        checkedKingPos = wKingPos;
+    else
+        checkedKingPos = bKingPos;
+    auto king = board[checkedKingPos];
+    for (const auto & move: king->getMoves())
+    {
+        coordinates dest = checkedKingPos + move;
+
+        if (king->tryMove(checkedKingPos, dest, board.dummy) != 1 && !isContested(dest, king->getColour()))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ClassicalChessBoard::canPrevent(const bool & colour)
+{
+    coordinates checkedKingPos;
+    if (check == white)
+        checkedKingPos = wKingPos;
+    else
+        checkedKingPos = bKingPos;
+
+    for (const auto & piece: onBoard)
+    {
+        if (piece->getColour() != board[checkedKingPos]->getColour())
+            continue;
+        auto pc = piece->CreateInstance();
+        for (const auto & move: pc->getMoves())
+        {
+            coordinates dest = pc->getPosition() + move;
+            if (pc->tryMove(pc->getPosition(), dest, board.dummy))
+                if (not isContested(checkedKingPos, board[checkedKingPos]->getColour()))
+                {
+                    return true;
+                }
+        }
+    }
+    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -574,7 +671,6 @@ bool ClassicalChessBoard::isMove(std::string & command)
 
     return false;
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::string ClassicalChessBoard::Save()
 {
@@ -660,7 +756,7 @@ std::string ClassicalChessBoard::Save()
 }
 std::string ClassicalChessBoard::announceWinner(const bool & colour)
 {
-    return std::string(!colour?"White wins!":"Black wins!");
+    return std::string(!colour ? "White wins!\n" : "Black wins!\n");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
