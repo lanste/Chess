@@ -9,13 +9,13 @@
 //#include "../UI/Interface.h"
 //#include "../UI/ITerminal.h"
 #include "moveTypes.h"
-#include "Piece.h"
-#include "King.h"
-#include "Queen.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Rook.h"
-#include "Pawn.h"
+#include "Pieces/Piece.h"
+#include "Pieces/King.h"
+#include "Pieces/Queen.h"
+#include "Pieces/Bishop.h"
+#include "Pieces/Knight.h"
+#include "Pieces/Rook.h"
+#include "Pieces/Pawn.h"
 
 #include <array>
 

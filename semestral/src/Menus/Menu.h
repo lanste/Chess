@@ -6,7 +6,7 @@
 
 #include "Interface.h"
 #include "ITerminal.h"
-#include "Command.h"
+#include "Commands/Command.h"
 
 #include <string>
 #include <map>

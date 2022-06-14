@@ -75,11 +75,11 @@ void LoadGameMenu::createPrompt()
     if(not saveList.empty())
     {
         optCnt = saves.List().size();
-        oss << "\nChoose save to load [0-" << optCnt << "] or type \"Back\":\n";
+        oss << "\nChoose save to load [0-" << optCnt << "]:\n";
     }
     else
     {
-        oss << "\nChoose 0 or type \"Back\":\n";
+        oss << "\nType 0 to go back:\n";
     }
     interface->Display(oss.str());
 }

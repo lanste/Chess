@@ -11,9 +11,9 @@
 #include "Player.h"
 #include "LocalPlayer.h"
 #include "OnlinePlayer.h"
-#include "AI1.h"
-#include "AI2.h"
-#include "AI3.h"
+#include "Players/AI1.h"
+#include "Players/AI2.h"
+#include "Players/AI3.h"
 #include "Board.h"
 #include "ClassicalChessBoard.h"
 

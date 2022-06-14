@@ -1,0 +1,353 @@
+ClassicalChessBoard.o: src/Boards/ClassicalChessBoard.cpp \
+ src/Boards/ClassicalChessBoard.h src/Boards/Board.h \
+ src/Boards/../Utility/ChessMove.h src/Boards/../Utility/coordinates.h \
+ src/Boards/../Utility/moveTypes.h src/Boards/../Pieces/Piece.h \
+ src/Boards/../Pieces/../UI/Interface.h \
+ src/Boards/../Pieces/../UI/ITerminal.h src/Boards/../Pieces/King.h \
+ src/Boards/../Pieces/Queen.h src/Boards/../Pieces/Bishop.h \
+ src/Boards/../Pieces/Knight.h src/Boards/../Pieces/Rook.h \
+ src/Boards/../Pieces/Pawn.h
+BackCmd.o: src/Commands/BackCmd.cpp src/Commands/BackCmd.h \
+ src/Commands/Command.h src/Commands/../UI/Interface.h \
+ src/Commands/../UI/ITerminal.h
+ChoosePlayerCmd.o: src/Commands/ChoosePlayerCmd.cpp \
+ src/Commands/ChoosePlayerCmd.h src/Commands/Command.h \
+ src/Commands/../UI/Interface.h src/Commands/../UI/ITerminal.h
+ComingSoonCmd.o: src/Commands/ComingSoonCmd.cpp \
+ src/Commands/ComingSoonCmd.h src/Commands/Command.h \
+ src/Commands/../UI/Interface.h src/Commands/../UI/ITerminal.h
+ExitCmd.o: src/Commands/ExitCmd.cpp src/Commands/ExitCmd.h \
+ src/Commands/Command.h src/Commands/../UI/Interface.h \
+ src/Commands/../UI/ITerminal.h
+LaunchGameCmd.o: src/Commands/LaunchGameCmd.cpp \
+ src/Commands/LaunchGameCmd.h src/Commands/Command.h \
+ src/Commands/../UI/Interface.h src/Commands/../UI/ITerminal.h \
+ src/Commands/../Game.h src/Commands/../Boards/ClassicalChessBoard.h \
+ src/Commands/../Boards/Board.h \
+ src/Commands/../Boards/../Utility/ChessMove.h \
+ src/Commands/../Boards/../Utility/coordinates.h \
+ src/Commands/../Boards/../Utility/moveTypes.h \
+ src/Commands/../Boards/../Pieces/Piece.h \
+ src/Commands/../Boards/../Pieces/King.h \
+ src/Commands/../Boards/../Pieces/Queen.h \
+ src/Commands/../Boards/../Pieces/Bishop.h \
+ src/Commands/../Boards/../Pieces/Knight.h \
+ src/Commands/../Boards/../Pieces/Rook.h \
+ src/Commands/../Boards/../Pieces/Pawn.h \
+ src/Commands/../Players/LocalPlayer.h src/Commands/../Players/Player.h \
+ src/Commands/../Players/AI1.h src/Commands/../Players/AI2.h \
+ src/Commands/../Players/AI3.h src/Commands/../Commands/BackCmd.h \
+ src/Commands/../SaveManager.h
+LoadGameCmd.o: src/Commands/LoadGameCmd.cpp src/Commands/LoadGameCmd.h \
+ src/Commands/Command.h src/Commands/../UI/Interface.h \
+ src/Commands/../UI/ITerminal.h src/Commands/LaunchGameCmd.h \
+ src/Commands/../Game.h src/Commands/../Boards/ClassicalChessBoard.h \
+ src/Commands/../Boards/Board.h \
+ src/Commands/../Boards/../Utility/ChessMove.h \
+ src/Commands/../Boards/../Utility/coordinates.h \
+ src/Commands/../Boards/../Utility/moveTypes.h \
+ src/Commands/../Boards/../Pieces/Piece.h \
+ src/Commands/../Boards/../Pieces/King.h \
+ src/Commands/../Boards/../Pieces/Queen.h \
+ src/Commands/../Boards/../Pieces/Bishop.h \
+ src/Commands/../Boards/../Pieces/Knight.h \
+ src/Commands/../Boards/../Pieces/Rook.h \
+ src/Commands/../Boards/../Pieces/Pawn.h \
+ src/Commands/../Players/LocalPlayer.h src/Commands/../Players/Player.h \
+ src/Commands/../Players/AI1.h src/Commands/../Players/AI2.h \
+ src/Commands/../Players/AI3.h src/Commands/../Commands/BackCmd.h \
+ src/Commands/../SaveManager.h src/Commands/../Players/OnlinePlayer.h
+MenuLoadOptionCmd.o: src/Commands/MenuLoadOptionCmd.cpp \
+ src/Commands/MenuLoadOptionCmd.h src/Commands/Command.h \
+ src/Commands/../UI/Interface.h src/Commands/../UI/ITerminal.h \
+ src/Commands/../Menus/LoadGameMenu.h src/Commands/../Menus/Menu.h \
+ src/Commands/../Menus/../Commands/BackCmd.h \
+ src/Commands/../Menus/../Commands/LoadGameCmd.h \
+ src/Commands/../Menus/../Commands/LaunchGameCmd.h \
+ src/Commands/../Menus/../Commands/../Game.h \
+ src/Commands/../Menus/../Commands/../Boards/ClassicalChessBoard.h \
+ src/Commands/../Menus/../Commands/../Boards/Board.h \
+ src/Commands/../Menus/../Commands/../Boards/../Utility/ChessMove.h \
+ src/Commands/../Menus/../Commands/../Boards/../Utility/coordinates.h \
+ src/Commands/../Menus/../Commands/../Boards/../Utility/moveTypes.h \
+ src/Commands/../Menus/../Commands/../Boards/../Pieces/Piece.h \
+ src/Commands/../Menus/../Commands/../Boards/../Pieces/King.h \
+ src/Commands/../Menus/../Commands/../Boards/../Pieces/Queen.h \
+ src/Commands/../Menus/../Commands/../Boards/../Pieces/Bishop.h \
+ src/Commands/../Menus/../Commands/../Boards/../Pieces/Knight.h \
+ src/Commands/../Menus/../Commands/../Boards/../Pieces/Rook.h \
+ src/Commands/../Menus/../Commands/../Boards/../Pieces/Pawn.h \
+ src/Commands/../Menus/../Commands/../Players/LocalPlayer.h \
+ src/Commands/../Menus/../Commands/../Players/Player.h \
+ src/Commands/../Menus/../Commands/../Players/AI1.h \
+ src/Commands/../Menus/../Commands/../Players/AI2.h \
+ src/Commands/../Menus/../Commands/../Players/AI3.h \
+ src/Commands/../Menus/../Commands/../SaveManager.h \
+ src/Commands/../Menus/../Commands/../Players/OnlinePlayer.h
+MenuStartOptionCmd.o: src/Commands/MenuStartOptionCmd.cpp \
+ src/Commands/MenuStartOptionCmd.h src/Commands/Command.h \
+ src/Commands/../UI/Interface.h src/Commands/../UI/ITerminal.h \
+ src/Commands/../Game.h src/Commands/../Boards/ClassicalChessBoard.h \
+ src/Commands/../Boards/Board.h \
+ src/Commands/../Boards/../Utility/ChessMove.h \
+ src/Commands/../Boards/../Utility/coordinates.h \
+ src/Commands/../Boards/../Utility/moveTypes.h \
+ src/Commands/../Boards/../Pieces/Piece.h \
+ src/Commands/../Boards/../Pieces/King.h \
+ src/Commands/../Boards/../Pieces/Queen.h \
+ src/Commands/../Boards/../Pieces/Bishop.h \
+ src/Commands/../Boards/../Pieces/Knight.h \
+ src/Commands/../Boards/../Pieces/Rook.h \
+ src/Commands/../Boards/../Pieces/Pawn.h \
+ src/Commands/../Players/LocalPlayer.h src/Commands/../Players/Player.h \
+ src/Commands/../Players/AI1.h src/Commands/../Players/AI2.h \
+ src/Commands/../Players/AI3.h src/Commands/../Commands/BackCmd.h \
+ src/Commands/../SaveManager.h src/Commands/../Menus/StartGameMenu.h \
+ src/Commands/../Menus/Menu.h \
+ src/Commands/../Menus/../Commands/SetupGameCmd.h \
+ src/Commands/../Menus/../Commands/../Menus/ChessSetupMenu.h \
+ src/Commands/../Menus/../Commands/../Menus/../Commands/LaunchGameCmd.h \
+ src/Commands/../Menus/../Commands/ComingSoonCmd.h
+SaveGameCmd.o: src/Commands/SaveGameCmd.cpp
+SetupGameCmd.o: src/Commands/SetupGameCmd.cpp src/Commands/SetupGameCmd.h \
+ src/Commands/Command.h src/Commands/../UI/Interface.h \
+ src/Commands/../UI/ITerminal.h \
+ src/Commands/../Boards/ClassicalChessBoard.h \
+ src/Commands/../Boards/Board.h \
+ src/Commands/../Boards/../Utility/ChessMove.h \
+ src/Commands/../Boards/../Utility/coordinates.h \
+ src/Commands/../Boards/../Utility/moveTypes.h \
+ src/Commands/../Boards/../Pieces/Piece.h \
+ src/Commands/../Boards/../Pieces/King.h \
+ src/Commands/../Boards/../Pieces/Queen.h \
+ src/Commands/../Boards/../Pieces/Bishop.h \
+ src/Commands/../Boards/../Pieces/Knight.h \
+ src/Commands/../Boards/../Pieces/Rook.h \
+ src/Commands/../Boards/../Pieces/Pawn.h src/Commands/../Game.h \
+ src/Commands/../Players/LocalPlayer.h src/Commands/../Players/Player.h \
+ src/Commands/../Players/AI1.h src/Commands/../Players/AI2.h \
+ src/Commands/../Players/AI3.h src/Commands/../Commands/BackCmd.h \
+ src/Commands/../SaveManager.h src/Commands/../Menus/ChessSetupMenu.h \
+ src/Commands/../Menus/Menu.h \
+ src/Commands/../Menus/../Commands/LaunchGameCmd.h
+ChessSetupMenu.o: src/Menus/ChessSetupMenu.cpp src/Menus/ChessSetupMenu.h \
+ src/Menus/Menu.h src/Menus/../UI/Interface.h src/Menus/../UI/ITerminal.h \
+ src/Menus/../Commands/Command.h src/Menus/../Commands/BackCmd.h \
+ src/Menus/../Commands/LaunchGameCmd.h src/Menus/../Commands/../Game.h \
+ src/Menus/../Commands/../Boards/ClassicalChessBoard.h \
+ src/Menus/../Commands/../Boards/Board.h \
+ src/Menus/../Commands/../Boards/../Utility/ChessMove.h \
+ src/Menus/../Commands/../Boards/../Utility/coordinates.h \
+ src/Menus/../Commands/../Boards/../Utility/moveTypes.h \
+ src/Menus/../Commands/../Boards/../Pieces/Piece.h \
+ src/Menus/../Commands/../Boards/../Pieces/King.h \
+ src/Menus/../Commands/../Boards/../Pieces/Queen.h \
+ src/Menus/../Commands/../Boards/../Pieces/Bishop.h \
+ src/Menus/../Commands/../Boards/../Pieces/Knight.h \
+ src/Menus/../Commands/../Boards/../Pieces/Rook.h \
+ src/Menus/../Commands/../Boards/../Pieces/Pawn.h \
+ src/Menus/../Commands/../Players/LocalPlayer.h \
+ src/Menus/../Commands/../Players/Player.h \
+ src/Menus/../Commands/../Players/AI1.h \
+ src/Menus/../Commands/../Players/AI2.h \
+ src/Menus/../Commands/../Players/AI3.h \
+ src/Menus/../Commands/../SaveManager.h
+LoadGameMenu.o: src/Menus/LoadGameMenu.cpp src/Menus/LoadGameMenu.h \
+ src/Menus/Menu.h src/Menus/../UI/Interface.h src/Menus/../UI/ITerminal.h \
+ src/Menus/../Commands/Command.h src/Menus/../Commands/BackCmd.h \
+ src/Menus/../Commands/LoadGameCmd.h \
+ src/Menus/../Commands/LaunchGameCmd.h src/Menus/../Commands/../Game.h \
+ src/Menus/../Commands/../Boards/ClassicalChessBoard.h \
+ src/Menus/../Commands/../Boards/Board.h \
+ src/Menus/../Commands/../Boards/../Utility/ChessMove.h \
+ src/Menus/../Commands/../Boards/../Utility/coordinates.h \
+ src/Menus/../Commands/../Boards/../Utility/moveTypes.h \
+ src/Menus/../Commands/../Boards/../Pieces/Piece.h \
+ src/Menus/../Commands/../Boards/../Pieces/King.h \
+ src/Menus/../Commands/../Boards/../Pieces/Queen.h \
+ src/Menus/../Commands/../Boards/../Pieces/Bishop.h \
+ src/Menus/../Commands/../Boards/../Pieces/Knight.h \
+ src/Menus/../Commands/../Boards/../Pieces/Rook.h \
+ src/Menus/../Commands/../Boards/../Pieces/Pawn.h \
+ src/Menus/../Commands/../Players/LocalPlayer.h \
+ src/Menus/../Commands/../Players/Player.h \
+ src/Menus/../Commands/../Players/AI1.h \
+ src/Menus/../Commands/../Players/AI2.h \
+ src/Menus/../Commands/../Players/AI3.h \
+ src/Menus/../Commands/../SaveManager.h \
+ src/Menus/../Commands/../Players/OnlinePlayer.h
+MainMenu.o: src/Menus/MainMenu.cpp src/Menus/MainMenu.h src/Menus/Menu.h \
+ src/Menus/../UI/Interface.h src/Menus/../UI/ITerminal.h \
+ src/Menus/../Commands/Command.h \
+ src/Menus/../Commands/MenuStartOptionCmd.h \
+ src/Menus/../Commands/../Game.h \
+ src/Menus/../Commands/../Boards/ClassicalChessBoard.h \
+ src/Menus/../Commands/../Boards/Board.h \
+ src/Menus/../Commands/../Boards/../Utility/ChessMove.h \
+ src/Menus/../Commands/../Boards/../Utility/coordinates.h \
+ src/Menus/../Commands/../Boards/../Utility/moveTypes.h \
+ src/Menus/../Commands/../Boards/../Pieces/Piece.h \
+ src/Menus/../Commands/../Boards/../Pieces/King.h \
+ src/Menus/../Commands/../Boards/../Pieces/Queen.h \
+ src/Menus/../Commands/../Boards/../Pieces/Bishop.h \
+ src/Menus/../Commands/../Boards/../Pieces/Knight.h \
+ src/Menus/../Commands/../Boards/../Pieces/Rook.h \
+ src/Menus/../Commands/../Boards/../Pieces/Pawn.h \
+ src/Menus/../Commands/../Players/LocalPlayer.h \
+ src/Menus/../Commands/../Players/Player.h \
+ src/Menus/../Commands/../Players/AI1.h \
+ src/Menus/../Commands/../Players/AI2.h \
+ src/Menus/../Commands/../Players/AI3.h \
+ src/Menus/../Commands/../Commands/BackCmd.h \
+ src/Menus/../Commands/../SaveManager.h \
+ src/Menus/../Commands/../Menus/StartGameMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/SetupGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/../Menus/ChessSetupMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/../Menus/../Commands/LaunchGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/ComingSoonCmd.h \
+ src/Menus/../Commands/MenuLoadOptionCmd.h \
+ src/Menus/../Commands/../Menus/LoadGameMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/LoadGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/../Players/OnlinePlayer.h \
+ src/Menus/../Commands/ExitCmd.h
+StartGameMenu.o: src/Menus/StartGameMenu.cpp src/Menus/StartGameMenu.h \
+ src/Menus/Menu.h src/Menus/../UI/Interface.h src/Menus/../UI/ITerminal.h \
+ src/Menus/../Commands/Command.h src/Menus/../Commands/SetupGameCmd.h \
+ src/Menus/../Commands/../Boards/ClassicalChessBoard.h \
+ src/Menus/../Commands/../Boards/Board.h \
+ src/Menus/../Commands/../Boards/../Utility/ChessMove.h \
+ src/Menus/../Commands/../Boards/../Utility/coordinates.h \
+ src/Menus/../Commands/../Boards/../Utility/moveTypes.h \
+ src/Menus/../Commands/../Boards/../Pieces/Piece.h \
+ src/Menus/../Commands/../Boards/../Pieces/King.h \
+ src/Menus/../Commands/../Boards/../Pieces/Queen.h \
+ src/Menus/../Commands/../Boards/../Pieces/Bishop.h \
+ src/Menus/../Commands/../Boards/../Pieces/Knight.h \
+ src/Menus/../Commands/../Boards/../Pieces/Rook.h \
+ src/Menus/../Commands/../Boards/../Pieces/Pawn.h \
+ src/Menus/../Commands/../Game.h \
+ src/Menus/../Commands/../Players/LocalPlayer.h \
+ src/Menus/../Commands/../Players/Player.h \
+ src/Menus/../Commands/../Players/AI1.h \
+ src/Menus/../Commands/../Players/AI2.h \
+ src/Menus/../Commands/../Players/AI3.h \
+ src/Menus/../Commands/../Commands/BackCmd.h \
+ src/Menus/../Commands/../SaveManager.h \
+ src/Menus/../Commands/../Menus/ChessSetupMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/LaunchGameCmd.h \
+ src/Menus/../Commands/ComingSoonCmd.h
+Bishop.o: src/Pieces/Bishop.cpp src/Pieces/Bishop.h src/Pieces/Piece.h \
+ src/Pieces/../UI/Interface.h src/Pieces/../UI/ITerminal.h \
+ src/Pieces/../Utility/coordinates.h
+King.o: src/Pieces/King.cpp src/Pieces/King.h src/Pieces/Piece.h \
+ src/Pieces/../UI/Interface.h src/Pieces/../UI/ITerminal.h \
+ src/Pieces/../Utility/coordinates.h
+Knight.o: src/Pieces/Knight.cpp src/Pieces/Knight.h src/Pieces/Piece.h \
+ src/Pieces/../UI/Interface.h src/Pieces/../UI/ITerminal.h \
+ src/Pieces/../Utility/coordinates.h
+Pawn.o: src/Pieces/Pawn.cpp src/Pieces/Pawn.h src/Pieces/Piece.h \
+ src/Pieces/../UI/Interface.h src/Pieces/../UI/ITerminal.h \
+ src/Pieces/../Utility/coordinates.h
+Piece.o: src/Pieces/Piece.cpp src/Pieces/Piece.h \
+ src/Pieces/../UI/Interface.h src/Pieces/../UI/ITerminal.h \
+ src/Pieces/../Utility/coordinates.h
+Queen.o: src/Pieces/Queen.cpp src/Pieces/Queen.h src/Pieces/Piece.h \
+ src/Pieces/../UI/Interface.h src/Pieces/../UI/ITerminal.h \
+ src/Pieces/../Utility/coordinates.h
+Rook.o: src/Pieces/Rook.cpp src/Pieces/Rook.h src/Pieces/Piece.h \
+ src/Pieces/../UI/Interface.h src/Pieces/../UI/ITerminal.h \
+ src/Pieces/../Utility/coordinates.h
+AI1.o: src/Players/AI1.cpp src/Players/AI1.h src/Players/Player.h \
+ src/Players/../UI/Interface.h src/Players/../UI/ITerminal.h
+AI2.o: src/Players/AI2.cpp src/Players/AI2.h src/Players/Player.h \
+ src/Players/../UI/Interface.h src/Players/../UI/ITerminal.h
+AI3.o: src/Players/AI3.cpp src/Players/AI3.h src/Players/Player.h \
+ src/Players/../UI/Interface.h src/Players/../UI/ITerminal.h
+LocalPlayer.o: src/Players/LocalPlayer.cpp src/Players/LocalPlayer.h \
+ src/Players/Player.h src/Players/../UI/Interface.h \
+ src/Players/../UI/ITerminal.h
+OnlinePlayer.o: src/Players/OnlinePlayer.cpp src/Players/OnlinePlayer.h \
+ src/Players/Player.h src/Players/../UI/Interface.h \
+ src/Players/../UI/ITerminal.h
+ITerminal.o: src/UI/ITerminal.cpp src/UI/ITerminal.h src/UI/Interface.h
+Application.o: src/Application.cpp src/Application.h src/UI/Interface.h \
+ src/Menus/MainMenu.h src/Menus/Menu.h src/Menus/../UI/ITerminal.h \
+ src/Menus/../Commands/Command.h \
+ src/Menus/../Commands/MenuStartOptionCmd.h \
+ src/Menus/../Commands/../Game.h \
+ src/Menus/../Commands/../Boards/ClassicalChessBoard.h \
+ src/Menus/../Commands/../Boards/Board.h \
+ src/Menus/../Commands/../Boards/../Utility/ChessMove.h \
+ src/Menus/../Commands/../Boards/../Utility/coordinates.h \
+ src/Menus/../Commands/../Boards/../Utility/moveTypes.h \
+ src/Menus/../Commands/../Boards/../Pieces/Piece.h \
+ src/Menus/../Commands/../Boards/../Pieces/King.h \
+ src/Menus/../Commands/../Boards/../Pieces/Queen.h \
+ src/Menus/../Commands/../Boards/../Pieces/Bishop.h \
+ src/Menus/../Commands/../Boards/../Pieces/Knight.h \
+ src/Menus/../Commands/../Boards/../Pieces/Rook.h \
+ src/Menus/../Commands/../Boards/../Pieces/Pawn.h \
+ src/Menus/../Commands/../Players/LocalPlayer.h \
+ src/Menus/../Commands/../Players/Player.h \
+ src/Menus/../Commands/../Players/AI1.h \
+ src/Menus/../Commands/../Players/AI2.h \
+ src/Menus/../Commands/../Players/AI3.h \
+ src/Menus/../Commands/../Commands/BackCmd.h \
+ src/Menus/../Commands/../SaveManager.h \
+ src/Menus/../Commands/../Menus/StartGameMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/SetupGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/../Menus/ChessSetupMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/../Menus/../Commands/LaunchGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/ComingSoonCmd.h \
+ src/Menus/../Commands/MenuLoadOptionCmd.h \
+ src/Menus/../Commands/../Menus/LoadGameMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/LoadGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/../Players/OnlinePlayer.h \
+ src/Menus/../Commands/ExitCmd.h src/ProgramOptions.h
+Game.o: src/Game.cpp src/Game.h src/UI/ITerminal.h src/UI/Interface.h \
+ src/Boards/ClassicalChessBoard.h src/Boards/Board.h \
+ src/Boards/../Utility/ChessMove.h src/Boards/../Utility/coordinates.h \
+ src/Boards/../Utility/moveTypes.h src/Boards/../Pieces/Piece.h \
+ src/Boards/../Pieces/King.h src/Boards/../Pieces/Queen.h \
+ src/Boards/../Pieces/Bishop.h src/Boards/../Pieces/Knight.h \
+ src/Boards/../Pieces/Rook.h src/Boards/../Pieces/Pawn.h \
+ src/Players/LocalPlayer.h src/Players/Player.h src/Players/AI1.h \
+ src/Players/AI2.h src/Players/AI3.h src/Commands/BackCmd.h \
+ src/Commands/Command.h src/SaveManager.h
+main.o: src/main.cpp src/Application.h src/UI/Interface.h \
+ src/Menus/MainMenu.h src/Menus/Menu.h src/Menus/../UI/ITerminal.h \
+ src/Menus/../Commands/Command.h \
+ src/Menus/../Commands/MenuStartOptionCmd.h \
+ src/Menus/../Commands/../Game.h \
+ src/Menus/../Commands/../Boards/ClassicalChessBoard.h \
+ src/Menus/../Commands/../Boards/Board.h \
+ src/Menus/../Commands/../Boards/../Utility/ChessMove.h \
+ src/Menus/../Commands/../Boards/../Utility/coordinates.h \
+ src/Menus/../Commands/../Boards/../Utility/moveTypes.h \
+ src/Menus/../Commands/../Boards/../Pieces/Piece.h \
+ src/Menus/../Commands/../Boards/../Pieces/King.h \
+ src/Menus/../Commands/../Boards/../Pieces/Queen.h \
+ src/Menus/../Commands/../Boards/../Pieces/Bishop.h \
+ src/Menus/../Commands/../Boards/../Pieces/Knight.h \
+ src/Menus/../Commands/../Boards/../Pieces/Rook.h \
+ src/Menus/../Commands/../Boards/../Pieces/Pawn.h \
+ src/Menus/../Commands/../Players/LocalPlayer.h \
+ src/Menus/../Commands/../Players/Player.h \
+ src/Menus/../Commands/../Players/AI1.h \
+ src/Menus/../Commands/../Players/AI2.h \
+ src/Menus/../Commands/../Players/AI3.h \
+ src/Menus/../Commands/../Commands/BackCmd.h \
+ src/Menus/../Commands/../SaveManager.h \
+ src/Menus/../Commands/../Menus/StartGameMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/SetupGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/../Menus/ChessSetupMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/../Menus/../Commands/LaunchGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/ComingSoonCmd.h \
+ src/Menus/../Commands/MenuLoadOptionCmd.h \
+ src/Menus/../Commands/../Menus/LoadGameMenu.h \
+ src/Menus/../Commands/../Menus/../Commands/LoadGameCmd.h \
+ src/Menus/../Commands/../Menus/../Commands/../Players/OnlinePlayer.h \
+ src/Menus/../Commands/ExitCmd.h src/ProgramOptions.h
+ProgramOptions.o: src/ProgramOptions.cpp src/ProgramOptions.h \
+ src/UI/Interface.h src/UI/ITerminal.h
+SaveManager.o: src/SaveManager.cpp src/SaveManager.h

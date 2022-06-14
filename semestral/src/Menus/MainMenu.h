@@ -7,9 +7,9 @@
 
 #include "Menu.h" // base class
 
-#include "MenuStartOptionCmd.h"
-#include "MenuLoadOptionCmd.h"
-#include "ExitCmd.h"
+#include "Commands/MenuStartOptionCmd.h"
+#include "Commands/MenuLoadOptionCmd.h"
+#include "Commands/ExitCmd.h"
 
 #include <vector>
 #include <map>
