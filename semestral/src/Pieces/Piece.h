@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "Interface.h"
-#include "ITerminal.h"
-#include "coordinates.h"
+#include "../UI/Interface.h"
+#include "../UI/ITerminal.h"
+#include "../Utility/coordinates.h"
 //#include "../Application/moveTypes.h"
 
 #include <memory>

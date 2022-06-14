@@ -6,9 +6,9 @@
 
 #include "Menu.h" // base class
 
-#include "Commands/SetupGameCmd.h"
-#include "Commands/BackCmd.h"
-#include "Commands/ComingSoonCmd.h"
+#include "../Commands/SetupGameCmd.h"
+#include "../Commands/BackCmd.h"
+#include "../Commands/ComingSoonCmd.h"
 
 
 #include <memory>

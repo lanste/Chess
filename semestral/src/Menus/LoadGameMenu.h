@@ -6,9 +6,9 @@
 
 #include "Menu.h" // base class
 
-#include "Commands/BackCmd.h"
-#include "Commands/LoadGameCmd.h"
-#include "SaveManager.h"
+#include "../Commands/BackCmd.h"
+#include "../Commands/LoadGameCmd.h"
+#include "../SaveManager.h"
 
 #include <vector>
 

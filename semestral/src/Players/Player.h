@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "UI/Interface.h"
-#include "UI/ITerminal.h"
+#include "../UI/Interface.h"
+#include "../UI/ITerminal.h"
 
 #include <memory>
 

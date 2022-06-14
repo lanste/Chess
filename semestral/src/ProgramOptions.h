@@ -9,8 +9,8 @@
 #include <set>
 #include <memory>
 
-#include "Interface.h"
-#include "ITerminal.h"
+#include "UI/Interface.h"
+#include "UI/ITerminal.h"
 
 /**
  * Helper class

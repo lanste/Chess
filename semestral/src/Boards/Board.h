@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Moves/ChessMove.h"
+#include "../Utility//ChessMove.h"
 //#include "../Players/Player.h"
 
 #include <vector>

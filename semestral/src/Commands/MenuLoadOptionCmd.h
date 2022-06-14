@@ -6,7 +6,7 @@
 
 #include "Command.h" // base class
 
-#include "LoadGameMenu.h"
+#include "../Menus/LoadGameMenu.h"
 
 class MenuLoadOptionCmd : public Command
 {

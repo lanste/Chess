@@ -5,9 +5,9 @@
 #pragma once
 
 #include "Command.h"
-#include "ClassicalChessBoard.h"
-#include "Game.h"
-#include "ChessSetupMenu.h"
+#include "../Boards/ClassicalChessBoard.h"
+#include "../Game.h"
+#include "../Menus/ChessSetupMenu.h"
 
 #include <memory>
 #include <map>

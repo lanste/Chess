@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../coordinates.h"
+#include "coordinates.h"
 
 /**
  * class representing any move in classical Chess

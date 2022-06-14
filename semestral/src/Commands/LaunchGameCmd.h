@@ -6,7 +6,7 @@
 
 #include "Command.h" // base class
 
-#include "Game.h"
+#include "../Game.h"
 
 class LaunchGameCmd : public Command
 {

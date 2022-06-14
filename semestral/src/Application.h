@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "Interface.h"
-#include "MainMenu.h"
+#include "UI/Interface.h"
+#include "Menus/MainMenu.h"
 #include "Game.h"
 #include "ProgramOptions.h"
 

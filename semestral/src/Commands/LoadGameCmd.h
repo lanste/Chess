@@ -7,15 +7,15 @@
 #include "Command.h" // base class
 
 #include "LaunchGameCmd.h"
-#include "SaveManager.h"
-#include "Player.h"
-#include "LocalPlayer.h"
-#include "OnlinePlayer.h"
-#include "Players/AI1.h"
-#include "Players/AI2.h"
-#include "Players/AI3.h"
-#include "Board.h"
-#include "ClassicalChessBoard.h"
+#include "../SaveManager.h"
+#include "../Players/Player.h"
+#include "../Players/LocalPlayer.h"
+#include "../Players/OnlinePlayer.h"
+#include "../Players/AI1.h"
+#include "../Players/AI2.h"
+#include "../Players/AI3.h"
+#include "../Boards/Board.h"
+#include "../Boards/ClassicalChessBoard.h"
 
 class LoadGameCmd : public Command
 {

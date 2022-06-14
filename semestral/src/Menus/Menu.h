@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "Interface.h"
-#include "ITerminal.h"
-#include "Commands/Command.h"
+#include "../UI/Interface.h"
+#include "../UI/ITerminal.h"
+#include "../Commands/Command.h"
 
 #include <string>
 #include <map>

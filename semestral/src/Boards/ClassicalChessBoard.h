@@ -8,14 +8,14 @@
 
 //#include "../UI/Interface.h"
 //#include "../UI/ITerminal.h"
-#include "moveTypes.h"
-#include "Pieces/Piece.h"
-#include "Pieces/King.h"
-#include "Pieces/Queen.h"
-#include "Pieces/Bishop.h"
-#include "Pieces/Knight.h"
-#include "Pieces/Rook.h"
-#include "Pieces/Pawn.h"
+#include "../Utility/moveTypes.h"
+#include "../Pieces/Piece.h"
+#include "../Pieces/King.h"
+#include "../Pieces/Queen.h"
+#include "../Pieces/Bishop.h"
+#include "../Pieces/Knight.h"
+#include "../Pieces/Rook.h"
+#include "../Pieces/Pawn.h"
 
 #include <array>
 
