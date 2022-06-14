@@ -4,8 +4,13 @@
 *.app
 
 #Experimental files
-exp.cpp
+exp.*
 *.tmp
 
 #CLion files
 .idea
+
+#Project unnecessary
+doc
+saves
+*.save
