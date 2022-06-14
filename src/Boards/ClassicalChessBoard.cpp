@@ -406,8 +406,8 @@ int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
         return 2;
 
     //std::cout << "Execute after checks: " << board.real << std::endl;
-    std::cerr << "white king: " << wKingPos.x << wKingPos.y << std::endl;
-    std::cerr << "black king: " << bKingPos.x << bKingPos.y << std::endl;
+    //std::cerr << "white king: " << wKingPos.x << wKingPos.y << std::endl;
+    //std::cerr << "black king: " << bKingPos.x << bKingPos.y << std::endl;
 
     coordinates startPos = move.startPos();
     coordinates endPos = move.endPos();
