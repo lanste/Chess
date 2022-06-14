@@ -1,4 +1,4 @@
-RESULT := lanskteo
+RESULT := SimpleChess
 SOURCE_DIR := src
 DOC_DIR := doc
 SAVES_DIR := saves
@@ -6,7 +6,7 @@ BUILD_DIR := build
 DEP_FILE := dependecncies
 
 CXX= g++
-CXXFLAGS= -Wall -pedantic
+CXXFLAGS= -Wall -pedantic -g
 LD= g++
 LDFLAGS= -pedantic
 EXT_LIB = -lstdc++fs

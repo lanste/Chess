@@ -9,8 +9,10 @@ exp.*
 
 #CLion files
 .idea
+cmake-build-debug
 
 #Project unnecessary
+build
 doc
 saves
 *.save
