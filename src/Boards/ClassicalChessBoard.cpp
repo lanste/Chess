@@ -98,7 +98,7 @@ void ClassicalChessBoard::Initialize(const std::vector<std::string> & data)
                     bLong = true;
                     break;
                 default:
-                    throw std::invalid_argument("Invalid savefile: unknown character in castling definition");
+                    throw std::invalid_argument("Invalid save file: unknown character in castling definition");
             }
         }
     }
@@ -271,7 +271,6 @@ ChessMove ClassicalChessBoard::ProcessMove(const bool & colour, const std::strin
     // switches which board is being altered - staging or executing
     board.isReal(not output.isDummy());
 
-    //std::cout << "Processmove start: " << board.real << std::endl;
 
     //auto beforeMove = board;
     //std::vector<std::pair<std::shared_ptr<Piece>,coordinates>> removed;
@@ -296,7 +295,7 @@ ChessMove ClassicalChessBoard::ProcessMove(const bool & colour, const std::strin
             return output.inValidate();
         case VALID:
         {
-            // if this move leads to removing enemys piece
+            // if this move leads to removing an enemy piece
             if (board[endPos] != nullptr && board[endPos]->getColour() != colour)
                 affected.push_back(board[endPos]);
             affected.push_back(board[startPos]);
@@ -405,9 +404,6 @@ int ClassicalChessBoard::ExecuteMove(const ChessMove & move)
     if (move.isCheckMate())
         return 2;
 
-    //std::cout << "Execute after checks: " << board.real << std::endl;
-    //std::cerr << "white king: " << wKingPos.x << wKingPos.y << std::endl;
-    //std::cerr << "black king: " << bKingPos.x << bKingPos.y << std::endl;
 
     coordinates startPos = move.startPos();
     coordinates endPos = move.endPos();

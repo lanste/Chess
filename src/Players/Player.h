@@ -15,7 +15,7 @@
 class Player
 {
     public:
-        Player(const std::string & nId) : id(nId)
+        explicit Player(const std::string & nId) : id(nId)
         {}
         explicit Player(const bool & nColour, const std::string & nId) : colour(nColour), id(nId) {}
         virtual std::string makeTurn(std::shared_ptr<Interface> interface) = 0;

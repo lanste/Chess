@@ -18,11 +18,11 @@
 class Board
 {
     public:
-        Board(const std::string & nName) : name(nName) {}
+        explicit Board(const std::string & nName) : name(nName) {}
         /**
          *
-         * @param initData vector of strings that the board can use to populate its data strucutres
-         * Intended for loading from savefiles
+         * @param initData vector of strings that the board can use to populate its data structures
+         * Intended for loading from save files
          */
         virtual void Initialize(const std::vector<std::string> & initData) = 0;
 
@@ -31,7 +31,7 @@ class Board
          */
         virtual std::string State() = 0;
         /**
-         * @return string that will be written directly to a savefile
+         * @return string that will be written directly to a save file
          */
         virtual std::string Save() = 0;
         virtual std::string getName() {return name;}
@@ -53,7 +53,7 @@ class Board
         /**
          *
          * @param move parsed by ProcessMove
-         * @return true if execution was succesful
+         * @return true if execution was successful
          */
         virtual int ExecuteMove(const ChessMove & move) = 0;
 

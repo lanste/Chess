@@ -46,7 +46,7 @@ int Pawn::tryMove(const coordinates & startPos, const coordinates & endPos,
                 if(!moved && moves.size() == 4 && elem == moves[3])
                    doubleStep = true;
 
-                if (moves.size() == 4 && elem == moves[3] && // this move is doublestep
+                if (moves.size() == 4 && elem == moves[3] && // this move is double step
                         board[forwardRank][startPos.y] == nullptr && // no piece directly in front
                         board[endPos.x][endPos.y] == nullptr) // no pieces in endPos
                     validResult = 6;

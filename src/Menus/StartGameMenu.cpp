@@ -82,7 +82,7 @@ void StartGameMenu::createPrompt()
 /**
  * Executes commands available to this menu
  * @param command
- * @return 1 on succesful execution - leads to exiting endless loop one level above
+ * @return 1 on successful execution - leads to exiting endless loop one level above
  *         0 if passed command doesn't exist - endless loop continues
  */
 int StartGameMenu::ExecCommand(const std::string & command)

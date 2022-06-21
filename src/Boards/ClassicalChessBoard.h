@@ -29,7 +29,7 @@ class ClassicalChessBoard : public Board
          * Populates game board with Pieces in initial setup
          * @param empty - if set to true, creates board without any pieces
          */
-        ClassicalChessBoard(const bool & empty);
+        explicit ClassicalChessBoard(const bool & empty);
 
         /**
          * Initializes board from file

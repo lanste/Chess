@@ -2,7 +2,7 @@
 
 Project based on my university semestral project.
 
-Currently features only terminal interface. Graphical interface is probably the last thing planned.
+Features only terminal interface. Graphical interface is probably the last thing planned.
 
 You can play against other player (locally), computer opponent is one of main priorities
 

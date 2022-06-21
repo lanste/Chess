@@ -13,8 +13,6 @@
 #include "Application.h"
 #include "ProgramOptions.h"
 
-#include <string>
-
 
 int main (int argc, char* *argv)
 {

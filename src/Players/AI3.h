@@ -6,7 +6,7 @@
 
 #include "Player.h"
 /**
- * Class reperesenting hard AI player
+ * Class representing hard AI player
  */
 
 class AI3 : public Player

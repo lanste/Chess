@@ -14,7 +14,7 @@
 class ComingSoonCmd : public Command
 {
     public:
-        ComingSoonCmd(const std::shared_ptr<Interface> & ui);
+        explicit ComingSoonCmd(const std::shared_ptr<Interface> & ui);
         int Execute() override;
     protected:
         std::shared_ptr<Interface> interface;

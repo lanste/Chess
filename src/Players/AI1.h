@@ -7,7 +7,7 @@
 #include "Player.h"
 
 /**
- * Class reperesenting easy AI player
+ * Class representing easy AI player
  */
 class AI1 : public Player
 {

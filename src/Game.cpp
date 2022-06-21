@@ -58,7 +58,6 @@ enum states{};
     {
         for(; onTurn < playerCnt; ++onTurn)
         {
-            //std::cerr << "game.start.mainLoop" << std::endl;
             interface->Display(players[onTurn]->getColour()?"black":"white"); // placeholder just for chess
             interface->Display("'s turn\n");
             interface->Display(Show());
@@ -70,7 +69,6 @@ enum states{};
              * -> load whole line to stream and decompose word by word
             */
             std::stringstream cmdStream(command);
-            //std::cerr << cmdStream.str();
             cmdStream >> command;
             const auto cmd = commands.find(command);
 
@@ -121,7 +119,6 @@ enum states{};
             --onTurn;
             interface->Display("Invalid command\n");
         }
-        //std::cerr << "game.start.mainLoop.inf" << std::endl;
         onTurn = 0;
     }
 }

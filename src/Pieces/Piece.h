@@ -14,12 +14,12 @@
 #include <fstream>
 /**
  * Abstract class
- * Represents any figure on the gameboard
+ * Represents any figure on the game board
  */
 class Piece
 {
     public:
-        Piece();
+        Piece() = default;
 //----------------------------------------------------------------------------------------------------------------------
         Piece(const char & s, const bool & c, const coordinates myPos) : position(myPos), pastPosition(myPos), symbol(s), colour(c) {}
 //----------------------------------------------------------------------------------------------------------------------
@@ -51,9 +51,9 @@ class Piece
          */
         virtual char Save();
 //----------------------------------------------------------------------------------------------------------------------
-        bool getColour();
-        std::vector<coordinates> getMoves();
-        coordinates getPosition();
+        bool getColour() const;
+        std::vector<coordinates> getMoves() const;
+        coordinates getPosition() const;
         virtual void updatePosition(const coordinates & newPos);
         virtual void revertPosition();
 //----------------------------------------------------------------------------------------------------------------------

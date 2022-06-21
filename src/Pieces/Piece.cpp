@@ -1,11 +1,5 @@
 #include "Piece.h"
 
-#include <iostream>
-
-Piece::Piece()
-{
-
-}
 void Piece::Print(std::ostream & os)
 {
     char out = symbol;
@@ -13,7 +7,7 @@ void Piece::Print(std::ostream & os)
         out = tolower(out);
     os << out;
 }
-bool Piece::getColour()
+bool Piece::getColour() const
 {
     return colour;
 }
@@ -23,7 +17,7 @@ char Piece::Save()
         return tolower(symbol);
     return symbol;
 }
-coordinates Piece::getPosition()
+coordinates Piece::getPosition() const
 {
     return position;
 }
@@ -36,7 +30,7 @@ void Piece::revertPosition()
 {
     position = pastPosition;
 }
-std::vector<coordinates> Piece::getMoves()
+std::vector<coordinates> Piece::getMoves() const
 {
     return moves;
 }

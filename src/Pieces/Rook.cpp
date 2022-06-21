@@ -37,7 +37,6 @@ int Rook::tryMove(const coordinates & startPos, const coordinates & endPos,
         coordinates hitPos = {-1,-1};
         while((pos.x <= 7 && pos.x >= 0) && (pos.y <= 7 && pos.y >= 0) )
         {
-            // currently examined square has a piece, it's not me and flag isn't set
             if(board[pos.x][pos.y] != nullptr && position != pos && !hitFlag)
             {
                 hitPos = pos;
@@ -47,7 +46,7 @@ int Rook::tryMove(const coordinates & startPos, const coordinates & endPos,
             {
                 if(hitFlag)
                 {
-                    // hit occured in target and it's piece of different colour
+                    // hit occurred in target and it's piece of different colour
                     if(hitPos == endPos && board[pos.x][pos.y]->getColour() != colour)
                         return 0;
                     return 1;

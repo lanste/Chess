@@ -31,13 +31,13 @@ int LoadGameCmd::parseData(const std::vector<std::string> & data)
     }
     if(data[0] != "Chess") // placeholder todo ability to load different games
     {
-        interface->Display("Invalid savefile.\n");
+        interface->Display("Invalid save file.\n");
         return 1;
     }
 
     try{status = std::stoi(data[1]);}
     catch (std::invalid_argument & e){
-        interface->Display("Invalid savefile.\n");
+        interface->Display("Invalid save file.\n");
         return 1;
     }
     for(auto& i : {2,3})

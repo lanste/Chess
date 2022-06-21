@@ -15,7 +15,7 @@
 class LoadGameMenu : public Menu
 {
     public:
-        LoadGameMenu(const std::shared_ptr<Interface> & ui);
+        explicit LoadGameMenu(const std::shared_ptr<Interface> & ui);
         int Show() override;
         int ExecCommand(const std::string & command) override;
     protected:

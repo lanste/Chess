@@ -17,11 +17,11 @@ class ITerminal : public Interface
     public:
         ITerminal();
         ~ITerminal() = default;
-        std::shared_ptr<Interface> Create();
-        void Display(const std::string & message);
+        std::shared_ptr<Interface> Create() override;
+        void Display(const std::string & message) override;
         void Display(const char & message) override;
-        bool Receive(std::string & command);
-        bool ReceiveLine(std::string & command);
+        bool Receive(std::string & command) override;
+        bool ReceiveLine(std::string & command) override;
         void EmptyLine();
     protected:
         std::istream & input;

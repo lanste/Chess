@@ -20,9 +20,9 @@
 class StartGameMenu : public Menu
 {
     public:
-        StartGameMenu(const std::shared_ptr<Interface> & ui);
-        int Show();
-        int ExecCommand(const std::string & command);
+        explicit StartGameMenu(const std::shared_ptr<Interface> & ui);
+        int Show() override;
+        int ExecCommand(const std::string & command) override;
     protected:
         void emptyLine() const{
             interface->Display("\n" + std::string( 20, ' ' ));

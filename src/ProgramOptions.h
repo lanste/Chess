@@ -22,7 +22,7 @@ class ProgramOptions
 {
     public:
         explicit ProgramOptions();
-        [[nodiscard]] int ReadOptions(int argCnt, char ** args);
+        int ReadOptions(int argCnt, char ** args);
         std::shared_ptr<Interface> GetInterface() const;
     protected:
         int argumentCount;

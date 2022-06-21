@@ -24,7 +24,7 @@
 class ChessSetupMenu : public Menu
 {
     public:
-        ChessSetupMenu(const std::shared_ptr<Interface> & ui);
+        explicit ChessSetupMenu(const std::shared_ptr<Interface> & ui);
         int Show() override;
         int ExecCommand(const std::string & command) override;
     protected:

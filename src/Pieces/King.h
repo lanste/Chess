@@ -17,6 +17,6 @@ class King : public Piece
         void updatePosition(const coordinates & newPos) override;
         void revertPosition() override;
     protected:
-        enum emove{left, right, down, up, rup, lup, rdown, ldown, scastle, lcastle};
+        enum emove{scastle = 8, lcastle = 9}; // readability helper enum
         int moved;
 };
